@@ -1,5 +1,5 @@
 # Nom de l'exécutable
-EXECUTABLE = monprogram
+EXECUTABLE = myprogram
 
 
 # Fichiers objets
@@ -11,7 +11,7 @@ all: $(EXECUTABLE)
 
 # Génére l'exécutable (-Wall active les warnings et -g inclut les informations de débogage)
 $(EXECUTABLE): $(OBJECTS)
-	g++ -g -o Test1 $(OBJECTS)
+	g++ -g -o $(EXECUTABLE) $(OBJECTS)
 
 # Génère chaques fichiers objets
 Test1.o: Test1.cpp

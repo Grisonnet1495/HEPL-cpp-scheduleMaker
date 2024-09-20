@@ -46,4 +46,3 @@ void Event::display() const
 {
   cout << "Event(" << code << ") : " << title << endl;
 }
-

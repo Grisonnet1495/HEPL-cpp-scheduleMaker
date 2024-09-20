@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <iostream>
 using namespace std;
-#include "Event.cpp"
+#include "Event.h"
 
 // Quelques conseils avant de commencer...
 // * N'oubliez pas de tracer (cout << ...) tous les constructeurs et le destructeur !!! Ca, c'est pas un conseil,
@@ -80,4 +80,3 @@ int main()
 
   return 0;
 }
-
