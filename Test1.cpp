@@ -1,8 +1,7 @@
 #include <stdlib.h>
 #include <iostream>
-#include <string.h>
 using namespace std;
-//#include "Event.h"
+#include "Event.cpp"
 
 // Quelques conseils avant de commencer...
 // * N'oubliez pas de tracer (cout << ...) tous les constructeurs et le destructeur !!! Ca, c'est pas un conseil,
@@ -15,68 +14,6 @@ using namespace std;
 // * Une fois que tout le programme compile et fonctionne correctement, creez le .h contenant la declaration
 //   de la classe, le .cpp contenant la definition des methodes, et ensuite le makefile permettant de compiler
 //   le tout grace a la commande make 
-
-class Event
-{
-  private:
-    int code;
-    char *title;
-
-  public:
-    Event();
-    ~Event();
-
-    void setCode(int c);
-    void setTitle(const char *t);
-
-    int getCode()const;
-    const char* getTitle() const;
-
-    void display() const;
-};
-
-Event::Event()
-{
-  cout << "***Appelle du constructeur par defaut de Event***" << endl;
-
-  code = 1;
-  title = nullptr;
-  setTitle("---");
-}
-
-Event::~Event()
-{
-  cout << "***Appelle du destructeur par defaut de Event***" << endl;
-  if (title) delete title;
-}
-
-void Event::setCode(int c)
-{
-
-}
-
-void Event::setTitle(const char *t)
-{
-  if (t == nullptr) return;
-  if (title) delete title;
-  title = new char[strlen(t) + 1];
-  strcpy(title, t);
-}
-
-int Event::getCode() const
-{
-  return code;
-}
-
-const char* Event::getTitle() const
-{
-  return title;
-}
-
-void Event::display() const
-{
-  cout << "Event(" << code << ") : " << title << endl;
-}
 
 int main()
 {
@@ -143,3 +80,4 @@ int main()
 
   return 0;
 }
+
