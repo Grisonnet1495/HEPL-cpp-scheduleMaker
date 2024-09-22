@@ -9,6 +9,8 @@ class Event
 
   public:
     Event();
+    Event(int c, const char *t);
+    Event(const Event&);
     ~Event();
 
     void setCode(int c);

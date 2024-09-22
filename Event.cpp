@@ -6,22 +6,40 @@ using namespace std;
 
 Event::Event()
 {
-  cout << "***Appelle du constructeur par defaut de Event***" << endl;
+  cout << ">>> Appelle du constructeur par defaut de Event" << endl;
 
   code = 1;
   title = nullptr;
   setTitle("---");
 }
 
+Event::Event(int c, const char *t)
+{
+  cout << ">>> Appelle du constructeur de Event avec 2 arguments" << endl;
+
+  setCode(c);
+  title = nullptr;
+  setTitle(t);
+}
+
+Event::Event(const Event& E)
+{
+  cout << ">>> Appelle du constructeur de Event avec un argument Event" << endl;
+
+  setCode(E.code);
+  title = nullptr;
+  setTitle(E.title);
+}
+
 Event::~Event()
 {
-  cout << "***Appelle du destructeur par defaut de Event***" << endl;
+  cout << ">>> Appelle du destructeur par defaut de Event" << endl;
   if (title) delete title;
 }
 
 void Event::setCode(int c)
 {
-
+  code = c;
 }
 
 void Event::setTitle(const char *t)

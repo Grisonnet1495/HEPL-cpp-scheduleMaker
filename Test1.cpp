@@ -17,45 +17,46 @@ using namespace std;
 
 int main()
 {
-  cout << endl << "(1) ***** Test constructeur par defaut + Affiche *******************************" << endl;
+  cout << endl << endl << ">>> (1) Test constructeur par defaut + Affiche" << endl;
   {
     Event event;
     event.display();
-  } // La presence des accolades assure que le destructeur de Event sera appele --> a tracer !
+  }   // La présence des accolades assure que le destructeur de Event sera appelé.
 
-  /*cout << endl << "(2) ***** Test des setters et getters *****" << endl;
+  cout << endl << endl << ">>> (2) Test des setters et getters" << endl;
   {
     Event event;
     event.setCode(1);
-    event.setTitle("Resto avec Patrick (Merci Patrick :)");
+    event.setTitle("Resto avec Patrick (Merci Patrick :))");
     event.display();
     cout << "Code  = " << event.getCode() << endl;
     cout << "Title = " << event.getTitle() << endl;
   }
 
-  cout << endl << "(3) ***** Test du constructeur d'initialisation ********************************" << endl;
+  cout << endl << endl << ">>> (3) Test du constructeur d'initialisation" << endl;
   {
     Event event(2,"Cinema avec les potos");
     event.display();
   }
 
-  cout << endl << "(4) ***** Test du constructeur de copie ****************************************" << endl;
+  cout << endl << ">>> (4) Test du constructeur de copie" << endl;
   {
     Event event1(1,"Labo C++");
-    cout << "event1 (AVANT) :" << endl;
+    cout << "event1 (avant) :" << endl;
     event1.display();
     {   
       Event event2(event1);
       cout << "event2 :" << endl;
       event2.display();
       event2.setTitle("Labo LINUX");
+      cout << "event2 (change) :" << endl;
       event2.display();
-    } // de nouveau, les {} assurent que event2 sera detruit avant la suite
-    cout << "event1 (APRES) :" << endl;
+    }
+    cout << "event1 (apres) :" << endl;
     event1.display();
   }
 
-  cout << endl << "(5) ***** Test d'allocation dynamique (constructeur par defaut) ****************" << endl;
+  cout << endl << ">>> (5) Test d'allocation dynamique (constructeur par defaut)" << endl;
   {
     Event *p = new Event();
     p->setCode(3);
@@ -64,7 +65,7 @@ int main()
     delete p;
   }
 
-  cout << endl << "(6) ***** Test d'allocation dynamique (constructeur de copie) ******************" << endl;
+  cout << endl << ">>> (6) Test d'allocation dynamique (constructeur de copie) " << endl;
   {
     Event event1(5,"Theorie C++");
     cout << "event1 (AVANT) :" << endl;
@@ -76,7 +77,7 @@ int main()
     delete p;
     cout << "event1 (APRES) :" << endl;
     event1.display();
-  }*/
+  }
 
   return 0;
 }
