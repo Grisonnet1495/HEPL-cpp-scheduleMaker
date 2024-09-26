@@ -21,7 +21,7 @@ class Event
     void setCode(int c);
     void setTitle(const char *t);
 
-    int getCode()const;
+    int getCode() const;
     const char* getTitle() const;
 
     void display() const;

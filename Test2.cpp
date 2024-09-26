@@ -1,17 +1,19 @@
 #include <stdlib.h>
 #include <iostream>
 using namespace std;
-#include "Classes/Time.h"
-#include "Classes/Timing.h"
-#include "Event.h"
+#include "Etape02/Classes/Timing.h"
+#include "Etape02/Classes/Time.h"
+// #include "Etape02/Classes/Timing.h"
+#include "Etape01/Classes/Event.h"
 
-using namespace planning;
+// using namespace planning;
+using namespace std;
 
 int  Menu();
 void Essai1();
 void Essai2();
-void Essai3();
-void Essai4();
+/*void Essai3();
+void Essai4();*/
 
 int main(int argc,char* argv[])
 {
@@ -26,8 +28,8 @@ int main(int argc,char* argv[])
     {
       case 1 : Essai1(); break;
       case 2 : Essai2(); break;
-      case 3 : Essai3(); break;
-      case 4 : Essai4(); break;
+      /*case 3 : Essai3(); break;
+      case 4 : Essai4(); break;*/
       default : fini = true ; break;
     }
   }
@@ -59,14 +61,14 @@ int Menu()
 /*******************************************************************************************************/
 void Essai1()
 {
-  cout << endl << "(1) ***** Test du constructeur par defaut de Time *****************************" << endl;
+  cout << endl << ">>> (1) Test du constructeur par defaut de Time" << endl;
   {
     Time instant;
     instant.display();
     cout << endl;
   }
 
-  cout << endl << "(2) **** Test des setters/getters **********************************************" << endl;
+  cout << endl << ">>> (2) Test des setters/getters" << endl;
   {
     Time instant;
     instant.display();
@@ -74,25 +76,25 @@ void Essai1()
     instant.setHour(9);
     instant.setMinute(20);
     instant.display();
-    cout << endl << "heure : " << instant.getHour() << endl;
+    cout << endl << "Heure : " << instant.getHour() << endl;
     cout << "Minute : " << instant.getMinute() << endl;
   }
 
-  cout << endl << "(3) ***** Test du constructeur d'initialisation de Time (instant) **************" << endl;
+  cout << endl << ">>> (3) Test du constructeur d'initialisation de Time (instant)" << endl;
   {
     Time instant(8,5);
     instant.display();
     cout << endl;
   }
 
-  cout << endl << "(4) ***** Test du constructeur d'initialisation de Time (duree) ****************" << endl;
+  cout << endl << ">>> (4) Test du constructeur d'initialisation de Time (duree)" << endl;
   {
     Time duration(135);
     duration.display();
     cout << endl;
   }
 
-  cout << endl << "(5) ***** Test du constructeur de copie de Time *******************************" << endl;
+  cout << endl << ">>> (5) Test du constructeur de copie de Time" << endl;
   {
     Time h1(10,30);
     h1.display();
@@ -108,14 +110,14 @@ void Essai1()
 /*******************************************************************************************************/
 void Essai2()
 {
-  cout << endl << "(1) ***** Test du constructeur par defaut de Timing ****************************" << endl;
+  cout << endl << ">>> (1) Test du constructeur par defaut de Timing ****************************" << endl;
   {
     Timing t;
     t.display();
     cout << endl;
   }
 
-  cout << endl << "(2) **** Test des setters/getters **********************************************" << endl;
+  cout << endl << ">>> (2) Test des setters/getters **********************************************" << endl;
   {
     Timing t;
     t.setDay("Mardi");
@@ -132,14 +134,14 @@ void Essai2()
     cout << endl;
   }
 
-  cout << endl << "(3) ***** Test du constructeur d'initialisation de Timing **********************" << endl;
+  cout << endl << ">>> (3) Test du constructeur d'initialisation de Timing **********************" << endl;
   {
     Timing t("Vendredi",Time(13,30),Time(120));
     t.display();
     cout << endl;
   }
 
-  cout << endl << "(4) ***** Test du constructeur de copie de Timing ******************************" << endl;
+  cout << endl << ">>> (4) Test du constructeur de copie de Timing ******************************" << endl;
   {
     Time h1(13,0);
     Timing t1("Mercredi",Time(10,30),Time(120));
@@ -165,16 +167,16 @@ void Essai2()
 /*******************************************************************************************************/
 /*** Tests de la classe Event (Agregation par reference d'un objet Timing) *****************************/
 /*******************************************************************************************************/
-void Essai3()
+/*void Essai3()
 {
-  cout << endl << "(1) ***** Test constructeur par defaut + display *******************************" << endl;
+  cout << endl << ">>> (1) Test constructeur par defaut + display" << endl;
   {
     Event event;
     event.display();
     cout << endl;
   } 
 
-  cout << endl << "(2) ***** Test des setters et getters ******************************************" << endl;
+  cout << endl << ">>> (2) Test des setters et getters" << endl;
   {
     Event event;
     event.setCode(1);
@@ -189,7 +191,7 @@ void Essai3()
     cout << endl;
   }
 
-  cout << endl << "(3) ***** Test du constructeur d'initialisation ********************************" << endl;
+  cout << endl << "(3) ***** Test du constructeur d'initialisation" << endl;
   {
     Event event(2,"Cinema avec les potos");
     event.setTiming(Timing("Vendredi",Time(19,30),Time(150)));
@@ -197,7 +199,7 @@ void Essai3()
     cout << endl;
   }
 
-  cout << endl << "(4) ***** Test du constructeur de copie ****************************************" << endl;
+  cout << endl << ">>> (4) Test du constructeur de copie" << endl;
   {
     Event event1(1,"Labo C++");
     event1.setTiming(Timing("Lundi",Time(8,20),Time(90)));
@@ -218,24 +220,24 @@ void Essai3()
     event1.display();
     cout << endl << endl;
   }
-}
+}*/
 
 /*******************************************************************************************************/
 /*** Tests des variables statiques utiles **************************************************************/
 /*******************************************************************************************************/
-void Essai4()
+/*void Essai4()
 {
-  cout << endl << "(1) ***** Tests de base des jours de la semaine ********************************" << endl;
+  cout << endl << ">>> (1) Tests de base des jours de la semaine" << endl;
   cout << "Premier jour de la semaine : " << Timing::MONDAY << endl;
   // ne pas oublier les autres jours de la semaine...
   cout << "Dernier jour de la semaine : " << Timing::SUNDAY << endl << endl;
   
-  cout << endl << "(2) ***** Tests de base de la variable Event::currentCode **********************" << endl;
+  cout << endl << ">>> (2) Tests de base de la variable Event::currentCode" << endl;
   cout << "Event::currentCode = " << Event::currentCode << endl;
   Event::currentCode++;
   cout << "Event::currentCode = " << Event::currentCode << endl << endl;
 
-  cout << endl << "(3) ***** Creation d'evenements ************************************************" << endl;
+  cout << endl << ">>> (3) Creation d'evenements" << endl;
   Event::currentCode = 1;
 
   Event e1(Event::currentCode,"Theorie C++");
@@ -267,5 +269,5 @@ void Essai4()
   cout << "e1.currentCode = " << e1.currentCode << endl;
   cout << "e2.currentCode = " << e2.currentCode << endl;
   cout << "e3.currentCode = " << e3.currentCode << endl << endl;
-}
+}*/
 

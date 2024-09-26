@@ -1,6 +1,4 @@
 # Dossier des librairies
-LIBH = Etape01/Classes/
-LIBC = Etape01/Classes/
 
 # Flags
 FLAGS = -Wall -g
@@ -9,7 +7,7 @@ FLAGS = -Wall -g
 EXECUTABLE = myprogram
 
 # Nom des fichiers objets
-OBJECTS = Test1.o Event.o
+OBJECTS = Test2.o Event.o Time.o Timing.o
 
 # Génère le programme en entier
 all: $(EXECUTABLE)
@@ -19,12 +17,17 @@ $(EXECUTABLE): $(OBJECTS)
 	g++ -g -o $(EXECUTABLE) $(OBJECTS)
 
 # Génère chaques fichiers objets avec le main, les classese les librairies (-Wall active les warnings)
-Test1.o: Test1.cpp
-	g++ $(FLAGS) -c Test1.cpp -o Test1.o
+Test2.o: Test2.cpp
+	g++ $(FLAGS) -c Test2.cpp -o Test2.o
 
-Event.o: $(LIBC)Event.cpp
+Event.o: Etape01/Classes/Event.cpp
 	g++ $(FLAGS) -c Etape01/Classes/Event.cpp -o Event.o -I Etape01/Classes/
+
+Time.o: Etape02/Classes/Time.cpp
+	g++ $(FLAGS) -c Etape02/Classes/Time.cpp -o Time.o -I Etape02/Classes/
+
+Timing.o: Etape02/Classes/Timing.cpp
+	g++ $(FLAGS) -c Etape02/Classes/Timing.cpp -o Timing.o -I Etape02/Classes/
 
 clean:
 	rm -f $(EXECUTABLE) $(OBJECTS)
-

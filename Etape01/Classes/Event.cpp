@@ -13,16 +13,16 @@ Event::Event()
 
 Event::Event(int c, const char *t)
 {
-  cout << ">>> Appelle du constructeur de Event avec 2 arguments" << endl;
+  cout << ">>> Appelle du constructeur d'initialisation de Event" << endl;
 
   setCode(c);
   title = nullptr;
   setTitle(t);
 }
 
-Event::Event(const Event& E)
+Event::Event(const Event &E)
 {
-  cout << ">>> Appelle du constructeur de Event avec un argument Event" << endl;
+  cout << ">>> Appelle du constructeur de copie de Event" << endl;
 
   setCode(E.code);
   title = nullptr;
