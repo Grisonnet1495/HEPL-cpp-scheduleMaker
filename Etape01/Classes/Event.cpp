@@ -1,8 +1,6 @@
-#include <stdlib.h>
-#include <iostream>
-#include <string.h>
 #include "Event.h"
-using namespace std;
+
+// Constructeurs
 
 Event::Event()
 {
@@ -31,11 +29,15 @@ Event::Event(const Event& E)
   setTitle(E.title);
 }
 
+// Destructeur
+
 Event::~Event()
 {
   cout << ">>> Appelle du destructeur par defaut de Event" << endl;
   if (title) delete title;
 }
+
+// Setters
 
 void Event::setCode(int c)
 {
@@ -51,6 +53,8 @@ void Event::setTitle(const char *t)
   strcpy(title, t);
 }
 
+// Getters
+
 int Event::getCode() const
 {
   return code;
@@ -60,6 +64,8 @@ const char* Event::getTitle() const
 {
   return title;
 }
+
+// Méthodes d'instances
 
 void Event::display() const
 {

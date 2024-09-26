@@ -1,5 +1,10 @@
-#ifndef EVENT_H
-#define EVENT_H
+#ifndef EVENT
+#define EVENT
+
+#include <stdlib.h>
+#include <iostream>
+#include <string.h>
+using namespace std;
 
 class Event
 {

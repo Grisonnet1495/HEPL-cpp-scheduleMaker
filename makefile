@@ -1,6 +1,9 @@
 # Dossier des librairies
-LIBH = include/
-LIBC = classes/
+LIBH = Etape01/Classes/
+LIBC = Etape01/Classes/
+
+# Flags
+FLAGS = -Wall -g
 
 # Nom de l'exécutable
 EXECUTABLE = myprogram
@@ -17,10 +20,10 @@ $(EXECUTABLE): $(OBJECTS)
 
 # Génère chaques fichiers objets avec le main, les classese les librairies (-Wall active les warnings)
 Test1.o: Test1.cpp
-	g++ -Wall -g -c Test1.cpp -o Test1.o
+	g++ $(FLAGS) -c Test1.cpp -o Test1.o
 
 Event.o: $(LIBC)Event.cpp
-	g++ -Wall -g -c $(LIBC)Event.cpp -o Event.o -I $(LIBH)
+	g++ $(FLAGS) -c Etape01/Classes/Event.cpp -o Event.o -I Etape01/Classes/
 
 clean:
 	rm -f $(EXECUTABLE) $(OBJECTS)
