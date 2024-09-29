@@ -7,27 +7,38 @@
 #include "Time.h"
 using namespace std;
 
-class Timing
+namespace planning
 {
-	private:
-		string day;
-		Time start;
-		Time duration;
-	public:
-		Timing();
-		Timing(const Timing &T);
-		Timing(string day, const Time &s, const Time &duration);
-		~Timing();
+	class Timing
+	{
+		private:
+			string day;
+			Time start;
+			Time duration;
+		public:
+			static const string MONDAY;
+	        static const string TUESDAY;
+	        static const string WEDNESDAY;
+	        static const string THURSDAY;
+	        static const string FRIDAY;
+	        static const string SATURDAY;
+	        static const string SUNDAY;
+	        
+			Timing();
+			Timing(const Timing &T);
+			Timing(string day, const Time &s, const Time &duration);
+			~Timing();
 
-		string getDay() const;
-		Time getStart() const;
-		Time getDuration() const;
+			string getDay() const;
+			Time getStart() const;
+			Time getDuration() const;
 
-		void setDay(const string d);
-		void setStart(const Time &s);
-		void setDuration(const Time &d);
+			void setDay(const string d);
+			void setStart(const Time &s);
+			void setDuration(const Time &d);
 
-		void display() const;
-};
+			void display() const;
+	};
+}
 
 #endif

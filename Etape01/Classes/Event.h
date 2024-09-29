@@ -7,28 +7,34 @@
 #include "../../Etape02/Classes/Timing.h"
 using namespace std;
 
-class Event
+namespace planning
 {
-  private:
-    int code;
-    char *title;
-    Timing *timing;
+  class Event
+  {
+    private:
+      int code;
+      char *title;
+      Timing *timing;
 
-  public:
-    Event();
-    Event(int c, const char *t);
-    Event(const Event &E);
-    ~Event();
+    public:
+      static int currentCode;
 
-    void setCode(int c);
-    void setTitle(const char *t);
-    void setTiming(const Timing& T);
+      Event();
+      Event(int c, const char *t);
+      Event(const Event &E);
+      ~Event();
 
-    int getCode() const;
-    const char* getTitle() const;
-    const Timing& getTiming() const;
+      void setCode(int c);
+      void setTitle(const char *t);
+      void setTiming(const Timing& T);
 
-    void display() const;
-};
+      int getCode() const;
+      const char* getTitle() const;
+      const Timing& getTiming() const;
+
+      void display() const;
+      void incCurrentCode() const;
+  };
+}
 
 #endif

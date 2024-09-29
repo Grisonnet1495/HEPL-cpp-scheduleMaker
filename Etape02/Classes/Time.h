@@ -6,25 +6,28 @@
 #include <string.h>
 using namespace std;
 
-class Time
+namespace planning
 {
-	private:
-		int hour;
-		int minute;
-	public:
-		Time();
-		Time(const Time &T);
-		Time(int h, int m);
-		Time(int duree);
-		~Time();
+	class Time
+	{
+		private:
+			int hour;
+			int minute;
+		public:
+			Time();
+			Time(const Time &T);
+			Time(int h, int m);
+			Time(int duree);
+			~Time();
 
-		int getHour() const;
-		int getMinute() const;
+			int getHour() const;
+			int getMinute() const;
 
-		void setHour(int h);
-		void setMinute(int m);
+			void setHour(int h);
+			void setMinute(int m);
 
-		void display() const;
-};
+			void display() const;
+	};
+}
 
 #endif

@@ -6,14 +6,13 @@ using namespace std;
 #include "Etape02/Classes/Timing.h"
 #include "Etape01/Classes/Event.h"
 
-// using namespace planning;
-using namespace std;
+using namespace planning;
 
 int  Menu();
 void Essai1();
 void Essai2();
 void Essai3();
-// void Essai4();
+void Essai4();
 
 int main(int argc,char* argv[])
 {
@@ -29,7 +28,7 @@ int main(int argc,char* argv[])
       case 1 : Essai1(); break;
       case 2 : Essai2(); break;
       case 3 : Essai3(); break;
-      // case 4 : Essai4(); break;
+      case 4 : Essai4(); break;
       default : fini = true ; break;
     }
   }
@@ -225,7 +224,7 @@ void Essai3()
 /*******************************************************************************************************/
 /*** Tests des variables statiques utiles **************************************************************/
 /*******************************************************************************************************/
-/*void Essai4()
+void Essai4()
 {
   cout << endl << ">>> (1) Tests de base des jours de la semaine" << endl;
   cout << "Premier jour de la semaine : " << Timing::MONDAY << endl;
@@ -269,5 +268,4 @@ void Essai3()
   cout << "e1.currentCode = " << e1.currentCode << endl;
   cout << "e2.currentCode = " << e2.currentCode << endl;
   cout << "e3.currentCode = " << e3.currentCode << endl << endl;
-}*/
-
+}

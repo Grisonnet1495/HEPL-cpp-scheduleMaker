@@ -1,6 +1,10 @@
 #include "Event.h"
 
+using namespace planning;
+
 // Constructeurs
+
+int Event::currentCode = 1;
 
 Event::Event()
 {
@@ -11,6 +15,7 @@ Event::Event()
   setTitle("---");
   timing = nullptr;
   setTiming(Timing());
+  incCurrentCode();
 }
 
 Event::Event(int c, const char *t)
@@ -22,6 +27,7 @@ Event::Event(int c, const char *t)
   setTitle(t);
   timing = nullptr;
   setTiming(Timing());
+  incCurrentCode();
 }
 
 Event::Event(const Event &E)
@@ -33,6 +39,7 @@ Event::Event(const Event &E)
   setTitle(E.title);
   timing = nullptr;
   setTiming(E.getTiming());
+  incCurrentCode();
 }
 
 // Destructeur
@@ -90,4 +97,9 @@ void Event::display() const
 {
   cout << "Event(" << code << ") : " << title << "; Date : ";
   timing->display();
+}
+
+void Event::incCurrentCode() const
+{
+  currentCode++;
 }

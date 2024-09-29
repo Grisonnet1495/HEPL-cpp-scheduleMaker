@@ -1,6 +1,18 @@
 #include "Timing.h"
 #include "Time.h"
 
+using namespace planning;
+
+const string Timing::MONDAY = "Lundi";
+const string Timing::TUESDAY = "Mardi";
+const string Timing::WEDNESDAY = "Mercredi";
+const string Timing::THURSDAY = "Jeudi";
+const string Timing::FRIDAY = "Vendredi";
+const string Timing::SATURDAY = "Samedi";
+const string Timing::SUNDAY = "Dimanche";
+
+// Constructeurs
+
 Timing::Timing()
 {
 	setDay("---");
@@ -21,6 +33,8 @@ Timing::Timing(string day, const Time &s, const Time &duration)
 	setStart(s);
 	setDuration(duration);
 }
+
+// Destructeur
 
 Timing::~Timing()
 {
@@ -56,6 +70,8 @@ void Timing::setDuration(const Time &d)
 {
 	duration = d;
 }
+
+// Méthodes d'instances
 
 void Timing::display() const
 {
