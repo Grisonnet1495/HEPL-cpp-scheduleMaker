@@ -1,10 +1,9 @@
 #include <stdlib.h>
 #include <iostream>
 using namespace std;
-#include "Etape02/Classes/Timing.h"
-#include "Etape02/Classes/Time.h"
-#include "Etape02/Classes/Timing.h"
-#include "Etape01/Classes/Event.h"
+#include "Classes/Timing.h"
+#include "Classes/Time.h"
+#include "Classes/Event.h"
 
 using namespace planning;
 

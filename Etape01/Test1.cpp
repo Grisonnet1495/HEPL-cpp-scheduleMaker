@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <iostream>
-#include "Etape01/Classes/Event.h"
+#include "Classes/Event.h"
 using namespace std;
 
 // Quelques conseils avant de commencer...

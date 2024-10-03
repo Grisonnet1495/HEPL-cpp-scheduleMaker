@@ -17,17 +17,17 @@ $(EXECUTABLE): $(OBJECTS)
 	g++ -g -o $(EXECUTABLE) $(OBJECTS)
 
 # Génère chaques fichiers objets avec le main, les classese les librairies (-Wall active les warnings)
-Test2.o: Etape02/Test2.cpp
-	g++ $(FLAGS) -c Etape02/Test2.cpp -o Test2.o
+Test2.o: Test2.cpp
+	g++ $(FLAGS) -c Test2.cpp -o Test2.o
 
-Event.o: Etape01/Classes/Event.cpp
-	g++ $(FLAGS) -c Etape02/Classes/Event.cpp -o Event.o -I Etape01/Classes/
+Event.o: Classes/Event.cpp
+	g++ $(FLAGS) -c Classes/Event.cpp -o Event.o
 
-Time.o: Etape02/Classes/Time.cpp
-	g++ $(FLAGS) -c Etape02/Classes/Time.cpp -o Time.o -I Etape02/Classes/
+Time.o: Classes/Time.cpp
+	g++ $(FLAGS) -c Classes/Time.cpp -o Time.o
 
-Timing.o: Etape02/Classes/Timing.cpp
-	g++ $(FLAGS) -c Etape02/Classes/Timing.cpp -o Timing.o -I Etape02/Classes/
+Timing.o: Classes/Timing.cpp
+	g++ $(FLAGS) -c Classes/Timing.cpp -o Timing.o
 
 clean:
 	rm -f $(EXECUTABLE) $(OBJECTS)

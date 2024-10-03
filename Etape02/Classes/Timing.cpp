@@ -15,6 +15,8 @@ const string Timing::SUNDAY = "Dimanche";
 
 Timing::Timing()
 {
+	cout << ">>> Appelle du constructeur par defaut de Timing" << endl;
+
 	setDay("---");
 	setStart(Time());
 	setDuration(Time());
@@ -22,6 +24,8 @@ Timing::Timing()
 
 Timing::Timing(const Timing &T)
 {
+	cout << ">>> Appelle du constructeur de copie de Timing" << endl;
+
 	setDay(T.day);
 	setStart(T.start);
 	setDuration(T.duration);
@@ -29,6 +33,8 @@ Timing::Timing(const Timing &T)
 
 Timing::Timing(string day, const Time &s, const Time &duration)
 {
+	cout << ">>> Appelle du constructeur d'initialisation de Timing" << endl;
+
 	setDay(day);
 	setStart(s);
 	setDuration(duration);
@@ -38,7 +44,7 @@ Timing::Timing(string day, const Time &s, const Time &duration)
 
 Timing::~Timing()
 {
-
+	cout << ">>> Appelle du destructeur par defaut de Timing" << endl;
 }
 
 string Timing::getDay() const
