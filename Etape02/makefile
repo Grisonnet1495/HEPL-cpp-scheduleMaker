@@ -1,5 +1,8 @@
 # Dossier des librairies
 
+# Debug
+DEBUG = -D DEBUG
+
 # Flags
 FLAGS = -Wall -g
 
@@ -18,16 +21,16 @@ $(EXECUTABLE): $(OBJECTS)
 
 # Génère chaques fichiers objets avec le main, les classese les librairies (-Wall active les warnings)
 Test2.o: Test2.cpp
-	g++ $(FLAGS) -c Test2.cpp -o Test2.o
+	g++ $(FLAGS) $(DEBUG) -c Test2.cpp -o Test2.o
 
 Event.o: Classes/Event.cpp
-	g++ $(FLAGS) -c Classes/Event.cpp -o Event.o
+	g++ $(FLAGS) $(DEBUG) -c Classes/Event.cpp -o Event.o
 
 Time.o: Classes/Time.cpp
-	g++ $(FLAGS) -c Classes/Time.cpp -o Time.o
+	g++ $(FLAGS) $(DEBUG) -c Classes/Time.cpp -o Time.o
 
 Timing.o: Classes/Timing.cpp
-	g++ $(FLAGS) -c Classes/Timing.cpp -o Timing.o
+	g++ $(FLAGS) $(DEBUG) -c Classes/Timing.cpp -o Timing.o
 
 clean:
 	rm -f $(EXECUTABLE) $(OBJECTS)

@@ -6,7 +6,9 @@ using namespace planning;
 
 Time::Time()
 {
-	cout << ">>> Appelle du constructeur par defaut de Time" << endl;
+	#ifdef DEBUG
+		cout << ">>> Appelle du constructeur par defaut de Time" << endl;
+	#endif
 
 	setHour(0);
 	setMinute(0);
@@ -14,7 +16,9 @@ Time::Time()
 
 Time::Time(const Time &T)
 {
-	cout << ">>> Appelle du constructeur de copie de Time" << endl;
+	#ifdef DEBUG
+		cout << ">>> Appelle du constructeur de copie de Time" << endl;
+	#endif
 
 	setHour(T.hour);
 	setMinute(T.minute);
@@ -22,7 +26,9 @@ Time::Time(const Time &T)
 
 Time::Time(int h, int m)
 {
-	cout << ">>> Appelle du constructeur d'initialisation 1 de Time" << endl;
+	#ifdef DEBUG
+		cout << ">>> Appelle du constructeur d'initialisation 1 de Time" << endl;
+	#endif
 
 	setHour(h);
 	setMinute(m);
@@ -30,7 +36,9 @@ Time::Time(int h, int m)
 
 Time::Time(int duree)
 {
-	cout << ">>> Appelle du constructeur d'initialisation 2 de Time" << endl;
+	#ifdef DEBUG
+		cout << ">>> Appelle du constructeur d'initialisation 2 de Time" << endl;
+	#endif
 
 	setHour(duree / 60);
 	setMinute(duree % 60);
@@ -40,7 +48,9 @@ Time::Time(int duree)
 
 Time::~Time()
 {
-	cout << ">>> Appelle du destructeur par defaut de Time" << endl;
+	#ifdef DEBUG
+		cout << ">>> Appelle du destructeur par defaut de Time" << endl;
+	#endif
 }
 
 // Getters

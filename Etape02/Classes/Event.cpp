@@ -8,7 +8,9 @@ int Event::currentCode = 1;
 
 Event::Event()
 {
-  cout << ">>> Appelle du constructeur par defaut de Event" << endl;
+  #ifdef DEBUG
+    cout << ">>> Appelle du constructeur par defaut de Event" << endl;
+  #endif
 
   setCode(1);
   title = nullptr;
@@ -20,7 +22,9 @@ Event::Event()
 
 Event::Event(int c, const char *t)
 {
-  cout << ">>> Appelle du constructeur d'initialisation de Event" << endl;
+  #ifdef DEBUG
+    cout << ">>> Appelle du constructeur d'initialisation de Event" << endl;
+  #endif
 
   setCode(c);
   title = nullptr;
@@ -32,7 +36,9 @@ Event::Event(int c, const char *t)
 
 Event::Event(const Event &E)
 {
-  cout << ">>> Appelle du constructeur de copie de Event" << endl;
+  #ifdef DEBUG
+    cout << ">>> Appelle du constructeur de copie de Event" << endl;
+  #endif
 
   setCode(E.code);
   title = nullptr;
@@ -46,7 +52,9 @@ Event::Event(const Event &E)
 
 Event::~Event()
 {
-  cout << ">>> Appelle du destructeur par defaut de Event" << endl;
+  #ifdef DEBUG
+    cout << ">>> Appelle du destructeur par defaut de Event" << endl;
+  #endif
   
   if (title) delete title;
   if (timing) delete timing;
