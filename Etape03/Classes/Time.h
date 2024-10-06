@@ -11,6 +11,7 @@ namespace planning
 	class Time
 	{
 		friend Time operator+(int minutesNbr, Time T);
+		friend Time operator-(int minutesNbr, Time T);
 
 		private:
 			int hour;
@@ -33,6 +34,8 @@ namespace planning
 			Time& operator=(const Time& T);
 			Time operator+(int minutesNbr);
 			Time operator+(const Time& T2);
+			Time operator-(int minutesNbr);
+			Time operator-(const Time& T2);
 	};
 }
 

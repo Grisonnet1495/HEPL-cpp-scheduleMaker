@@ -108,7 +108,7 @@ Time Time::operator+(int minutesNbr)
 	return T; 
 }
 
-Time operator+(const Time& T2)
+Time Time::operator+(const Time& T2)
 {
 	Time T1(*this);
 
@@ -118,7 +118,53 @@ Time operator+(const Time& T2)
 	return T1; 
 }
 
-friend Time operator+(int minutesNbr, Time T)
+Time operator+(int minutesNbr, Time T)
+{
+	return T + minutesNbr;
+}
+
+Time Time::operator-(int minutesNbr)
+{
+	Time T(*this);
+
+	if (minutesNbr < 0) return T;
+
+	int totalMinutes = (T.hour * 60) + T.minute;
+
+	totalMinutes -= minutesNbr;
+
+	while (totalMinutes < 0)
+    {
+        totalMinutes += 1440; // Car 24 heures est egal a 1440 minutes.
+    }
+
+    T.minute = totalMinutes % 60;
+    T.hour = (totalMinutes / 60) % 24;
+
+	return T;
+}
+
+Time Time::operator-(const Time& T2)
+{
+	Time T1(*this);
+
+    int totalMinutes1 = T1.hour * 60 + T1.minute;
+    int totalMinutes2 = T2.hour * 60 + T2.minute;
+
+    int totalMinutes = totalMinutes1 - totalMinutes2;
+
+    while (totalMinutes < 0)
+    {
+        totalMinutes += 1440; // Car 24 heures est egal a 1440 minutes.
+    }
+
+    T1.minute = totalMinutes % 60;
+    T1.hour = (totalMinutes / 60) % 24;
+
+    return T1;
+}
+
+Time operator-(int minutesNbr, Time T)
 {
 	return T + minutesNbr;
 }
