@@ -15,6 +15,7 @@ namespace planning
 			string day;
 			Time start;
 			Time duration;
+			
 		public:
 			static const string MONDAY;
 	        static const string TUESDAY;

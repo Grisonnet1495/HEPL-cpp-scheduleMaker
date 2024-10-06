@@ -168,3 +168,30 @@ Time operator-(int minutesNbr, Time T)
 {
 	return T + minutesNbr;
 }
+
+int Time::comparisonT(const Time& T)
+{
+	if (hour < T.hour) return -1;
+	if (hour > T.hour) return 1;
+	// Si heures egales
+	if (minute < T.minute) return -1;
+	if (minute > T.minute) return 1;
+
+	// Si minutes egales
+	return 0;
+}
+
+int Time::operator<(const Time& T)
+{
+	return comparisonT(T) == -1;
+}
+
+int Time::operator>(const Time& T)
+{
+	return comparisonT(T) == 1;
+}
+
+int Time::operator==(const Time& T)
+{
+	return comparisonT(T) == 0;
+}

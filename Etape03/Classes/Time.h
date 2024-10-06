@@ -16,6 +16,8 @@ namespace planning
 		private:
 			int hour;
 			int minute;
+			int comparisonT(const Time& T);
+
 		public:
 			Time();
 			Time(const Time &T);
@@ -36,6 +38,9 @@ namespace planning
 			Time operator+(const Time& T2);
 			Time operator-(int minutesNbr);
 			Time operator-(const Time& T2);
+			int operator<(const Time& T);
+		    int operator>(const Time& T);
+		    int operator==(const Time& T);
 	};
 }
 
