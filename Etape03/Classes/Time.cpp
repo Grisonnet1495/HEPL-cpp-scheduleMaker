@@ -103,9 +103,9 @@ Time Time::operator+(int minutesNbr)
 	if (minutesNbr < 0) return T; 
 
 	T.minute = (T.minute + minutesNbr) % 60;
-	T.hour = (T.hour + minuteNbr / 60) % 24;
+	T.hour = (T.hour + (T.minute + minutesNbr) / 60) % 24;
 
-	return T; 
+	return T;
 }
 
 Time Time::operator+(const Time& T2)
@@ -113,7 +113,7 @@ Time Time::operator+(const Time& T2)
 	Time T1(*this);
 
 	T1.minute = (T1.minute + T2.minute) % 60;
-	T1.hour = ((T1.hour + T2.minute / 60) + T2.hour) % 24;
+	T1.hour = ((T1.hour + (T1.minute + T2.minute) / 60) + T2.hour) % 24;
 
 	return T1; 
 }
@@ -194,4 +194,47 @@ int Time::operator>(const Time& T)
 int Time::operator==(const Time& T)
 {
 	return comparisonT(T) == 0;
+}
+
+ostream& operator<<(ostream& s,const Time& T)
+{
+	s << T.hour << "h" << T.minute; 
+	return s; 
+}
+
+istream& operator>>(istream& s, Time& T)
+{
+	int h, m, erreur = 0;
+	char separator;
+
+	s >> h >> separator >> m;
+
+	while (separator != 'h' || h < 0 || h > 23 || m < 0 || m > 59)
+	{
+		cout << "Entree incorrecte. Veuillez entrer l'heure sous le format hh:h:mm (ex : 14h20)." << endl;
+		s.sync();
+		s >> h >> separator >> m;
+	}
+	
+	T.hour = h;
+	T.minute = m;
+	return s;
+}
+
+Time Time::operator++()
+{
+	Time T(*this);
+
+	T += 30;
+
+	return T;
+}
+
+Time operator--()
+{
+	Time T(*this);
+
+	T -= 30;
+
+	return T;
 }
