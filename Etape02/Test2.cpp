@@ -189,7 +189,7 @@ void Essai3()
     cout << endl;
   }
 
-  cout << endl << "(3) ***** Test du constructeur d'initialisation" << endl;
+  cout << endl << ">>> (3) Test du constructeur d'initialisation" << endl;
   {
     Event event(2,"Cinema avec les potos");
     event.setTiming(Timing("Vendredi",Time(19,30),Time(150)));
