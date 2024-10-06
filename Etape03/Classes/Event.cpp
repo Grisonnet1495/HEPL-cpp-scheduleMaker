@@ -34,7 +34,7 @@ Event::Event(int c, const char *t)
   incCurrentCode();
 }
 
-Event::Event(const Event &E)
+Event::Event(const Event& E)
 {
   #ifdef DEBUG
     cout << ">>> Appelle du constructeur de copie de Event" << endl;

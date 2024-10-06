@@ -15,7 +15,8 @@ namespace planning
 			string day;
 			Time start;
 			Time duration;
-			
+			int comparisonT(const Timing& T2);
+
 		public:
 			static const string MONDAY;
 	        static const string TUESDAY;
@@ -26,8 +27,8 @@ namespace planning
 	        static const string SUNDAY;
 	        
 			Timing();
-			Timing(const Timing &T);
-			Timing(string day, const Time &s, const Time &duration);
+			Timing(const Timing& T);
+			Timing(string day, const Time& s, const Time& duration);
 			~Timing();
 
 			string getDay() const;
@@ -35,8 +36,11 @@ namespace planning
 			Time getDuration() const;
 
 			void setDay(const string d);
-			void setStart(const Time &s);
-			void setDuration(const Time &d);
+			void setStart(const Time& s);
+			void setDuration(const Time& d);
+			int operator<(const Timing& T);
+		    int operator>(const Timing& T);
+		    int operator==(const Timing& T);
 
 			void display() const;
 	};

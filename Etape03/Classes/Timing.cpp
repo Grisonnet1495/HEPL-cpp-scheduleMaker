@@ -24,7 +24,7 @@ Timing::Timing()
 	setDuration(Time());
 }
 
-Timing::Timing(const Timing &T)
+Timing::Timing(const Timing& T)
 {
 	#ifdef DEBUG
 		cout << ">>> Appelle du constructeur de copie de Timing" << endl;
@@ -35,7 +35,7 @@ Timing::Timing(const Timing &T)
 	setDuration(T.duration);
 }
 
-Timing::Timing(string day, const Time &s, const Time &duration)
+Timing::Timing(string day, const Time& s, const Time &duration)
 {
 	#ifdef DEBUG
 		cout << ">>> Appelle du constructeur d'initialisation de Timing" << endl;
@@ -75,12 +75,12 @@ void Timing::setDay(const string d)
 	day = d;
 }
 
-void Timing::setStart(const Time &s)
+void Timing::setStart(const Time& s)
 {
 	start = s;
 }
 
-void Timing::setDuration(const Time &d)
+void Timing::setDuration(const Time& d)
 {
 	duration = d;
 }
@@ -94,4 +94,55 @@ void Timing::display() const
 	start.display();
 	cout << ", duree : ";
 	duration.display();
+}
+
+// Méthodes de surcharge d'opérateurs
+
+int Timing::comparisonT(const Timing& T2)
+{
+	Timing T1(*this);
+	int dayNbr1 = 0, dayNbr2 = 0;
+
+    if (T1.day == Timing::MONDAY) dayNbr1 = 1;
+    else if (T1.day == Timing::TUESDAY) dayNbr1 = 2;
+    else if (T1.day == Timing::WEDNESDAY) dayNbr1 = 3;
+    else if (T1.day == Timing::THURSDAY) dayNbr1 = 4;
+    else if (T1.day == Timing::FRIDAY) dayNbr1 = 5;
+    else if (T1.day == Timing::SATURDAY) dayNbr1 = 6;
+    else if (T1.day == Timing::SUNDAY) dayNbr1 = 7;
+
+    if (T2.day == Timing::MONDAY) dayNbr2 = 1;
+    else if (T2.day == Timing::TUESDAY) dayNbr2 = 2;
+    else if (T2.day == Timing::WEDNESDAY) dayNbr2 = 3;
+    else if (T2.day == Timing::THURSDAY) dayNbr2 = 4;
+    else if (T2.day == Timing::FRIDAY) dayNbr2 = 5;
+    else if (T2.day == Timing::SATURDAY) dayNbr2 = 6;
+    else if (T2.day == Timing::SUNDAY) dayNbr2 = 7;
+
+	if (dayNbr1 < dayNbr2) return -1;
+	if (dayNbr1 > dayNbr2) return 1;
+	// Si jours égaux
+	if (T1.start < T2.start) return -1;
+	if (T1.start > T2.start) return 1;
+	// Si heures de début égales
+	if (T1.duration < T2.duration) return -1;
+	if (T1.duration > T2.duration) return 1;
+
+	// Si durées égales
+	return 0;
+}
+
+int Timing::operator<(const Timing& T)
+{
+	return comparisonT(T) == -1;
+}
+
+int Timing::operator>(const Timing& T)
+{
+	return comparisonT(T) == 1;
+}
+
+int Timing::operator==(const Timing& T)
+{
+	return comparisonT(T) == 0;
 }

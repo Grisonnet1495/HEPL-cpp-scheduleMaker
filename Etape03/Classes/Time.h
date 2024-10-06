@@ -22,7 +22,7 @@ namespace planning
 
 		public:
 			Time();
-			Time(const Time &T);
+			Time(const Time& T);
 			Time(int h, int m);
 			Time(int duree);
 			~Time();
@@ -44,7 +44,9 @@ namespace planning
 		    int operator>(const Time& T);
 		    int operator==(const Time& T);
 		    Time operator++();
+		    Time operator++(int);
 		    Time operator--();
+		    Time operator--(int);
 	};
 }
 

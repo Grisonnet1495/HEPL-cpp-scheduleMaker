@@ -14,7 +14,7 @@ Time::Time()
 	setMinute(0);
 }
 
-Time::Time(const Time &T)
+Time::Time(const Time& T)
 {
 	#ifdef DEBUG
 		cout << ">>> Appelle du constructeur de copie de Time" << endl;
@@ -135,7 +135,7 @@ Time Time::operator-(int minutesNbr)
 
 	while (totalMinutes < 0)
     {
-        totalMinutes += 1440; // Car 24 heures est egal a 1440 minutes.
+        totalMinutes += 1440; // Car 24 heures est égal à 1440 minutes.
     }
 
     T.minute = totalMinutes % 60;
@@ -155,7 +155,7 @@ Time Time::operator-(const Time& T2)
 
     while (totalMinutes < 0)
     {
-        totalMinutes += 1440; // Car 24 heures est egal a 1440 minutes.
+        totalMinutes += 1440; // Car 24 heures est égal à 1440 minutes.
     }
 
     T1.minute = totalMinutes % 60;
@@ -173,11 +173,11 @@ int Time::comparisonT(const Time& T)
 {
 	if (hour < T.hour) return -1;
 	if (hour > T.hour) return 1;
-	// Si heures egales
+	// Si heures égales
 	if (minute < T.minute) return -1;
 	if (minute > T.minute) return 1;
 
-	// Si minutes egales
+	// Si minutes égales
 	return 0;
 }
 
@@ -196,15 +196,15 @@ int Time::operator==(const Time& T)
 	return comparisonT(T) == 0;
 }
 
-ostream& operator<<(ostream& s,const Time& T)
+ostream& operator<<(ostream& s, const Time& T)
 {
-	s << T.hour << "h" << T.minute; 
+	s << T.getHour() << "h" << T.getMinute(); 
 	return s; 
 }
 
 istream& operator>>(istream& s, Time& T)
 {
-	int h, m, erreur = 0;
+	int h, m;
 	char separator;
 
 	s >> h >> separator >> m;
@@ -216,25 +216,37 @@ istream& operator>>(istream& s, Time& T)
 		s >> h >> separator >> m;
 	}
 	
-	T.hour = h;
-	T.minute = m;
+	T.setHour(h);
+	T.setMinute(m);
 	return s;
 }
 
 Time Time::operator++()
 {
-	Time T(*this);
+	(*this) = (*this) + 30;
 
-	T += 30;
-
-	return T;
+	return (*this);
 }
 
-Time operator--()
+Time Time::operator++(int)
 {
-	Time T(*this);
+	Time Ttmp(*this);
+	(*this) = (*this) + 30; 
 
-	T -= 30;
+	return Ttmp;
+}
 
-	return T;
+Time Time::operator--()
+{
+	(*this) = (*this) - 30;
+
+	return (*this);
+}
+
+Time Time::operator--(int)
+{
+	Time Ttmp(*this);
+	(*this) = (*this) - 30; 
+
+	return Ttmp;
 }

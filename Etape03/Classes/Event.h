@@ -21,7 +21,7 @@ namespace planning
 
       Event();
       Event(int c, const char *t);
-      Event(const Event &E);
+      Event(const Event& E);
       ~Event();
 
       void setCode(int c);
