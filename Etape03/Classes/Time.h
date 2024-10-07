@@ -12,7 +12,7 @@ namespace planning
 	{
 		friend Time operator+(int minutesNbr, Time T);
 		friend Time operator-(int minutesNbr, Time T);
-		friend ostream& operator<<(ostream& s,const Time& T);
+		friend ostream& operator<<(ostream& s, const Time& T);
 		friend istream& operator>>(istream& s, Time& T);
 
 		private:
