@@ -21,7 +21,7 @@ namespace planning
 
       Event();
       Event(int c, const char *t);
-      Event(const Event &E);
+      Event(const Event& E);
       ~Event();
 
       void setCode(int c);
@@ -30,7 +30,7 @@ namespace planning
 
       int getCode() const;
       const char* getTitle() const;
-      const Timing& getTiming() const; // Renvoyer l'objet.
+      const Timing& getTiming() const;
 
       void display() const;
       void incCurrentCode() const;

@@ -1,114 +1,115 @@
 #include "Event.h"
 
-using namespace planning;
-
-// Constructeurs
-
-int Event::currentCode = 1;
-
-Event::Event()
+namespace planning
 {
-  #ifdef DEBUG
-    cout << ">>> Appelle du constructeur par defaut de Event" << endl;
-  #endif
+  // Constructeurs
 
-  setCode(1);
-  title = nullptr;
-  setTitle("---");
-  timing = nullptr;
-  setTiming(Timing());
-  incCurrentCode();
-}
+  int Event::currentCode = 1;
 
-Event::Event(int c, const char *t)
-{
-  #ifdef DEBUG
-    cout << ">>> Appelle du constructeur d'initialisation de Event" << endl;
-  #endif
+  Event::Event()
+  {
+    #ifdef DEBUG
+      cout << ">>> Appelle du constructeur par defaut de Event" << endl;
+    #endif
 
-  setCode(c);
-  title = nullptr;
-  setTitle(t);
-  timing = nullptr;
-  setTiming(Timing());
-  incCurrentCode();
-}
+    setCode(1);
+    title = nullptr;
+    setTitle("---");
+    timing = nullptr;
+    setTiming(Timing());
+    incCurrentCode();
+  }
 
-Event::Event(const Event &E)
-{
-  #ifdef DEBUG
-    cout << ">>> Appelle du constructeur de copie de Event" << endl;
-  #endif
+  Event::Event(int c, const char *t)
+  {
+    #ifdef DEBUG
+      cout << ">>> Appelle du constructeur d'initialisation de Event" << endl;
+    #endif
 
-  setCode(E.code);
-  title = nullptr;
-  setTitle(E.title);
-  timing = nullptr;
-  setTiming(E.getTiming());
-  incCurrentCode();
-}
+    setCode(c);
+    title = nullptr;
+    setTitle(t);
+    timing = nullptr;
+    setTiming(Timing());
+    incCurrentCode();
+  }
 
-// Destructeur
+  Event::Event(const Event &E)
+  {
+    #ifdef DEBUG
+      cout << ">>> Appelle du constructeur de copie de Event" << endl;
+    #endif
 
-Event::~Event()
-{
-  #ifdef DEBUG
-    cout << ">>> Appelle du destructeur par defaut de Event" << endl;
-  #endif
-  
-  if (title) delete title;
-  if (timing) delete timing;
-}
+    setCode(E.code);
+    title = nullptr;
+    setTitle(E.title);
+    timing = nullptr;
+    setTiming(E.getTiming());
+    incCurrentCode();
+  }
 
-// Setters
+  // Destructeur
 
-void Event::setCode(int c)
-{
-if (c < 1) return;
-  code = c;
-}
+  Event::~Event()
+  {
+    #ifdef DEBUG
+      cout << ">>> Appelle du destructeur par defaut de Event" << endl;
+    #endif
+    
+    if (title) delete title;
+    if (timing) delete timing;
+  }
 
-void Event::setTitle(const char *t)
-{
-  if (t == nullptr) return;
-  if (title) delete title;
-  title = new char[strlen(t) + 1];
-  strcpy(title, t);
-}
+  // Setters
 
-void Event::setTiming(const Timing& T)
-{
-  if (timing) delete timing;
-  timing = new Timing(T);
-}
+  void Event::setCode(int c)
+  {
+  if (c < 1) return;
+    code = c;
+  }
 
-// Getters
+  void Event::setTitle(const char *t)
+  {
+    if (t == nullptr) return;
+    if (title) delete title;
+    title = new char[strlen(t) + 1];
+    strcpy(title, t);
+  }
 
-int Event::getCode() const
-{
-  return code;
-}
+  void Event::setTiming(const Timing& T)
+  {
+    if (timing) delete timing;
+    timing = new Timing(T);
+  }
 
-const char* Event::getTitle() const
-{
-  return title;
-}
+  // Getters
 
-const Timing& Event::getTiming() const
-{
-  if (timing) return *timing;
-  throw std::runtime_error("Timing is null");
-}
+  int Event::getCode() const
+  {
+    return code;
+  }
 
-// Méthodes d'instances
+  const char* Event::getTitle() const
+  {
+    return title;
+  }
 
-void Event::display() const
-{
-  cout << "Event(" << code << ") : " << title << "; Date : ";
-  timing->display();
-}
+  const Timing& Event::getTiming() const
+  {
+    if (timing) return *timing;
+    throw std::runtime_error("Timing is null");
+  }
 
-void Event::incCurrentCode() const
-{
-  currentCode++;
+  // Méthodes d'instances
+
+  void Event::display() const
+  {
+    cout << "Event(" << code << ") : " << title << "; Date : ";
+    timing->display();
+  }
+
+  void Event::incCurrentCode() const
+  {
+    currentCode++;
+  }
 }

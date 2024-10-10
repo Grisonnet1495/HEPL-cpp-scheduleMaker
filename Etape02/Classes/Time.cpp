@@ -1,87 +1,91 @@
 #include "Time.h"
 
-using namespace planning;
-
-// Constructeurs
-
-Time::Time()
+namespace planning
 {
-	#ifdef DEBUG
-		cout << ">>> Appelle du constructeur par defaut de Time" << endl;
-	#endif
+	// Constructeurs
 
-	setHour(0);
-	setMinute(0);
-}
+	Time::Time()
+	{
+		#ifdef DEBUG
+			cout << ">>> Appelle du constructeur par defaut de Time" << endl;
+		#endif
 
-Time::Time(const Time &T)
-{
-	#ifdef DEBUG
-		cout << ">>> Appelle du constructeur de copie de Time" << endl;
-	#endif
+		setHour(0);
+		setMinute(0);
+	}
 
-	setHour(T.hour);
-	setMinute(T.minute);
-}
+	Time::Time(const Time &T)
+	{
+		#ifdef DEBUG
+			cout << ">>> Appelle du constructeur de copie de Time" << endl;
+		#endif
 
-Time::Time(int h, int m)
-{
-	#ifdef DEBUG
-		cout << ">>> Appelle du constructeur d'initialisation 1 de Time" << endl;
-	#endif
+		setHour(T.hour);
+		setMinute(T.minute);
+	}
 
-	setHour(h);
-	setMinute(m);
-}
+	Time::Time(int h, int m)
+	{
+		#ifdef DEBUG
+			cout << ">>> Appelle du constructeur d'initialisation 1 de Time" << endl;
+		#endif
 
-Time::Time(int duree)
-{
-	#ifdef DEBUG
-		cout << ">>> Appelle du constructeur d'initialisation 2 de Time" << endl;
-	#endif
+		setHour(h);
+		setMinute(m);
+	}
 
-	setHour(duree / 60);
-	setMinute(duree % 60);
-}
+	Time::Time(int duree)
+	{
+		#ifdef DEBUG
+			cout << ">>> Appelle du constructeur d'initialisation 2 de Time" << endl;
+		#endif
 
-// Destructeur
+		setHour(duree / 60);
+		setMinute(duree % 60);
+	}
 
-Time::~Time()
-{
-	#ifdef DEBUG
-		cout << ">>> Appelle du destructeur par defaut de Time" << endl;
-	#endif
-}
+	// Destructeur
 
-// Getters
+	Time::~Time()
+	{
+		#ifdef DEBUG
+			cout << ">>> Appelle du destructeur par defaut de Time" << endl;
+		#endif
+	}
 
-int Time::getHour() const
-{
-	return hour;
-}
+	// Getters
 
-int Time::getMinute() const
-{
-	return minute;
-}
+	int Time::getHour() const
+	{
+		return hour;
+	}
 
-// Setters
+	int Time::getMinute() const
+	{
+		return minute;
+	}
 
-void Time::setHour(int h)
-{
-	if (h < 0 || h > 23) return;
-	hour = h;
-}
+	// Setters
 
-void Time::setMinute(int m)
-{
-	if (m < 0 || m > 59) return;
-	minute = m;
-}
+	void Time::setHour(int h)
+	{
+		if (h < 0 || h > 23) return;
+		hour = h;
+	}
 
-// Méthodes d'instances
+	void Time::setMinute(int m)
+	{
+		if (m < 0 || m > 59) return;
+		minute = m;
+	}
 
-void Time::display() const
-{
-	cout << hour << "h" << minute;
+	// Méthodes d'instances
+
+	void Time::display() const
+	{
+		if (hour < 10) cout << "0";
+		cout << hour << "h";
+		if (minute < 10) cout << "0";
+		cout << minute;
+	}
 }

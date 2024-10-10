@@ -1,97 +1,99 @@
 #include "Timing.h"
 #include "Time.h"
 
-using namespace planning;
-
-const string Timing::MONDAY = "Lundi";
-const string Timing::TUESDAY = "Mardi";
-const string Timing::WEDNESDAY = "Mercredi";
-const string Timing::THURSDAY = "Jeudi";
-const string Timing::FRIDAY = "Vendredi";
-const string Timing::SATURDAY = "Samedi";
-const string Timing::SUNDAY = "Dimanche";
-
-// Constructeurs
-
-Timing::Timing()
+namespace planning
 {
-	#ifdef DEBUG
-		cout << ">>> Appelle du constructeur par defaut de Timing" << endl;
-	#endif
+	const string Timing::MONDAY = "Lundi";
+	const string Timing::TUESDAY = "Mardi";
+	const string Timing::WEDNESDAY = "Mercredi";
+	const string Timing::THURSDAY = "Jeudi";
+	const string Timing::FRIDAY = "Vendredi";
+	const string Timing::SATURDAY = "Samedi";
+	const string Timing::SUNDAY = "Dimanche";
 
-	setDay("---");
-	setStart(Time());
-	setDuration(Time());
-}
+	// Constructeurs
 
-Timing::Timing(const Timing &T)
-{
-	#ifdef DEBUG
-		cout << ">>> Appelle du constructeur de copie de Timing" << endl;
-	#endif
+	Timing::Timing()
+	{
+		#ifdef DEBUG
+			cout << ">>> Appelle du constructeur par defaut de Timing" << endl;
+		#endif
 
-	setDay(T.day);
-	setStart(T.start);
-	setDuration(T.duration);
-}
+		setDay("---");
+		setStart(Time());
+		setDuration(Time());
+	}
 
-Timing::Timing(string day, const Time &s, const Time &duration)
-{
-	#ifdef DEBUG
-		cout << ">>> Appelle du constructeur d'initialisation de Timing" << endl;
-	#endif
+	Timing::Timing(const Timing &T)
+	{
+		#ifdef DEBUG
+			cout << ">>> Appelle du constructeur de copie de Timing" << endl;
+		#endif
 
-	setDay(day);
-	setStart(s);
-	setDuration(duration);
-}
+		setDay(T.day);
+		setStart(T.start);
+		setDuration(T.duration);
+	}
 
-// Destructeur
+	Timing::Timing(string day, const Time &s, const Time &duration)
+	{
+		#ifdef DEBUG
+			cout << ">>> Appelle du constructeur d'initialisation de Timing" << endl;
+		#endif
 
-Timing::~Timing()
-{
-	#ifdef DEBUG
-		cout << ">>> Appelle du destructeur par defaut de Timing" << endl;
-	#endif
-}
+		setDay(day);
+		setStart(s);
+		setDuration(duration);
+	}
 
-string Timing::getDay() const
-{
-	return day;
-}
+	// Destructeur
 
-Time Timing::getStart() const
-{
-	return start;
-}
+	Timing::~Timing()
+	{
+		#ifdef DEBUG
+			cout << ">>> Appelle du destructeur par defaut de Timing" << endl;
+		#endif
+	}
 
-Time Timing::getDuration() const
-{
-	return duration;
-}
+	string Timing::getDay() const
+	{
+		return day;
+	}
 
-void Timing::setDay(const string d)
-{
-	day = d;
-}
+	Time Timing::getStart() const
+	{
+		return start;
+	}
 
-void Timing::setStart(const Time &s)
-{
-	start = s;
-}
+	Time Timing::getDuration() const
+	{
+		return duration;
+	}
 
-void Timing::setDuration(const Time &d)
-{
-	duration = d;
-}
+	void Timing::setDay(const string d)
+	{
+		day = d;
+	}
 
-// Méthodes d'instances
+	void Timing::setStart(const Time &s)
+	{
+		start.setHour(s.getHour());
+		start.setMinute(s.getMinute());
+	}
 
-void Timing::display() const
-{
-	cout << "Jour : " << day;
-	cout << ", debut : ";
-	start.display();
-	cout << ", duree : ";
-	duration.display();
+	void Timing::setDuration(const Time &d)
+	{
+		duration = d;
+	}
+
+	// Méthodes d'instances
+
+	void Timing::display() const
+	{
+		cout << "Jour : " << day;
+		cout << ", debut : ";
+		start.display();
+		cout << ", duree : ";
+		duration.display();
+	}
 }
