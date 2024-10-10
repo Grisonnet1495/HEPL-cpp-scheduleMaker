@@ -1,5 +1,7 @@
 #include "Time.h"
 
+using namespace std;
+
 namespace planning
 {
 	// Constructeurs

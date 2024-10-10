@@ -2,9 +2,10 @@
 
 using namespace std;
 
-// Constructeurs
 namespace planning
 {
+	// Constructeurs
+
 	Time::Time()
 	{
 		#ifdef DEBUG
@@ -84,7 +85,10 @@ namespace planning
 
 	void Time::display() const
 	{
-		cout << hour << "h" << minute;
+		if (hour < 10) cout << "0";
+		cout << hour << "h";
+		if (minute < 10) cout << "0";
+		cout << minute;
 	}
 
 	// Méthodes de surcharge d'opérateurs
@@ -217,6 +221,7 @@ namespace planning
 			cout << "Entree incorrecte. Veuillez entrer l'heure sous le format hh:h:mm (ex : 14h20)." << endl;
 			s.sync();
 			s >> h >> separator >> m;
+			cout << endl << h << 'h' << m << endl << endl;
 		}
 		
 		T.setHour(h);
