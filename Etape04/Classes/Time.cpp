@@ -2,9 +2,10 @@
 
 using namespace std;
 
-// Constructeurs
 namespace planning
 {
+	// Constructeurs
+
 	Time::Time()
 	{
 		#ifdef DEBUG
@@ -15,14 +16,14 @@ namespace planning
 		setMinute(0);
 	}
 
-	Time::Time(const Time& T)
+	Time::Time(const Time& t)
 	{
 		#ifdef DEBUG
 			cout << ">>> Appelle du constructeur de copie de Time" << endl;
 		#endif
 
-		setHour(T.hour);
-		setMinute(T.minute);
+		setHour(t.hour);
+		setMinute(t.minute);
 	}
 
 	Time::Time(int h, int m)
@@ -84,55 +85,58 @@ namespace planning
 
 	void Time::display() const
 	{
-		cout << hour << "h" << minute;
+		if (hour < 10) cout << "0";
+		cout << hour << "h";
+		if (minute < 10) cout << "0";
+		cout << minute;
 	}
 
 	// Méthodes de surcharge d'opérateurs
 
-	Time& Time::operator=(const Time& T)
+	Time& Time::operator=(const Time& t)
 	{
-		hour = T.hour;
-		minute = T.minute;
+		hour = t.hour;
+		minute = t.minute;
 
 		return (*this);
 	}
 
 	Time Time::operator+(int minutesNbr)
 	{
-		Time T(*this);
+		Time t(*this);
 
-		if (minutesNbr < 0) return T; 
+		if (minutesNbr < 0) return t; 
 
-		int minutesTotal = T.minute + minutesNbr;
-		T.minute = minutesTotal % 60;
-		T.hour = (T.hour + minutesTotal / 60) % 24;
+		int minutesTotal = t.minute + minutesNbr;
+		t.minute = minutesTotal % 60;
+		t.hour = (t.hour + minutesTotal / 60) % 24;
 
-		return T;
+		return t;
 	}
 
-	Time Time::operator+(const Time& T2)
+	Time Time::operator+(const Time& t2)
 	{
-		Time T1(*this);
+		Time t1(*this);
 
-		int minutesTotal = T1.minute + T2.minute;
-		T1.minute = minutesTotal % 60;
-		T1.hour = ((T1.hour + minutesTotal / 60) + T2.hour) % 24;
+		int minutesTotal = t1.minute + t2.minute;
+		t1.minute = minutesTotal % 60;
+		t1.hour = ((t1.hour + minutesTotal / 60) + t2.hour) % 24;
 
-		return T1; 
+		return t1; 
 	}
 
-	Time operator+(int minutesNbr, Time T)
+	Time operator+(int minutesNbr, Time t)
 	{
-		return T + minutesNbr;
+		return t + minutesNbr;
 	}
 
 	Time Time::operator-(int minutesNbr)
 	{
-		Time T(*this);
+		Time t(*this);
 
-		if (minutesNbr < 0) return T;
+		if (minutesNbr < 0) return t;
 
-		int totalMinutes = (T.hour * 60) + T.minute;
+		int totalMinutes = (t.hour * 60) + t.minute;
 
 		totalMinutes -= minutesNbr;
 
@@ -141,18 +145,18 @@ namespace planning
 	        totalMinutes += 1440; // Car 24 heures est égal à 1440 minutes.
 	    }
 
-	    T.minute = totalMinutes % 60;
-	    T.hour = (totalMinutes / 60) % 24;
+	    t.minute = totalMinutes % 60;
+	    t.hour = (totalMinutes / 60) % 24;
 
-		return T;
+		return t;
 	}
 
-	Time Time::operator-(const Time& T2)
+	Time Time::operator-(const Time& t2)
 	{
-		Time T1(*this);
+		Time t1(*this);
 
-	    int minutesTotal1 = T1.hour * 60 + T1.minute;
-	    int minutesTotal2 = T2.hour * 60 + T2.minute;
+	    int minutesTotal1 = t1.hour * 60 + t1.minute;
+	    int minutesTotal2 = t2.hour * 60 + t2.minute;
 
 	    int minutesTotal = minutesTotal1 - minutesTotal2;
 
@@ -161,51 +165,54 @@ namespace planning
 	        minutesTotal += 1440; // Car 24 heures est égal à 1440 minutes.
 	    }
 
-	    T1.minute = minutesTotal % 60;
-	    T1.hour = (minutesTotal / 60) % 24;
+	    t1.minute = minutesTotal % 60;
+	    t1.hour = (minutesTotal / 60) % 24;
 
-	    return T1;
+	    return t1;
 	}
 
-	Time operator-(int minutesNbr, Time T)
+	Time operator-(int minutesNbr, Time t)
 	{
-		return T + minutesNbr;
+		return t + minutesNbr;
 	}
 
-	int Time::comparisonT(const Time& T)
+	int Time::comparisonT(const Time& t)
 	{
-		if (hour < T.hour) return -1;
-		if (hour > T.hour) return 1;
+		if (hour < t.hour) return -1;
+		if (hour > t.hour) return 1;
 		// Si heures égales
-		if (minute < T.minute) return -1;
-		if (minute > T.minute) return 1;
+		if (minute < t.minute) return -1;
+		if (minute > t.minute) return 1;
 
 		// Si minutes égales
 		return 0;
 	}
 
-	int Time::operator<(const Time& T)
+	int Time::operator<(const Time& t)
 	{
-		return comparisonT(T) == -1;
+		return comparisonT(t) == -1;
 	}
 
-	int Time::operator>(const Time& T)
+	int Time::operator>(const Time& t)
 	{
-		return comparisonT(T) == 1;
+		return comparisonT(t) == 1;
 	}
 
-	int Time::operator==(const Time& T)
+	int Time::operator==(const Time& t)
 	{
-		return comparisonT(T) == 0;
+		return comparisonT(t) == 0;
 	}
 
-	ostream& operator<<(ostream& s, const Time& T)
+	ostream& operator<<(ostream& s, const Time& t)
 	{
-		s << T.getHour() << "h" << T.getMinute(); 
+		if (t.getHour() < 10) s << "0";
+		s << t.getHour() << "h";
+		if (t.getMinute() < 10) s << "0";
+		s << t.getMinute(); 
 		return s; 
 	}
 
-	istream& operator>>(istream& s, Time& T)
+	istream& operator>>(istream& s, Time& t)
 	{
 		int h, m;
 		char separator;
@@ -215,12 +222,12 @@ namespace planning
 		while (separator != 'h' || h < 0 || h > 23 || m < 0 || m > 59)
 		{
 			cout << "Entree incorrecte. Veuillez entrer l'heure sous le format hh:h:mm (ex : 14h20)." << endl;
-			s.sync();
+			while (s.get() != '\n');
 			s >> h >> separator >> m;
 		}
 		
-		T.setHour(h);
-		T.setMinute(m);
+		t.setHour(h);
+		t.setMinute(m);
 		return s;
 	}
 

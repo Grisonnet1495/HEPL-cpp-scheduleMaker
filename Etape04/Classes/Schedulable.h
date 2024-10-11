@@ -18,11 +18,11 @@ namespace planning
       static int currentCode;
 
       Schedulable();
-      Schedulable(int c, const char *t);
-      Schedulabe(const Event& E);
-      ~Event();
+      Schedulable(int i);
+      Schedulabe(const Schedulable& s);
+      ~Schedulable();
 
-      void setId(int c);
+      void setId(int i);
 
       int getId() const;
 
