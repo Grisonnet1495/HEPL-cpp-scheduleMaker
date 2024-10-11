@@ -205,7 +205,10 @@ namespace planning
 
 	ostream& operator<<(ostream& s, const Time& T)
 	{
-		s << T.getHour() << "h" << T.getMinute(); 
+		if (T.getHour() < 10) s << "0";
+		s << T.getHour() << "h";
+		if (T.getMinute() < 10) s << "0";
+		s << T.getMinute(); 
 		return s; 
 	}
 
@@ -219,9 +222,8 @@ namespace planning
 		while (separator != 'h' || h < 0 || h > 23 || m < 0 || m > 59)
 		{
 			cout << "Entree incorrecte. Veuillez entrer l'heure sous le format hh:h:mm (ex : 14h20)." << endl;
-			s.sync();
+			while (s.get() != '\n');
 			s >> h >> separator >> m;
-			cout << endl << h << 'h' << m << endl << endl;
 		}
 		
 		T.setHour(h);
