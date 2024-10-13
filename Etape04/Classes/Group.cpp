@@ -11,12 +11,13 @@ Group::Group()
     setName(0);
 }
 
-Group::Group(int n)
+Group::Group(int i, const string n)
 {
     #ifdef DEBUG
       cout << ">>> Appelle du constructeur d'initialisation de Group" << endl;
     #endif
 
+    setId(i);
     setName(n);
 }
 
@@ -26,6 +27,7 @@ Group::Group(const Group& g)
       cout << ">>> Appelle du constructeur de copie de Group" << endl;
     #endif
 
+    setId(g.id);
     setName(g.name);
 }
 
@@ -40,7 +42,7 @@ Group::~Group()
 
 // Setters
 
-void Group::setName(const int n)
+void Group::setName(const string n)
 {
     name = n;
 }
@@ -50,4 +52,25 @@ void Group::setName(const int n)
 int Group::getName() const
 {
   return name;
+}
+
+// Méthodes d'instances
+
+string Group::toString()
+{
+    return name;
+}
+
+string tuple()
+{
+    return to_string(id) + ";" + name;
+}
+
+// Méthodes de surcharge d'opérateurs
+
+ostream& operator<<(ostream& s, const Group& g)
+{
+    s << g.toString();
+
+    return s;
 }

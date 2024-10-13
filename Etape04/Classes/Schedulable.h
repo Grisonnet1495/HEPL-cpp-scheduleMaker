@@ -11,7 +11,7 @@ class Schedulable
 {
   friend ostream& operator<<(ostream& s, const Schedulable& s);
 
-  private:
+  protected:
     int id;
 
   public:
@@ -28,8 +28,8 @@ class Schedulable
 
     Schedulable& operator=(const Schedulable& s);
 
-    virtual const string& toString();
-    virtual const string& tuple();
+    virtual string toString();
+    virtual string tuple();
 };
 
 #endif

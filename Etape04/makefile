@@ -10,7 +10,7 @@ FLAGS = -Wall -g
 EXECUTABLE = myprogram
 
 # Nom des fichiers objets
-OBJECTS = Test4.o Event.o Time.o Timing.o
+OBJECTS = Test4.o Event.o Time.o Timing.o Schedulable.o Professor.o Group.o Classroom.o
 
 # Génère le programme en entier
 all: $(EXECUTABLE)
@@ -31,6 +31,18 @@ Time.o: Classes/Time.cpp
 
 Timing.o: Classes/Timing.cpp
 	g++ $(FLAGS) $(DEBUG) -c Classes/Timing.cpp -o Timing.o
+
+Schedulable.o: Classes/Schedulable.cpp
+	g++ $(FLAGS) $(DEBUG) -c Classes/Schedulable.cpp -o Schedulable.o
+
+Professor.o: Classes/Professor.cpp
+	g++ $(FLAGS) $(DEBUG) -c Classes/Professor.cpp -o Professor.o
+
+Group.o: Classes/Group.cpp
+	g++ $(FLAGS) $(DEBUG) -c Classes/Group.cpp -o Group.o
+
+Classroom.o: Classes/Classroom.cpp
+	g++ $(FLAGS) $(DEBUG) -c Classes/Classroom.cpp -o Classroom.o
 
 clean:
 	rm -f $(EXECUTABLE) $(OBJECTS)

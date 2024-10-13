@@ -3,18 +3,21 @@
 
 #include <stdlib.h>
 #include <iostream>
+#include <string.h>
 #include "Schedulable.h"
 using namespace std;
 
 class Professor : public Schedulable
 {
+  friend ostream& operator<<(ostream& s, const Professor& p);
+
   private:
     string lastName;
     string firstName;
 
   public:
     Professor();
-    Professor(const string& l, const string& f);
+    Professor(int i, const string& l, const string& f);
     Professor(const Professor& p);
     ~Professor();
 
@@ -24,8 +27,8 @@ class Professor : public Schedulable
     const string getLastName() const;
     const string getFirstName() const;
 
-    virtual const string& toString();
-    virtual const string& tuple();
+    string toString() override;
+    string tuple() override;
 };
 
 #endif

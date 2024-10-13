@@ -1,5 +1,7 @@
 #include "Classroom.h"
 
+using namespace std;
+
 // Constructeurs
 
 Classroom::Classroom()
@@ -12,12 +14,13 @@ Classroom::Classroom()
     setSeatingCapacity(0);
 }
 
-Classroom::Classroom(const string& n, int s)
+Classroom::Classroom(int i, const string& n, int s)
 {
 	#ifdef DEBUG
       cout << ">>> Appelle du constructeur d'initialisation de Classroom" << endl;
     #endif
 
+    setId(i);
     setName(n);
     setSeatingCapacity(s);
 }
@@ -28,6 +31,7 @@ Classroom::Classroom(const Classroom& c)
       cout << ">>> Appelle du constructeur de copie de Classroom" << endl;
     #endif
 
+    setId(c.id);
     setName(c.name);
     setSeatingCapacity(c.seatingCapacity);
 }
@@ -63,4 +67,25 @@ const string Classroom::getName() const
 int Classroom::getSeatingCapacity() const
 {
 	return seatingCapacity;
+}
+
+// Méthodes d'instances
+
+string Classroom::toString()
+{
+    return name + " (" + to_string(seatingCapacity) + ")";
+}
+
+string Classroom::tuple()
+{
+    return to_string(id) + ";" + name + " (" + to_string(seatingCapacity) + ")";
+}
+
+// Méthodes de surcharge d'opérateurs
+
+ostream& operator<<(ostream& s, const Classroom& c)
+{
+    s << c.toString();
+
+    return s;
 }

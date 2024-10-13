@@ -12,12 +12,13 @@ Professor::Professor()
     setFirstName("---");
 }
 
-Professor::Professor(const string& l, const string& f)
+Professor::Professor(int i, const string& l, const string& f)
 {
 	#ifdef DEBUG
       cout << ">>> Appelle du constructeur d'initialisation de Professor" << endl;
     #endif
 
+    setId(i);
     setLastName(l);
     setFirstName(f);
 }
@@ -28,6 +29,7 @@ Professor::Professor(const Professor& p)
       cout << ">>> Appelle du constructeur de copie de Professor" << endl;
     #endif
 
+    setId(p.id);
     setLastName(p.lastName);
     setFirstName(p.firstName);
 }
@@ -63,4 +65,25 @@ const string Professor::getLastName() const
 const string Professor::getFirstName() const
 {
 	return firstName;
+}
+
+// Méthodes d'instances
+
+string Professor::toString()
+{
+    return lastName + " " + firstName;
+}
+
+string Professor::tuple()
+{
+    return to_string(id) + ";" + lastName + ";" + firstName;
+}
+
+// Méthodes de surcharge d'opérateurs
+
+ostream& operator<<(ostream& s, const Professor& p)
+{
+    s << p.toString();
+
+    return s;
 }

@@ -3,26 +3,29 @@
 
 #include <stdlib.h>
 #include <iostream>
+#include <string.h>
 #include "Schedulable.h"
 using namespace std;
 
 class Group : public Schedulable
 {
+  friend ostream& operator<<(ostream& s, const Group& g);
+
   private:
-    int name;
+    string name;
 
   public:
     Group();
-    Group(const int n);
+    Group(int i, const string n);
     Group(const Group& g);
     ~Group();
 
-    void setName(int n);
+    void setName(const string n);
 
     int getName() const;
 
-    virtual const string& toString();
-    virtual const string& tuple();
+    string toString() override;
+    string tuple() override;
 };
 
 #endif
