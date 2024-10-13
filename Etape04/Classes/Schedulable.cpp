@@ -1,56 +1,53 @@
 #include "Schedulable.h"
 
-namespace planning
+// Constructeurs
+
+Schedulable::Schedulable()
 {
-	// Constructeurs
+	#ifdef DEBUG
+      cout << ">>> Appelle du constructeur par defaut de Schedulable" << endl;
+    #endif
 
-	Schedulable::Schedulable()
-	{
-		#ifdef DEBUG
-	      cout << ">>> Appelle du constructeur par defaut de Schedulable" << endl;
-	    #endif
+    setId(0);
+}
 
-	    setId(0);
-	}
+Schedulable::Schedulable(int i)
+{
+	#ifdef DEBUG
+      cout << ">>> Appelle du constructeur d'initialisation de Schedulable" << endl;
+    #endif
 
-	Schedulable::Schedulable(int i)
-	{
-		#ifdef DEBUG
-	      cout << ">>> Appelle du constructeur d'initialisation de Schedulable" << endl;
-	    #endif
+    setId(i);
+}
 
-	    setId(i);
-	}
+Schedulable::Schedulable(const Schedulable& s)
+{
+	#ifdef DEBUG
+      cout << ">>> Appelle du constructeur de copie de Schedulable" << endl;
+    #endif
 
-	Schedulable::Schedulable(const Schedulable& s)
-	{
-		#ifdef DEBUG
-	      cout << ">>> Appelle du constructeur de copie de Schedulable" << endl;
-	    #endif
+    setId(s.getId());
+}
 
-	    setId(s.getId());
-	}
+// Destructeur
 
-	// Destructeur
+Schedulable::~Schedulable()
+{
+	#ifdef DEBUG
+      cout << ">>> Appelle du destructeur par defaut de Schedulable" << endl;
+    #endif
+}
 
-	Schedulable::~Schedulable()
-	{
-		#ifdef DEBUG
-	      cout << ">>> Appelle du destructeur par defaut de Schedulable" << endl;
-	    #endif
-	}
+// Getters
 
-	// Getters
+int Schedulable::getId()
+{
+	return id;
+}
 
-	int Schedulable::getId()
-	{
-		return id;
-	}
+// Setters
 
-	// Setters
-
-	void Schedulable::setId(int i)
-	{
-		id = i;
-	}
+void Schedulable::setId(int i)
+{
+	id = i;
 }
