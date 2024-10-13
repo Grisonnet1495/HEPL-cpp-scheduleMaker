@@ -64,20 +64,3 @@ const string Professor::getFirstName() const
 {
 	return firstName;
 }
-
-// Méthodes de surcharge d'opérateurs
-
-Professor& Professor::operator=(const Professor& p)
-{
-	lastName = p.lastName;
-	firstName = p.firstName;
-
-	return (*this);
-}
-
-ostream& operator<<(ostream& s, const Professor& p)
-{
-	s << toString();
-
-	return s;
-}

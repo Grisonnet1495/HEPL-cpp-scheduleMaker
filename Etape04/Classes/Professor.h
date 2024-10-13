@@ -8,8 +8,6 @@ using namespace std;
 
 class Professor : public Schedulable
 {
-  friend ostream& operator<<(ostream& s, const Professor& p);
-
   private:
     string lastName;
     string firstName;
@@ -25,8 +23,6 @@ class Professor : public Schedulable
 
     const string getLastName() const;
     const string getFirstName() const;
-
-    Professor& operator=(const Professor& p);
 
     virtual const string& toString();
     virtual const string& tuple();

@@ -51,3 +51,19 @@ void Schedulable::setId(int i)
 {
 	id = i;
 }
+
+// Méthodes de surcharge d'opérateurs
+
+Schedulable& Schedulable::operator=(const Schedulable& s)
+{
+	id = p.id;
+
+	return (*this);
+}
+
+ostream& operator<<(ostream& s, const Schedulable& s)
+{
+	s << toString();
+
+	return s;
+}

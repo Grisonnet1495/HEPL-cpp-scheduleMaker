@@ -9,6 +9,8 @@ using namespace std;
 
 class Schedulable
 {
+  friend ostream& operator<<(ostream& s, const Schedulable& s);
+
   private:
     int id;
 
@@ -23,6 +25,8 @@ class Schedulable
     void setId(int i);
 
     int getId() const;
+
+    Schedulable& operator=(const Schedulable& s);
 
     virtual const string& toString();
     virtual const string& tuple();
