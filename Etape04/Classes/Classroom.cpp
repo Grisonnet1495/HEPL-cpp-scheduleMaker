@@ -71,12 +71,12 @@ int Classroom::getSeatingCapacity() const
 
 // Méthodes d'instances
 
-string Classroom::toString()
+string Classroom::toString() const
 {
     return name + " (" + to_string(seatingCapacity) + ")";
 }
 
-string Classroom::tuple()
+string Classroom::tuple() const
 {
     return to_string(id) + ";" + name + " (" + to_string(seatingCapacity) + ")";
 }

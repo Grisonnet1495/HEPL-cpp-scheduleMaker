@@ -27,8 +27,8 @@ class Professor : public Schedulable
     const string getLastName() const;
     const string getFirstName() const;
 
-    string toString() override;
-    string tuple() override;
+    string toString() const override;
+    string tuple() const override;
 };
 
 #endif

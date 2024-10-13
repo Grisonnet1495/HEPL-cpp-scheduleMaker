@@ -40,7 +40,7 @@ Schedulable::~Schedulable()
 
 // Getters
 
-int Schedulable::getId()
+int Schedulable::getId() const
 {
 	return id;
 }
@@ -56,14 +56,14 @@ void Schedulable::setId(int i)
 
 Schedulable& Schedulable::operator=(const Schedulable& s)
 {
-	id = p.id;
+	id = s.id;
 
 	return (*this);
 }
 
-ostream& operator<<(ostream& s, const Schedulable& s)
+ostream& operator<<(ostream& s, const Schedulable& schedulable)
 {
-	s << toString();
+	s << schedulable.toString();
 
 	return s;
 }

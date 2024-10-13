@@ -27,8 +27,8 @@ class Classroom : public Schedulable
     const string getName() const;
     int getSeatingCapacity() const;
 
-    string toString() override;
-    string tuple() override;
+    string toString() const override;
+    string tuple() const override;
 };
 
 #endif

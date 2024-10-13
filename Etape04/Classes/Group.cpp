@@ -49,19 +49,19 @@ void Group::setName(const string n)
 
 // Getters
 
-int Group::getName() const
+const string& Group::getName() const
 {
   return name;
 }
 
 // Méthodes d'instances
 
-string Group::toString()
+string Group::toString() const
 {
     return name;
 }
 
-string tuple()
+string Group::tuple() const
 {
     return to_string(id) + ";" + name;
 }

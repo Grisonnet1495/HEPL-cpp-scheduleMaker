@@ -69,12 +69,12 @@ const string Professor::getFirstName() const
 
 // Méthodes d'instances
 
-string Professor::toString()
+string Professor::toString() const
 {
     return lastName + " " + firstName;
 }
 
-string Professor::tuple()
+string Professor::tuple() const
 {
     return to_string(id) + ";" + lastName + ";" + firstName;
 }

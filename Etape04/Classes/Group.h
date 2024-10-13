@@ -22,10 +22,10 @@ class Group : public Schedulable
 
     void setName(const string n);
 
-    int getName() const;
+    const string& getName() const;
 
-    string toString() override;
-    string tuple() override;
+    string toString() const override;
+    string tuple() const override;
 };
 
 #endif
