@@ -173,7 +173,7 @@ namespace planning
 
 	Time operator-(int minutesNbr, Time T)
 	{
-		return T + minutesNbr;
+		return Time(minutesNbr) - T;
 	}
 
 	int Time::comparisonT(const Time& T)
