@@ -24,6 +24,8 @@ class Group : public Schedulable
 
     const string& getName() const;
 
+    Group& operator=(const Group& g);
+
     string toString() const override;
     string tuple() const override;
 };

@@ -19,7 +19,7 @@ class Schedulable
     Schedulable();
     Schedulable(int i);
     Schedulable(const Schedulable& s);
-    ~Schedulable();
+    virtual ~Schedulable();
 
     void setId(int i);
 
@@ -27,8 +27,8 @@ class Schedulable
 
     Schedulable& operator=(const Schedulable& s);
 
-    virtual string toString() const;
-    virtual string tuple() const;
+    virtual string toString() const = 0;
+    virtual string tuple() const = 0;
 };
 
 #endif

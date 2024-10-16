@@ -24,8 +24,10 @@ class Classroom : public Schedulable
     void setName(const string& n);
     void setSeatingCapacity(int n);
 
-    const string getName() const;
+    const string& getName() const;
     int getSeatingCapacity() const;
+
+    Classroom& operator=(const Classroom& c);
 
     string toString() const override;
     string tuple() const override;

@@ -2,7 +2,7 @@
 
 // Constructeurs
 
-Professor::Professor()
+Professor::Professor():Schedulable()
 {
 	#ifdef DEBUG
       cout << ">>> Appelle du constructeur par defaut de Professor" << endl;
@@ -12,7 +12,7 @@ Professor::Professor()
     setFirstName("---");
 }
 
-Professor::Professor(int i, const string& l, const string& f)
+Professor::Professor(int i, const string& l, const string& f):Schedulable(i)
 {
 	#ifdef DEBUG
       cout << ">>> Appelle du constructeur d'initialisation de Professor" << endl;
@@ -23,7 +23,7 @@ Professor::Professor(int i, const string& l, const string& f)
     setFirstName(f);
 }
 
-Professor::Professor(const Professor& p)
+Professor::Professor(const Professor& p):Schedulable(p)
 {
 	#ifdef DEBUG
       cout << ">>> Appelle du constructeur de copie de Professor" << endl;
@@ -57,12 +57,12 @@ void Professor::setFirstName(const string& f)
 
 // Getters
 
-const string Professor::getLastName() const
+const string& Professor::getLastName() const
 {
 	return lastName;
 }
 
-const string Professor::getFirstName() const
+const string& Professor::getFirstName() const
 {
 	return firstName;
 }
@@ -80,6 +80,15 @@ string Professor::tuple() const
 }
 
 // Méthodes de surcharge d'opérateurs
+
+Professor& Professor::operator=(const Professor& p)
+{
+    Schedulable::operator=(p);
+    lastName = p.lastName;
+    firstName = p.firstName;
+
+    return (*this);
+}
 
 ostream& operator<<(ostream& s, const Professor& p)
 {

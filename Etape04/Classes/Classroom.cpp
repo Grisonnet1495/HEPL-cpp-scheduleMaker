@@ -4,7 +4,7 @@ using namespace std;
 
 // Constructeurs
 
-Classroom::Classroom()
+Classroom::Classroom():Schedulable()
 {
 	#ifdef DEBUG
       cout << ">>> Appelle du constructeur par defaut de Classroom" << endl;
@@ -14,24 +14,22 @@ Classroom::Classroom()
     setSeatingCapacity(0);
 }
 
-Classroom::Classroom(int i, const string& n, int s)
+Classroom::Classroom(int i, const string& n, int s):Schedulable(i)
 {
 	#ifdef DEBUG
       cout << ">>> Appelle du constructeur d'initialisation de Classroom" << endl;
     #endif
 
-    setId(i);
     setName(n);
     setSeatingCapacity(s);
 }
 
-Classroom::Classroom(const Classroom& c)
+Classroom::Classroom(const Classroom& c):Schedulable(c)
 {
 	#ifdef DEBUG
       cout << ">>> Appelle du constructeur de copie de Classroom" << endl;
     #endif
 
-    setId(c.id);
     setName(c.name);
     setSeatingCapacity(c.seatingCapacity);
 }
@@ -59,7 +57,7 @@ void Classroom::setSeatingCapacity(int s)
 
 // Getters
 
-const string Classroom::getName() const
+const string& Classroom::getName() const
 {
 	return name;
 }
@@ -82,6 +80,15 @@ string Classroom::tuple() const
 }
 
 // Méthodes de surcharge d'opérateurs
+
+Classroom& Classroom::operator=(const Classroom& c)
+{
+    Schedulable::operator=(c);
+    name = c.name;
+    seatingCapacity = c.seatingCapacity;
+
+    return (*this);
+}
 
 ostream& operator<<(ostream& s, const Classroom& c)
 {

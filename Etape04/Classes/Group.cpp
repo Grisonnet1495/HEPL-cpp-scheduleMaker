@@ -2,32 +2,30 @@
 
 // Constructeurs
 
-Group::Group()
+Group::Group():Schedulable()
 {
     #ifdef DEBUG
       cout << ">>> Appelle du constructeur par defaut de Group" << endl;
     #endif
 
-    setName(0);
+    setName("---");
 }
 
-Group::Group(int i, const string n)
+Group::Group(int i, const string n):Schedulable(i)
 {
     #ifdef DEBUG
       cout << ">>> Appelle du constructeur d'initialisation de Group" << endl;
     #endif
 
-    setId(i);
     setName(n);
 }
 
-Group::Group(const Group& g)
+Group::Group(const Group& g):Schedulable(g)
 {
     #ifdef DEBUG
       cout << ">>> Appelle du constructeur de copie de Group" << endl;
     #endif
 
-    setId(g.id);
     setName(g.name);
 }
 
@@ -67,6 +65,14 @@ string Group::tuple() const
 }
 
 // Méthodes de surcharge d'opérateurs
+
+Group& Group::operator=(const Group& g)
+{
+    Schedulable::operator=(g);
+    name = g.name;
+
+    return (*this);
+}
 
 ostream& operator<<(ostream& s, const Group& g)
 {

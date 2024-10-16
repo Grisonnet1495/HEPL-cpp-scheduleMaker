@@ -24,8 +24,10 @@ class Professor : public Schedulable
     void setLastName(const string& l);
     void setFirstName(const string& f);
 
-    const string getLastName() const;
-    const string getFirstName() const;
+    const string& getLastName() const;
+    const string& getFirstName() const;
+
+    Professor& operator=(const Professor& p);
 
     string toString() const override;
     string tuple() const override;
