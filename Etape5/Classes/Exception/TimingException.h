@@ -9,7 +9,7 @@ using namespace std;
 
 namespace planning
 {
-  class TimeException : public Exception
+  class TimingException : public Exception
   {
     private:
       int code;

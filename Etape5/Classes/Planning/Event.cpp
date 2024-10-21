@@ -1,4 +1,5 @@
 #include "Event.h"
+#include "../Exception/TimingException.h"
 
 namespace planning
 {
@@ -97,7 +98,7 @@ namespace planning
   const Timing& Event::getTiming() const
   {
     if (timing) return *timing;
-    throw std::runtime_error("Timing is null");
+    throw TimingException("Pas de timing.", TimingException::NO_TIMING);
   }
 
   // Méthodes d'instances

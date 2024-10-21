@@ -72,13 +72,13 @@ namespace planning
 
 	void Time::setHour(int h)
 	{
-		if (h < 0 || h > 23) throw TimeException("Heure invalide.", INVALID_HOUR);
+		if (h < 0 || h > 23) throw TimeException("Heure invalide.", TimeException::INVALID_HOUR);
 		hour = h;
 	}
 
 	void Time::setMinute(int m)
 	{
-		if (m < 0 || m > 59) throw TimeException("Minute invalide.", INVALID_MINUTE);
+		if (m < 0 || m > 59) throw TimeException("Minute invalide.", TimeException::INVALID_MINUTE);
 		minute = m;
 	}
 
@@ -105,13 +105,13 @@ namespace planning
 	Time Time::operator+(int minutesNbr)
 	{
 		Time t(*this);
-		int finalHour, finalMinute;
+		int finalHour;
 
 		if (minutesNbr < 0) return t; 
 
 		int minutesTotal = (t.minute + minutesNbr);
 		
-		if ((finalHour = (t.hour + minutesTotal / 60)) > 23) throw TimeException("Resultat plus grand que 23h59.", OVERFLOW);
+		if ((finalHour = (t.hour + minutesTotal / 60)) > 23) throw TimeException("Resultat plus grand que 23h59.", TimeException::OVERFLOW);
 
 		t.minute = minutesTotal % 60;
 		t.hour = finalHour;
@@ -122,14 +122,14 @@ namespace planning
 	Time Time::operator+(const Time& t2)
 	{
 		Time t1(*this);
-		int finalHour, finalMinute;
+		int finalHour;
 
 		int minutesTotal = t1.minute + t2.minute;
 		
-		if ((finalHour = ((t.hour + minutesTotal / 60) + t2.hour)) > 23) throw TimeException("Resultat plus grand que 23h59.", OVERFLOW);
+		if ((finalHour = ((t1.hour + minutesTotal / 60) + t2.hour)) > 23) throw TimeException("Resultat plus grand que 23h59.", TimeException::OVERFLOW);
 
-		t.minute = minutesTotal % 60;
-		t.hour = finalHour;
+		t1.minute = minutesTotal % 60;
+		t1.hour = finalHour;
 
 		return t1;
 	}
@@ -149,7 +149,7 @@ namespace planning
 
 		totalMinutes -= minutesNbr;
 
-		if (totalMinutes < 0) throw TimeException("Resultat plus petit que 0h00.", OVERFLOW);
+		if (totalMinutes < 0) throw TimeException("Resultat plus petit que 0h00.", TimeException::OVERFLOW);
 
 	    t.minute = totalMinutes % 60;
 	    t.hour = (totalMinutes / 60) % 24;
@@ -166,7 +166,7 @@ namespace planning
 
 	    int minutesTotal = minutesTotal1 - minutesTotal2;
 
-	    if (minutesTotal < 0) throw TimeException("Resulatat plus petit que 0h00.", OVERFLOW);
+	    if (minutesTotal < 0) throw TimeException("Resulatat plus petit que 0h00.", TimeException::OVERFLOW);
 
 	    t1.minute = minutesTotal % 60;
 	    t1.hour = (minutesTotal / 60) % 24;
@@ -222,7 +222,7 @@ namespace planning
 
 		s >> h >> separator >> m;
 
-		while (separator != 'h' || h < 0 || h > 23 || m < 0 || m > 59)
+		while (separator != 'h')
 		{
 			cout << "Entree incorrecte. Veuillez entrer l'heure sous le format hh:h:mm (ex : 14h20)." << endl;
 			while (s.get() != '\n');
