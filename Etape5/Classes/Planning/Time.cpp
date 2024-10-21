@@ -1,4 +1,5 @@
 #include "Time.h"
+#include "../Exception/TimeException.h"
 
 using namespace std;
 
@@ -71,13 +72,13 @@ namespace planning
 
 	void Time::setHour(int h)
 	{
-		if (h < 0 || h > 23) return;
+		if (h < 0 || h > 23) throw TimeException("Heure invalide.", INVALID_HOUR);
 		hour = h;
 	}
 
 	void Time::setMinute(int m)
 	{
-		if (m < 0 || m > 59) return;
+		if (m < 0 || m > 59) throw TimeException("Minute invalide.", INVALID_MINUTE);
 		minute = m;
 	}
 
@@ -104,12 +105,16 @@ namespace planning
 	Time Time::operator+(int minutesNbr)
 	{
 		Time t(*this);
+		int finalHour, finalMinute;
 
 		if (minutesNbr < 0) return t; 
 
-		int minutesTotal = t.minute + minutesNbr;
+		int minutesTotal = (t.minute + minutesNbr);
+		
+		if ((finalHour = (t.hour + minutesTotal / 60)) > 23) throw TimeException("Resultat plus grand que 23h59.", OVERFLOW);
+
 		t.minute = minutesTotal % 60;
-		t.hour = (t.hour + minutesTotal / 60) % 24;
+		t.hour = finalHour;
 
 		return t;
 	}
@@ -117,12 +122,16 @@ namespace planning
 	Time Time::operator+(const Time& t2)
 	{
 		Time t1(*this);
+		int finalHour, finalMinute;
 
 		int minutesTotal = t1.minute + t2.minute;
-		t1.minute = minutesTotal % 60;
-		t1.hour = ((t1.hour + minutesTotal / 60) + t2.hour) % 24;
+		
+		if ((finalHour = ((t.hour + minutesTotal / 60) + t2.hour)) > 23) throw TimeException("Resultat plus grand que 23h59.", OVERFLOW);
 
-		return t1; 
+		t.minute = minutesTotal % 60;
+		t.hour = finalHour;
+
+		return t1;
 	}
 
 	Time operator+(int minutesNbr, Time t)
@@ -140,10 +149,7 @@ namespace planning
 
 		totalMinutes -= minutesNbr;
 
-		while (totalMinutes < 0)
-	    {
-	        totalMinutes += 1440; // Car 24 heures est égal à 1440 minutes.
-	    }
+		if (totalMinutes < 0) throw TimeException("Resultat plus petit que 0h00.", OVERFLOW);
 
 	    t.minute = totalMinutes % 60;
 	    t.hour = (totalMinutes / 60) % 24;
@@ -160,10 +166,7 @@ namespace planning
 
 	    int minutesTotal = minutesTotal1 - minutesTotal2;
 
-	    while (minutesTotal < 0)
-	    {
-	        minutesTotal += 1440; // Car 24 heures est égal à 1440 minutes.
-	    }
+	    if (minutesTotal < 0) throw TimeException("Resulatat plus petit que 0h00.", OVERFLOW);
 
 	    t1.minute = minutesTotal % 60;
 	    t1.hour = (minutesTotal / 60) % 24;
