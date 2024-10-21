@@ -1,7 +1,7 @@
 # Dossier des librairies
 
 # Debug
-DEBUG = -D DEBUG
+DEBUG = #-D DEBUG
 
 # Flags
 FLAGS = -Wall -g
