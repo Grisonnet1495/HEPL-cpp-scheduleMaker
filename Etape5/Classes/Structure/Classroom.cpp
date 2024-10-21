@@ -34,7 +34,7 @@ Classroom::Classroom(const Classroom& c):Schedulable(c)
     setSeatingCapacity(c.seatingCapacity);
 }
 
-// Destructeurs
+// Destructeur
 
 Classroom::~Classroom()
 {

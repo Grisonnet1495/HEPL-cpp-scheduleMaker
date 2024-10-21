@@ -34,7 +34,7 @@ Professor::Professor(const Professor& p):Schedulable(p)
     setFirstName(p.firstName);
 }
 
-// Destructeurs
+// Destructeur
 
 Professor::~Professor()
 {

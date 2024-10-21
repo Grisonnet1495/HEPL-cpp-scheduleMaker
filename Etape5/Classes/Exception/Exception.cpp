@@ -29,6 +29,8 @@ Exception::Exception(const Exception& e)
     setMessage(e.getMessage());
 }
 
+// Destructeur
+
 Exception::~Exception()
 {
 	#ifdef DEBUG

@@ -29,7 +29,7 @@ Group::Group(const Group& g):Schedulable(g)
     setName(g.name);
 }
 
-// Destructeurs
+// Destructeur
 
 Group::~Group()
 {
