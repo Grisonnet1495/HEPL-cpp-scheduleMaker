@@ -20,7 +20,7 @@ namespace planning
 			cout << ">>> Appelle du constructeur par defaut de Timing" << endl;
 		#endif
 
-		setDay("---");
+		setDay("Lundi");
 		setStart(Time());
 		setDuration(Time());
 	}

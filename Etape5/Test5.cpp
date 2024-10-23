@@ -3,6 +3,8 @@
 #include "Classes/Planning/Time.h"
 #include "Classes/Planning/Timing.h"
 #include "Classes/Planning/Event.h"
+#include "Classes/Exception/TimeException.h"
+#include "Classes/Exception/TimingException.h"
 
 using namespace std;
 using namespace planning;
@@ -89,7 +91,7 @@ void Essai1()
   // A COMPLETER : Traitez l'exception susceptible d'etre lancee par le bloc de code suivant (try...catch)
   // en particulier : afficher le message de l'exception lancee et le code de l'erreur
 
-  // ...
+  try
   {
     int hour,minute;
     cout << "Entrez l'heure h1 :" << endl;
@@ -114,7 +116,11 @@ void Essai1()
     Time d1(minutes); // !!!
     cout << "--> d1 = " << d1 << endl << endl;    
   }
-  // ...
+  catch (TimeException& t)
+  {
+    cout << "Erreur : " << t.getMessage() << endl;
+    cout << "Code d'erreur : " << t.getCode() << endl;
+  }
   
   cout << endl;
 }
@@ -126,7 +132,7 @@ void Essai2()
   // A COMPLETER : Traitez l'exception susceptible d'etre lancee par le bloc de code suivant (try...catch)
   // en particulier : afficher le message de l'exception lancee et le code de l'erreur
 
-  // ...
+  try
   {
     Time h(15,30);
     cout << "h = Time(15,30)" << endl;
@@ -135,7 +141,11 @@ void Essai2()
     h = h + duration;
     cout << "Apres addition (h = h + duration) --> " << h << endl << endl; 
   }
-  // ...
+  catch (TimeException& t)
+  {
+    cout << "Erreur : " << t.getMessage() << endl;
+    cout << "Code d'erreur : " << t.getCode() << endl;
+  }
   
   cout << endl;
 }
@@ -147,7 +157,7 @@ void Essai3()
   // A COMPLETER : Traitez l'exception susceptible d'etre lancee par le bloc de code suivant (try...catch)
   // en particulier : afficher le message de l'exception lancee et le code de l'erreur
 
-  // ...
+  try
   {
     Time h(15,30);
     cout << "h = Time(15,30)" << endl;
@@ -156,7 +166,12 @@ void Essai3()
     h = duration + h;
     cout << "Apres addition (h = duree + h) --> " << h << endl << endl; 
   }
-  // ...
+  catch (TimeException& t)
+  {
+    cout << "Erreur : " << t.getMessage() << endl;
+    cout << "Code d'erreur : " << t.getCode() << endl;
+  }
+  
   
   cout << endl;
 }
@@ -168,7 +183,7 @@ void Essai4()
   // A COMPLETER : Traitez l'exception susceptible d'etre lancee par le bloc de code suivant (try...catch)
   // en particulier : afficher le message de l'exception lancee et le code de l'erreur
 
-  // ...
+  try
   {
     Time h(1,30);
     cout << "h = Time(1,30)" << endl;
@@ -177,7 +192,11 @@ void Essai4()
     h = h - duration;
     cout << "Apres soustraction (h = h - duree) --> " << h << endl << endl; 
   }
-  // ...
+  catch (TimeException& t)
+  {
+    cout << "Erreur : " << t.getMessage() << endl;
+    cout << "Code d'erreur : " << t.getCode() << endl;
+  }
   
   cout << endl;
 }
@@ -189,7 +208,7 @@ void Essai5()
   // A COMPLETER : Traitez l'exception susceptible d'etre lancee par le bloc de code suivant (try...catch)
   // en particulier : afficher le message de l'exception lancee et le code de l'erreur
 
-  // ...
+  try
   {
     Time h(1,30);
     cout << "h = Time(1,30)" << endl;
@@ -198,7 +217,11 @@ void Essai5()
     h = duration - h;
     cout << "Apres soustraction (h = duree - h) --> " << h << endl << endl; 
   }
-  // ...
+  catch (TimeException& t)
+  {
+    cout << "Erreur : " << t.getMessage() << endl;
+    cout << "Code d'erreur : " << t.getCode() << endl;
+  }
   
   cout << endl;
 }
@@ -210,7 +233,7 @@ void Essai6()
   // A COMPLETER : Traitez l'exception susceptible d'etre lancee par le bloc de code suivant (try...catch)
   // en particulier : afficher le message de l'exception lancee et le code de l'erreur
 
-  // ...
+  try
   {
     Time h1(22,30);
     cout << "h1 = Time(22,30)" << endl;
@@ -221,7 +244,11 @@ void Essai6()
     h1 = h1 + d;
     cout << "Apres addtion (h1 = h1 + d) --> " << h1 << endl << endl; 
   }
-  // ...
+  catch (TimeException& t)
+  {
+    cout << "Erreur : " << t.getMessage() << endl;
+    cout << "Code d'erreur : " << t.getCode() << endl;
+  }
   
   cout << endl;
 }
@@ -233,7 +260,7 @@ void Essai7()
   // A COMPLETER : Traitez l'exception susceptible d'etre lancee par le bloc de code suivant (try...catch)
   // en particulier : afficher le message de l'exception lancee et le code de l'erreur
 
-  // ...
+  try
   {
     Time d(120);
     cout << "d = " << d << endl;
@@ -242,7 +269,11 @@ void Essai7()
     h1 = h1 - d;
     cout << "Apres soustraction (h1 = h1 - d) --> " << h1 << endl << endl; 
   }
-  // ...
+  catch (TimeException& t)
+  {
+    cout << "Erreur : " << t.getMessage() << endl;
+    cout << "Code d'erreur : " << t.getCode() << endl;
+  }
   
   cout << endl;
 }
@@ -254,7 +285,7 @@ void Essai8()
   // A COMPLETER : Traitez l'exception susceptible d'etre lancee par le bloc de code suivant (try...catch)
   // en particulier : afficher le message de l'exception lancee et le code de l'erreur
 
-  // ...
+  try
   {
     Time h;
     cout << "Entrez l'heure h = "; cin >> h;
@@ -262,7 +293,11 @@ void Essai8()
     ++h;
     cout << "Apres incrementation (h++) --> " << h << endl << endl; 
   }
-  // ...
+  catch (TimeException& t)
+  {
+    cout << "Erreur : " << t.getMessage() << endl;
+    cout << "Code d'erreur : " << t.getCode() << endl;
+  }
   
   cout << endl;
 }
@@ -274,7 +309,7 @@ void Essai9()
   // A COMPLETER : Traitez l'exception susceptible d'etre lancee par le bloc de code suivant (try...catch)
   // en particulier : afficher le message de l'exception lancee et le code de l'erreur
 
-  // ...
+  try
   {
     Time h;
     cout << "Entrez l'heure h = "; cin >> h;
@@ -282,7 +317,11 @@ void Essai9()
     --h;
     cout << "Apres decrementation (h--) --> " << h << endl << endl; 
   }
-  // ...
+  catch (TimeException& t)
+  {
+    cout << "Erreur : " << t.getMessage() << endl;
+    cout << "Code d'erreur : " << t.getCode() << endl;
+  }
   
   cout << endl;
 }
@@ -294,7 +333,7 @@ void Essai10()
   // A COMPLETER : Traitez l'exception susceptible d'etre lancee par le bloc de code suivant (try...catch)
   // en particulier : afficher le message de l'exception lancee et le code de l'erreur
 
-  // ...
+  try
   {
     Timing t;
     string day;
@@ -303,7 +342,11 @@ void Essai10()
     t.setDay(day);
     t.display();
   }
-  // ...
+  catch (TimingException& t)
+  {
+    cout << "Erreur : " << t.getMessage() << endl;
+    cout << "Code d'erreur : " << t.getCode() << endl;
+  }
   
   cout << endl;
 }
@@ -314,7 +357,7 @@ void Essai11()
   cout << "----- 11. Gestion de plusieurs exceptions simultanement ---" << endl;
   // A COMPLETER : Traitez TOUTES les exceptions susceptible d'etre lancee par le bloc de code suivant (try...catch)
 
-  // ...
+  try
   {
     Timing t;
     string day;
@@ -345,7 +388,14 @@ void Essai11()
     cout << "Voici le Timing de l'Event planifie : ";
     e.getTiming().display();  // !!!
   }
-  // ...
+  catch (TimeException& t1)
+  {
+    cout << "Erreur : " << t1.getMessage() << endl;
+    cout << "Code d'erreur : " << t1.getCode() << endl;
+  }
+  catch (TimingException& t2)
+  {
+    cout << "Erreur : " << t2.getMessage() << endl;
+    cout << "Code d'erreur : " << t2.getCode() << endl;
+  }
 }
-
-
