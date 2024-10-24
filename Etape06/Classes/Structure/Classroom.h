@@ -5,7 +5,7 @@
 #include <iostream>
 #include <string.h>
 #include "Schedulable.h"
-using namespace std;
+using namespace planning;
 
 class Classroom : public Schedulable
 {

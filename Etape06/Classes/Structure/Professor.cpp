@@ -18,7 +18,6 @@ Professor::Professor(int i, const string& l, const string& f):Schedulable(i)
       cout << ">>> Appelle du constructeur d'initialisation de Professor" << endl;
     #endif
 
-    setId(i);
     setLastName(l);
     setFirstName(f);
 }
@@ -29,7 +28,6 @@ Professor::Professor(const Professor& p):Schedulable(p)
       cout << ">>> Appelle du constructeur de copie de Professor" << endl;
     #endif
 
-    setId(p.id);
     setLastName(p.lastName);
     setFirstName(p.firstName);
 }
