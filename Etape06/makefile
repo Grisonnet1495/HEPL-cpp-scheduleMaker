@@ -54,4 +54,4 @@ TimingException.o: Classes/Exception/TimingException.cpp
 	g++ $(FLAGS) $(DEBUG) -c Classes/Exception/TimingException.cpp -o TimingException.o
 
 clean:
-	rm -f $(EXECUTABLE) $(OBJECTS)
+	rm -f $(EXECUTABLE) $(OBJECTS) *.xml
