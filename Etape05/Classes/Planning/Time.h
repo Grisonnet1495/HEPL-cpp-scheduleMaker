@@ -10,10 +10,10 @@ namespace planning
 {
 	class Time
 	{
-		friend Time operator+(int minutesNbr, Time T);
-		friend Time operator-(int minutesNbr, Time T);
-		friend ostream& operator<<(ostream& s, const Time& T);
-		friend istream& operator>>(istream& s, Time& T);
+		friend Time operator+(int minutesNbr, Time t);
+		friend Time operator-(int minutesNbr, Time t);
+		friend ostream& operator<<(ostream& s, const Time& t);
+		friend istream& operator>>(istream& s, Time& t);
 
 		private:
 			int hour;

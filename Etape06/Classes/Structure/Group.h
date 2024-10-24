@@ -5,7 +5,7 @@
 #include <iostream>
 #include <string.h>
 #include "Schedulable.h"
-using namespace planning;
+using namespace std;
 
 class Group : public Schedulable
 {

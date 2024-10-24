@@ -5,11 +5,12 @@
 #include <iostream>
 #include <string.h>
 #include "Schedulable.h"
-using namespace planning;
+using namespace std;
 
 class Classroom : public Schedulable
 {
   friend ostream& operator<<(ostream& s, const Classroom& c);
+  friend istream& operator>>(istream& s, Classroom& c);
 
   private:
     string name;

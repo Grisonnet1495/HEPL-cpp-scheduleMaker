@@ -6,29 +6,30 @@
 #include <string.h>
 using namespace std;
 
-class Schedulable
+namespace planning
 {
-  friend ostream& operator<<(ostream& s, const Schedulable& schedulable);
+  class Schedulable
+  {
+    friend ostream& operator<<(ostream& s, const Schedulable& schedulable);
 
-  protected:
-    int id;
+    protected:
+      int id;
 
-  public:
-    static int currentCode;
+    public:
+      Schedulable();
+      Schedulable(int i);
+      Schedulable(const Schedulable& s);
+      virtual ~Schedulable();
 
-    Schedulable();
-    Schedulable(int i);
-    Schedulable(const Schedulable& s);
-    virtual ~Schedulable();
+      void setId(int i);
 
-    void setId(int i);
+      int getId() const;
 
-    int getId() const;
+      Schedulable& operator=(const Schedulable& s);
 
-    Schedulable& operator=(const Schedulable& s);
-
-    virtual string toString() const = 0;
-    virtual string tuple() const = 0;
-};
+      virtual string toString() const = 0;
+      virtual string tuple() const = 0;
+  };
+}
 
 #endif
