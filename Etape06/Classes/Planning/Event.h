@@ -16,23 +16,23 @@ namespace planning
 
     private:
       int code;
-      char *title;
+      string title;
       Timing *timing;
 
     public:
       static int currentCode;
 
       Event();
-      Event(int c, const char *t);
+      Event(int c, const string& t);
       Event(const Event& e);
       ~Event();
 
       void setCode(int c);
-      void setTitle(const char *t);
+      void setTitle(const string& t);
       void setTiming(const Timing& t);
 
       int getCode() const;
-      const char* getTitle() const;
+      const string& getTitle() const;
       const Timing& getTiming() const;
 
       void display() const;

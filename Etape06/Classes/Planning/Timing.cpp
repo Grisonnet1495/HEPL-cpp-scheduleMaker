@@ -169,24 +169,23 @@ namespace planning
 
 	istream& operator>>(istream& s, Timing& t)
 	{
-		string sDay, sStart, sDuration, tag;
+		string sDay, tag;
+		Time start, duration;
 		getline(s, tag);
 		getline(s, tag);
 		getline(s, sDay);
 		getline(s, tag);
 		getline(s, tag);
-		sStart >> s:
+		s >> start;
 		getline(s, tag);
 		getline(s, tag);
-		sDuration >> s;
-		getline(s, tag);
-		getline(s, tag);
+		s >> duration;
 		getline(s, tag);
 		getline(s, tag);
 
-		t.setDay(stoi(sDay));
-		t.setStart(sStart);
-		t.setDuration(sDuration);
+		t.setDay(sDay);
+		t.setStart(start);
+		t.setDuration(duration);
 
 		return s;
 	}

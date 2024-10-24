@@ -116,9 +116,9 @@ istream& operator>>(istream& s, Classroom& c)
     getline(s, tag);
     getline(s, tag);
     getline(s, sName);
-    getLine(s, tag);
-    getLine(s, tag);
-    getLine(s, sSeatingCapacity);
+    getline(s, tag);
+    getline(s, tag);
+    getline(s, sSeatingCapacity);
     getline(s, tag);
     getline(s, tag);
 

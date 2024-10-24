@@ -14,24 +14,20 @@ namespace planning
     #endif
 
     setCode(1);
-    title = nullptr;
     setTitle("---");
     timing = nullptr;
-    setTiming(Timing());
     incCurrentCode();
   }
 
-  Event::Event(int c, const char *t)
+  Event::Event(int c, const string& t)
   {
     #ifdef DEBUG
       cout << ">>> Appelle du constructeur d'initialisation de Event" << endl;
     #endif
 
     setCode(c);
-    title = nullptr;
     setTitle(t);
     timing = nullptr;
-    setTiming(Timing());
     incCurrentCode();
   }
 
@@ -42,7 +38,6 @@ namespace planning
     #endif
 
     setCode(e.code);
-    title = nullptr;
     setTitle(e.title);
     timing = nullptr;
     setTiming(e.getTiming());
@@ -57,7 +52,6 @@ namespace planning
       cout << ">>> Appelle du destructeur par defaut de Event" << endl;
     #endif
     
-    if (title) delete title;
     if (timing) delete timing;
   }
 
@@ -69,12 +63,9 @@ namespace planning
     code = c;
   }
 
-  void Event::setTitle(const char *t)
+  void Event::setTitle(const string& t)
   {
-    if (t == nullptr) return;
-    if (title) delete title;
-    title = new char[strlen(t) + 1];
-    strcpy(title, t);
+    title = t;
   }
 
   void Event::setTiming(const Timing& t)
@@ -90,7 +81,7 @@ namespace planning
     return code;
   }
 
-  const char* Event::getTitle() const
+  const string& Event::getTitle() const
   {
     return title;
   }
@@ -125,9 +116,19 @@ namespace planning
     s << "<title>" << endl;
     s << e.title << endl;
     s << "</title>" << endl;
-    s << "<timing>" << endl;
-    s << e.timing << endl;
-    s << "</timing>" << endl;
+
+    try
+    {
+      s << "<timing>" << endl;
+      s << e.timing << endl;
+      s << "</timing>" << endl;
+    }
+    catch (TimingException& t)
+    {
+      cout << "Erreur : " << t.getMessage();
+      cout << "Code d'erreur : " << t.getCode();
+    }
+
     s << "</Event>" << endl;
 
     return s;
@@ -135,18 +136,27 @@ namespace planning
 
   istream& operator>>(istream& s, Event& e)
   {
-    string sHour, sMinute, tag;
+    string sCode, sTitle, tag;
+    Timing timing;
     getline(s, tag);
     getline(s, tag);
-    getline(s, sHour);
+    getline(s, sCode);
     getline(s, tag);
     getline(s, tag);
-    getline(s, sMinute);
+    getline(s, sTitle);
     getline(s, tag);
     getline(s, tag);
 
-    t.setHour(stoi(sHour));
-    t.setMinute(stoi(sMinute));
+    if (tag == "<timing>")
+    {
+      s >> timing;
+      getline(s, tag);
+      getline(s, tag);
+    }
+
+    e.setCode(stoi(sCode));
+    e.setTitle(sTitle);
+    e.setTiming(timing);
 
     return s;
   }
