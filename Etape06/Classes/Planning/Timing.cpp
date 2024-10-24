@@ -150,50 +150,43 @@ namespace planning
 		return comparisonT(t) == 0;
 	}
 
-	ostream& operator<<(ostream& s, const Time& t)
+	ostream& operator<<(ostream& s, const Timing& t)
 	{
 		s << "<Timing>" << endl;
 		s << "<day>" << endl;
 		s << t.day << endl;
 		s << "</day>" << endl;
 		s << "<start>" << endl;
-		s << "<Time>" << endl;
-		s << "<hour>" << endl;
-		s << t.start.hour << endl;
-		s << "</hour>" << endl;
-		s << "<minute>" << endl;
-		s << t.start.minute << endl;
-		s << "</minute>" << endl;
-		s << "</Time>" << endl;
+		s << t.start << endl;
 		s << "</start>" << endl;
 		s << "<duration>" << endl;
-		s << "<Time>" << endl;
-		s << "<hour>" << endl;
-		s << t.duration.hour << endl;
-		s << "</hour>" << endl;
-		s << "<minute>" << endl;
-		s << t.duration.minute << endl;
-		s << "</minute>" << endl;
+		s << t.duration << endl;
 		s << "</duration>" << endl;
-
+		s << "</Timing>" << endl;
 
 		return s;
 	}
 
-	istream& operator>>(istream& s, Time& t)
+	istream& operator>>(istream& s, Timing& t)
 	{
-		string sHour, sMinute, tag;
+		string sDay, sStart, sDuration, tag;
 		getline(s, tag);
 		getline(s, tag);
-		getline(s, sHour);
+		getline(s, sDay);
 		getline(s, tag);
 		getline(s, tag);
-		getline(s, sMinute);
+		sStart >> s:
+		getline(s, tag);
+		getline(s, tag);
+		sDuration >> s;
+		getline(s, tag);
+		getline(s, tag);
 		getline(s, tag);
 		getline(s, tag);
 
-		t.setHour(stoi(sHour));
-		t.setMinute(stoi(sMinute));
+		t.setDay(stoi(sDay));
+		t.setStart(sStart);
+		t.setDuration(sDuration);
 
 		return s;
 	}

@@ -223,6 +223,7 @@ namespace planning
 	istream& operator>>(istream& s, Time& t)
 	{
 		string sHour, sMinute, tag;
+		
 		getline(s, tag);
 		getline(s, tag);
 		getline(s, sHour);

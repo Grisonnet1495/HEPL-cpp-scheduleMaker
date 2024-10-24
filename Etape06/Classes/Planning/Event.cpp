@@ -113,4 +113,41 @@ namespace planning
   {
     currentCode++;
   }
+
+  // Méthodes de surcharge d'opérateurs
+
+  ostream& operator<<(ostream& s, const Event& e)
+  {
+    s << "<Event>" << endl;
+    s << "<code>" << endl;
+    s << e.code << endl;
+    s << "</code>" << endl;
+    s << "<title>" << endl;
+    s << e.title << endl;
+    s << "</title>" << endl;
+    s << "<timing>" << endl;
+    s << e.timing << endl;
+    s << "</timing>" << endl;
+    s << "</Event>" << endl;
+
+    return s;
+  }
+
+  istream& operator>>(istream& s, Event& e)
+  {
+    string sHour, sMinute, tag;
+    getline(s, tag);
+    getline(s, tag);
+    getline(s, sHour);
+    getline(s, tag);
+    getline(s, tag);
+    getline(s, sMinute);
+    getline(s, tag);
+    getline(s, tag);
+
+    t.setHour(stoi(sHour));
+    t.setMinute(stoi(sMinute));
+
+    return s;
+  }
 }
