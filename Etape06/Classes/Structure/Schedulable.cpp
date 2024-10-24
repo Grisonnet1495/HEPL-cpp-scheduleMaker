@@ -62,11 +62,4 @@ namespace planning
 
 		return (*this);
 	}
-
-	ostream& operator<<(ostream& s, const Schedulable& schedulable)
-	{
-		s << schedulable.toString();
-
-		return s;
-	}
 }

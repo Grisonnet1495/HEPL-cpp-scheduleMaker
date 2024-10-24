@@ -10,8 +10,6 @@ namespace planning
 {
   class Schedulable
   {
-    friend ostream& operator<<(ostream& s, const Schedulable& schedulable);
-
     protected:
       int id;
 
