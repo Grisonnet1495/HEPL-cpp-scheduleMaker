@@ -171,6 +171,7 @@ namespace planning
 	{
 		string sDay, tag;
 		Time start, duration;
+		
 		getline(s, tag);
 		getline(s, tag);
 		getline(s, sDay);

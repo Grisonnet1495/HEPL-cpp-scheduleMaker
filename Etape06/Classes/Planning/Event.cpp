@@ -59,7 +59,7 @@ namespace planning
 
   void Event::setCode(int c)
   {
-  if (c < 1) return;
+    if (c < 1) return;
     code = c;
   }
 
@@ -97,7 +97,15 @@ namespace planning
   void Event::display() const
   {
     cout << "Event(" << code << ") : " << title << "; Date : ";
-    timing->display();
+
+    if (timing != nullptr)
+    {
+      timing->display();
+    }
+    else
+    {
+      cout << "non defini" << endl;
+    }
   }
 
   void Event::incCurrentCode() const
@@ -119,14 +127,14 @@ namespace planning
 
     try
     {
+      e.getTiming();
       s << "<timing>" << endl;
-      s << e.timing << endl;
+      s << e.getTiming() << endl;
       s << "</timing>" << endl;
     }
     catch (TimingException& t)
     {
-      cout << "Erreur : " << t.getMessage();
-      cout << "Code d'erreur : " << t.getCode();
+      cout << "Pas de timing." << endl;
     }
 
     s << "</Event>" << endl;
@@ -137,7 +145,8 @@ namespace planning
   istream& operator>>(istream& s, Event& e)
   {
     string sCode, sTitle, tag;
-    Timing timing;
+    Timing Timing;
+
     getline(s, tag);
     getline(s, tag);
     getline(s, sCode);
@@ -149,14 +158,14 @@ namespace planning
 
     if (tag == "<timing>")
     {
-      s >> timing;
+      s >> Timing;
       getline(s, tag);
       getline(s, tag);
+      e.setTiming(Timing);
     }
 
     e.setCode(stoi(sCode));
     e.setTitle(sTitle);
-    e.setTiming(timing);
 
     return s;
   }
