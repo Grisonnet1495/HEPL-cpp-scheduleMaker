@@ -1,69 +1,65 @@
 #include "Schedulable.h"
 
-// Constructeurs
-
-Schedulable::Schedulable()
+namespace planning
 {
-	#ifdef DEBUG
-      cout << ">>> Appelle du constructeur par defaut de Schedulable" << endl;
-    #endif
+    // Constructeurs
 
-    setId(0);
-}
+    Schedulable::Schedulable()
+    {
+        #ifdef DEBUG
+          cout << ">>> Appelle du constructeur par defaut de Schedulable" << endl;
+        #endif
 
-Schedulable::Schedulable(int i)
-{
-	#ifdef DEBUG
-      cout << ">>> Appelle du constructeur d'initialisation de Schedulable" << endl;
-    #endif
+        setId(0);
+    }
 
-    setId(i);
-}
+    Schedulable::Schedulable(int i)
+    {
+        #ifdef DEBUG
+          cout << ">>> Appelle du constructeur d'initialisation de Schedulable" << endl;
+        #endif
 
-Schedulable::Schedulable(const Schedulable& s)
-{
-	#ifdef DEBUG
-      cout << ">>> Appelle du constructeur de copie de Schedulable" << endl;
-    #endif
+        setId(i);
+    }
 
-    setId(s.getId());
-}
+    Schedulable::Schedulable(const Schedulable& s)
+    {
+        #ifdef DEBUG
+          cout << ">>> Appelle du constructeur de copie de Schedulable" << endl;
+        #endif
 
-// Destructeur
+        setId(s.getId());
+    }
 
-Schedulable::~Schedulable()
-{
-	#ifdef DEBUG
-      cout << ">>> Appelle du destructeur par defaut de Schedulable" << endl;
-    #endif
-}
+    // Destructeur
 
-// Getters
+    Schedulable::~Schedulable()
+    {
+        #ifdef DEBUG
+          cout << ">>> Appelle du destructeur par defaut de Schedulable" << endl;
+        #endif
+    }
 
-int Schedulable::getId() const
-{
-	return id;
-}
+    // Getters
 
-// Setters
+    int Schedulable::getId() const
+    {
+        return id;
+    }
 
-void Schedulable::setId(int i)
-{
-	id = i;
-}
+    // Setters
 
-// Méthodes de surcharge d'opérateurs
+    void Schedulable::setId(int i)
+    {
+        id = i;
+    }
 
-Schedulable& Schedulable::operator=(const Schedulable& s)
-{
-	id = s.id;
+    // Méthodes de surcharge d'opérateurs
 
-	return (*this);
-}
+    Schedulable& Schedulable::operator=(const Schedulable& s)
+    {
+        id = s.id;
 
-ostream& operator<<(ostream& s, const Schedulable& schedulable)
-{
-	s << schedulable.toString();
-
-	return s;
+        return (*this);
+    }
 }
