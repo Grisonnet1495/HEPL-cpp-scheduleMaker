@@ -43,6 +43,8 @@ namespace planning
 			cout << ">>> Appelle du constructeur d'initialisation 2 de Time" << endl;
 		#endif
 
+		if (duree < 0 || (duree / 60) > 23) throw TimeException("Resultat nom compris entre 0h00 et 23h59.", TimeException::OVERFLOW);
+
 		setHour(duree / 60);
 		setMinute(duree % 60);
 	}
@@ -105,33 +107,17 @@ namespace planning
 	Time Time::operator+(int minutesNbr)
 	{
 		Time t(*this);
-		int finalHour;
 
 		if (minutesNbr < 0) return t; 
 
-		int minutesTotal = (t.minute + minutesNbr);
-		
-		if ((finalHour = (t.hour + minutesTotal / 60)) > 23) throw TimeException("Resultat plus grand que 23h59.", TimeException::OVERFLOW);
-
-		t.minute = minutesTotal % 60;
-		t.hour = finalHour;
-
-		return t;
+		return Time(t.hour * 60 + t.minute + minutesNbr);
 	}
 
 	Time Time::operator+(const Time& t2)
 	{
 		Time t1(*this);
-		int finalHour;
 
-		int minutesTotal = t1.minute + t2.minute;
-		
-		if ((finalHour = ((t1.hour + minutesTotal / 60) + t2.hour)) > 23) throw TimeException("Resultat plus grand que 23h59.", TimeException::OVERFLOW);
-
-		t1.minute = minutesTotal % 60;
-		t1.hour = finalHour;
-
-		return t1;
+		return Time(t1.hour * 60 + t2.hour * 60 + t1.minute + t2.minute);
 	}
 
 	Time operator+(int minutesNbr, Time t)
@@ -145,33 +131,14 @@ namespace planning
 
 		if (minutesNbr < 0) return t;
 
-		int totalMinutes = (t.hour * 60) + t.minute;
-
-		totalMinutes -= minutesNbr;
-
-		if (totalMinutes < 0) throw TimeException("Resultat plus petit que 0h00.", TimeException::OVERFLOW);
-
-	    t.minute = totalMinutes % 60;
-	    t.hour = (totalMinutes / 60) % 24;
-
-		return t;
+		return Time((t.hour * 60 + t.minute) - minutesNbr);
 	}
 
 	Time Time::operator-(const Time& t2)
 	{
 		Time t1(*this);
 
-	    int minutesTotal1 = t1.hour * 60 + t1.minute;
-	    int minutesTotal2 = t2.hour * 60 + t2.minute;
-
-	    int minutesTotal = minutesTotal1 - minutesTotal2;
-
-	    if (minutesTotal < 0) throw TimeException("Resulatat plus petit que 0h00.", TimeException::OVERFLOW);
-
-	    t1.minute = minutesTotal % 60;
-	    t1.hour = (minutesTotal / 60) % 24;
-
-	    return t1;
+	    return Time((t1.hour * 60 + t1.minute) - (t2.hour * 60 + t2.minute));
 	}
 
 	Time operator-(int minutesNbr, Time t)
