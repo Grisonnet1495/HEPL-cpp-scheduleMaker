@@ -96,7 +96,7 @@ namespace planning
 
   void Event::display() const
   {
-    cout << "Event(" << code << ") : " << title << "; Date : ";
+    cout << "Event(" << code << ") : " << title << "; ";
 
     if (timing != nullptr)
     {
@@ -104,6 +104,7 @@ namespace planning
     }
     else
     {
+      cout << "Date : ";
       cout << "non defini" << endl;
     }
   }
@@ -125,16 +126,12 @@ namespace planning
     s << e.title << endl;
     s << "</title>" << endl;
 
-    try
+    if (e.timing != nullptr)
     {
       e.getTiming();
       s << "<timing>" << endl;
       s << e.getTiming() << endl;
       s << "</timing>" << endl;
-    }
-    catch (TimingException& t)
-    {
-      cout << "Pas de timing." << endl;
     }
 
     s << "</Event>" << endl;
