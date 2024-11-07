@@ -15,7 +15,7 @@ class Exception
     Exception();
     Exception(const string& m);
     Exception(const Exception& e);
-    ~Exception();
+    virtual ~Exception();
 
     void setMessage(const string& m);
 
