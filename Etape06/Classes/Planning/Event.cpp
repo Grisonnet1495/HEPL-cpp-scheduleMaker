@@ -128,7 +128,6 @@ namespace planning
 
     if (e.timing != nullptr)
     {
-      e.getTiming();
       s << "<timing>" << endl;
       s << e.getTiming() << endl;
       s << "</timing>" << endl;
