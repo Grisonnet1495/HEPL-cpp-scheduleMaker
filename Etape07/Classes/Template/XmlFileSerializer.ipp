@@ -1,8 +1,5 @@
-static const char XmlFileSerializer::READ = 'R';
-static const char XmlFileSerializer::WRITE = 'W';
-
 template <typename T>  
-XmlFileSerializer<T>::XmlFileSerializer(const string& f, char m, const string& c = "entities")
+XmlFileSerializer<T>::XmlFileSerializer(const string& f, char m, const string& c)
 {
   #ifdef DEBUG
     cout << ">>> Appelle du constructeur d'initialisation de XmlFileSerializer" << endl;
@@ -14,20 +11,6 @@ XmlFileSerializer<T>::XmlFileSerializer(const string& f, char m, const string& c
 
   if (mode == WRITE)
   {
-    file.open(filename, ios::in);
-
-    if (!file)
-    {
-      cout << "Erreur d'ouverture du fichier." << endl;
-    }
-    else
-    {
-      file << '<?xml version="1.0" encoding="UTF-8"?>' << endl;
-      file << "<" << colectionName << ">" << endl;
-    }
-  }
-  else if (mode == READ)
-  {
     file.open(filename, ios::out);
 
     if (!file)
@@ -36,10 +19,24 @@ XmlFileSerializer<T>::XmlFileSerializer(const string& f, char m, const string& c
     }
     else
     {
-      string tmpString;
-      getLine(file, tmpString);
-      getLine(file, tmpString);
-      collectionName = tmpString.substr(1, str.length() - 2);
+      file << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" << endl;
+      file << "<" << collectionName << ">" << endl;
+    }
+  }
+  else if (mode == READ)
+  {
+    file.open(filename, ios::in);
+
+    if (!file)
+    {
+      throw XmlFileSerializerException("Le fichier n'existe pas.", XmlFileSerializerException::FILE_NOT_FOUND);
+    }
+    else
+    {
+      string line;
+      getline(file, line);
+      getline(file, line);
+      collectionName = line.substr(1, line.length() - 2);
     }
   }
 }
@@ -53,7 +50,7 @@ XmlFileSerializer<T>::~XmlFileSerializer()
 
   if (mode == WRITE)
   {
-    file << '</' << collectionName << '>' << endl;
+    file << "</" << collectionName << ">" << endl;
   }
 
   file.close();
@@ -84,16 +81,28 @@ bool XmlFileSerializer<T>::isWritable() const
 }
 
 template <typename T>  
-void XmlFileSerializer<T>::write(const T& val)
+void XmlFileSerializer<T>::write(const T& t)
 {
-  file << T; 
+  if (mode == READ) throw XmlFileSerializerException("Le fichier n'est pas en mode ecriture.", XmlFileSerializerException::NOT_ALLOWED);
+  file << t << endl; 
 }
 
 template <typename T>  
 T XmlFileSerializer<T>::read()
 {
-  string line;
-  file >> line;
+  if (mode == WRITE) throw XmlFileSerializerException("Le fichier n'est pas en mode lecture.", XmlFileSerializerException::NOT_ALLOWED);
 
-  if (line == ('</' + collectionName + '>')) throw
+  T object;
+  string tmpString;
+  int oldPosition;
+
+  oldPosition = file.tellg();
+  file >> tmpString;
+
+  if (tmpString == ("</" + collectionName + ">")) throw XmlFileSerializerException("Fin du fichier.", XmlFileSerializerException::END_OF_FILE);
+
+  file.seekg(oldPosition);
+  file >> object;
+
+  return object;
 }

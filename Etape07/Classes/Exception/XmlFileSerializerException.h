@@ -19,10 +19,10 @@ namespace planning
       static const int FILE_NOT_FOUND = 2;
       static const int END_OF_FILE = 3;
 
-      TimeException();
-      TimeException(const string& m, int c);
-      TimeException(const TimeException& t);
-      ~TimeException();
+      XmlFileSerializerException();
+      XmlFileSerializerException(const string& m, int c);
+      XmlFileSerializerException(const XmlFileSerializerException& x);
+      ~XmlFileSerializerException();
 
       void setCode(int c);
 

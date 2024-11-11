@@ -1,12 +1,12 @@
 #include <iostream>
 using namespace std;
 
-#include "Time.h"
-#include "Timing.h"
-#include "Event.h"
+#include "Classes/Planning/Time.h"
+#include "Classes/Planning/Timing.h"
+#include "Classes/Planning/Event.h"
 using namespace planning;
-#include "Classroom.h"
-#include "XmlFileSerializer.hpp"
+#include "Classes/Structure/Classroom.h"
+#include "Classes/Template/XmlFileSerializer.hpp"
 
 int  Menu();
 void Essai1();

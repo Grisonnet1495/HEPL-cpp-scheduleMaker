@@ -1,10 +1,10 @@
-#include "TimeException.h"
+#include "XmlFileSerializerException.h"
 
 namespace planning
 {
     // Constructeurs
 
-    TimeException::TimeException():Exception()
+    XmlFileSerializerException::XmlFileSerializerException():Exception()
     {
         #ifdef DEBUG
           cout << ">>> Appelle du constructeur par defaut de TimeException" << endl;
@@ -13,7 +13,7 @@ namespace planning
         setCode(0);
     }
 
-    TimeException::TimeException(const string& m, int c):Exception(m)
+    XmlFileSerializerException::XmlFileSerializerException(const string& m, int c):Exception(m)
     {
         #ifdef DEBUG
           cout << ">>> Appelle du constructeur d'initialisation de TimeException" << endl;
@@ -22,18 +22,18 @@ namespace planning
         setCode(c);
     }
 
-    TimeException::TimeException(const TimeException& t):Exception(t.getMessage())
+    XmlFileSerializerException::XmlFileSerializerException(const XmlFileSerializerException& x):Exception(x.getMessage())
     {
         #ifdef DEBUG
           cout << ">>> Appelle du constructeur de copie de TimeException" << endl;
         #endif
 
-        setCode(t.getCode());
+        setCode(x.getCode());
     }
 
     // Destructeur
 
-    TimeException::~TimeException()
+    XmlFileSerializerException::~XmlFileSerializerException()
     {
         #ifdef DEBUG
           cout << ">>> Appelle du destructeur de TimeException" << endl;
@@ -42,14 +42,14 @@ namespace planning
 
     // Setters
 
-    void TimeException::setCode(int c)
+    void XmlFileSerializerException::setCode(int c)
     {
         code = c;
     }
 
     // Getters
 
-    int TimeException::getCode() const
+    int XmlFileSerializerException::getCode() const
     {
         return code;
     }

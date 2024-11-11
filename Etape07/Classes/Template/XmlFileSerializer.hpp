@@ -3,8 +3,9 @@
 
 #include <iostream>
 #include <fstream>
+#include <string.h>
 using namespace std;
-#include "XmlFileSerializerException.h"
+#include "../Exception/XmlFileSerializerException.h"
 
 template<typename T>
 class XmlFileSerializer
@@ -16,8 +17,8 @@ class XmlFileSerializer
     string collectionName;
 
   public:
-    static const char READ;
-    static const char WRITE;
+    static const char READ = 'R';
+    static const char WRITE = 'W';
     
     XmlFileSerializer() = delete;
     XmlFileSerializer(const string& f, char m, const string& c = "entities");
@@ -29,7 +30,7 @@ class XmlFileSerializer
     bool isReadable() const;
     bool isWritable() const;
 
-    void write(const T& val);
+    void write(const T& t);
     T read();
 
     XmlFileSerializer<T>& operator=(const XmlFileSerializer<T>&) = delete;

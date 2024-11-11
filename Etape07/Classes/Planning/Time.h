@@ -34,6 +34,7 @@ namespace planning
 			void setMinute(int m);
 
 			void display() const;
+			const string toString() const;
 
 			Time& operator=(const Time& t);
 			Time operator+(int minutesNbr);

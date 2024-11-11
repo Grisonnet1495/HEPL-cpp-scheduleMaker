@@ -10,7 +10,7 @@ FLAGS = -Wall -g
 EXECUTABLE = myprogram
 
 # Nom des fichiers objets
-OBJECTS = Test6.o Event.o Time.o Timing.o Schedulable.o Professor.o Group.o Classroom.o Exception.o TimeException.o TimingException.o
+OBJECTS = Test7.o Event.o Time.o Timing.o Schedulable.o Professor.o Group.o Classroom.o Exception.o TimeException.o TimingException.o XmlFileSerializerException.o
 
 # Génère le programme en entier
 all: $(EXECUTABLE)
@@ -20,8 +20,8 @@ $(EXECUTABLE): $(OBJECTS)
 	g++ -g -o $(EXECUTABLE) $(OBJECTS)
 
 # Génère chaques fichiers objets avec le main, les classese les librairies (-Wall active les warnings)
-Test6.o: Test6.cpp
-	g++ $(FLAGS) $(DEBUG) -c Test6.cpp -o Test6.o
+Test6.o: Test7.cpp
+	g++ $(FLAGS) $(DEBUG) -c Test7.cpp -o Test7.o
 
 Event.o: Classes/Planning/Event.cpp
 	g++ $(FLAGS) $(DEBUG) -c Classes/Planning/Event.cpp -o Event.o
@@ -52,6 +52,9 @@ TimeException.o: Classes/Exception/TimeException.cpp
 
 TimingException.o: Classes/Exception/TimingException.cpp
 	g++ $(FLAGS) $(DEBUG) -c Classes/Exception/TimingException.cpp -o TimingException.o
+
+XmlFileSerializerException.o: Classes/Exception/XmlFileSerializerException.cpp
+	g++ $(FLAGS) $(DEBUG) -c Classes/Exception/XmlFileSerializerException.cpp -o XmlFileSerializerException.o
 
 clean:
 	rm -f $(EXECUTABLE) $(OBJECTS) *.xml

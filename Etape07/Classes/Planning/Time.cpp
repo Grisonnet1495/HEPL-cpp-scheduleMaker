@@ -94,6 +94,18 @@ namespace planning
 		cout << minute;
 	}
 
+	const string Time::toString() const
+	{
+		string s = "";
+
+		if (hour < 10) s += "0";
+		s += to_string(hour) + "h";
+		if (minute < 10) s += "0";
+		s += to_string(minute);
+
+		return s;
+	}
+
 	// Méthodes de surcharge d'opérateurs
 
 	Time& Time::operator=(const Time& t)
