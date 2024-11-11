@@ -46,6 +46,7 @@ namespace planning
 		    int operator==(const Timing& t);
 
 			void display() const;
+			const string toString() const;
 	};
 }
 

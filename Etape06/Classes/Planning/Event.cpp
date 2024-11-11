@@ -96,7 +96,7 @@ namespace planning
 
   void Event::display() const
   {
-    cout << "Event(" << code << ") : " << title << "; ";
+    cout << "Event(" << code << ") : " << title << ", ";
 
     if (timing != nullptr)
     {
@@ -107,6 +107,23 @@ namespace planning
       cout << "Date : ";
       cout << "non defini" << endl;
     }
+  }
+
+  const string Event::toString() const
+  {
+    string s;
+    s = "Event(" + to_string(code) + ") : " + title + ", ";
+
+    if (timing != nullptr)
+    {
+      s += timing->toString();
+    }
+    else
+    {
+      s += "Date : non defini";
+    }
+
+    return s;
   }
 
   void Event::incCurrentCode() const
@@ -133,7 +150,7 @@ namespace planning
       s << "</timing>" << endl;
     }
 
-    s << "</Event>" << endl;
+    s << "</Event>";
 
     return s;
   }

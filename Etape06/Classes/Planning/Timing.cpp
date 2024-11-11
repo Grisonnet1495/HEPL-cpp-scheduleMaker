@@ -99,6 +99,15 @@ namespace planning
 		duration.display();
 	}
 
+	const string Timing::toString() const
+	{
+		string s;
+
+		s = "Jour : " + day + ", debut : " + start.toString() + ", duree : " + duration.toString();
+
+		return s;
+	}
+
 	// Méthodes de surcharge d'opérateurs
 
 	int Timing::comparisonT(const Timing& t2)

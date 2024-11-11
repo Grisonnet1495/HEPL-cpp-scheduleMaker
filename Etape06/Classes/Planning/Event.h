@@ -36,6 +36,7 @@ namespace planning
       const Timing& getTiming() const;
 
       void display() const;
+      const string toString() const;
       void incCurrentCode() const;
   };
 }
