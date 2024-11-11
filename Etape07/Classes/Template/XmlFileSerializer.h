@@ -1,4 +1,4 @@
-#ifndef EVENT
+#ifndef XML_FILE_SERIALIZER
 #define EVENT
 
 #include <stdlib.h>

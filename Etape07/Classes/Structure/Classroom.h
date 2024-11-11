@@ -1,5 +1,5 @@
-#ifndef CLASSROOM
-#define CLASSROOM
+#ifndef CLASSROOM_H
+#define CLASSROOM_H
 
 #include <stdlib.h>
 #include <iostream>

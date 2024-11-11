@@ -1,5 +1,5 @@
-#ifndef SCHEDULABLE
-#define SCHEDULABLE
+#ifndef SCHEDULABLE_H
+#define SCHEDULABLE_H
 
 #include <stdlib.h>
 #include <iostream>

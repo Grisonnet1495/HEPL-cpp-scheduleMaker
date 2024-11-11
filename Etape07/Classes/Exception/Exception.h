@@ -1,5 +1,5 @@
-#ifndef EXCEPTION
-#define EXCEPTION
+#ifndef EXCEPTION_H
+#define EXCEPTION_H
 
 #include <stdlib.h>
 #include <iostream>

@@ -1,5 +1,5 @@
-#ifndef TIMING
-#define TIMING
+#ifndef TIMING_H
+#define TIMING_H
 
 #include <stdlib.h>
 #include <iostream>

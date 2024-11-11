@@ -1,5 +1,5 @@
-#ifndef TIMEEXCEPTION
-#define TIMEEXCEPTION
+#ifndef TIMEEXCEPTION_H
+#define TIMEEXCEPTION_H
 
 #include <stdlib.h>
 #include <iostream>
@@ -29,6 +29,5 @@ namespace planning
       int getCode() const;
   };
 }
-
 
 #endif

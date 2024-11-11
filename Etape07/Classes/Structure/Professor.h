@@ -1,5 +1,5 @@
-#ifndef PROFESSOR
-#define PROFESSOR
+#ifndef PROFESSOR_H
+#define PROFESSOR_H
 
 #include <stdlib.h>
 #include <iostream>
