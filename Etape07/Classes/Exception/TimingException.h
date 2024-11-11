@@ -1,5 +1,5 @@
-#ifndef TIMINGEXCEPTION_H
-#define TIMINGEXCEPTION_H
+#ifndef TIMING_EXCEPTION_H
+#define TIMING_EXCEPTION_H
 
 #include <stdlib.h>
 #include <iostream>

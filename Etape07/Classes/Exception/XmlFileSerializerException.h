@@ -1,5 +1,5 @@
-#ifndef TIME_EXCEPTION_H
-#define TIME_EXCEPTION_H
+#ifndef XML_FILE_SERIALIZER_EXCEPTION_H
+#define XML_FILE_SERIALIZER_EXCEPTION_H
 
 #include <stdlib.h>
 #include <iostream>
@@ -9,15 +9,15 @@ using namespace std;
 
 namespace planning
 {
-  class TimeException : public Exception
+  class XmlFileSerializerException : public Exception
   {
     private:
       int code;
 
     public:
-      static const int INVALID_HOUR = 1;
-      static const int INVALID_MINUTE = 2;
-      static const int OVERFLOW = 3;
+      static const int NOT_ALLOWED = 1;
+      static const int FILE_NOT_FOUND = 2;
+      static const int END_OF_FILE = 3;
 
       TimeException();
       TimeException(const string& m, int c);
