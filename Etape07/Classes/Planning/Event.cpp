@@ -150,7 +150,7 @@ namespace planning
       s << "</timing>" << endl;
     }
 
-    s << "</Event>" << endl;
+    s << "</Event>";
 
     return s;
   }

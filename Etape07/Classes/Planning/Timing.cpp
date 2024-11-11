@@ -171,7 +171,7 @@ namespace planning
 		s << "<duration>" << endl;
 		s << t.duration << endl;
 		s << "</duration>" << endl;
-		s << "</Timing>" << endl;
+		s << "</Timing>";
 
 		return s;
 	}
