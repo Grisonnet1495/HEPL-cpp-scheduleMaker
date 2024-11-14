@@ -113,23 +113,8 @@ namespace planning
 	int Timing::comparisonT(const Timing& t2)
 	{
 		Timing t1(*this);
-		int dayNbr1 = 0, dayNbr2 = 0;
-
-	    if (t1.day == MONDAY) dayNbr1 = 1;
-	    else if (t1.day == TUESDAY) dayNbr1 = 2;
-	    else if (t1.day == WEDNESDAY) dayNbr1 = 3;
-	    else if (t1.day == THURSDAY) dayNbr1 = 4;
-	    else if (t1.day == FRIDAY) dayNbr1 = 5;
-	    else if (t1.day == SATURDAY) dayNbr1 = 6;
-	    else if (t1.day == SUNDAY) dayNbr1 = 7;
-
-	    if (t2.day == MONDAY) dayNbr2 = 1;
-	    else if (t2.day == TUESDAY) dayNbr2 = 2;
-	    else if (t2.day == WEDNESDAY) dayNbr2 = 3;
-	    else if (t2.day == THURSDAY) dayNbr2 = 4;
-	    else if (t2.day == FRIDAY) dayNbr2 = 5;
-	    else if (t2.day == SATURDAY) dayNbr2 = 6;
-	    else if (t2.day == SUNDAY) dayNbr2 = 7;
+		int dayNbr1 = getDayNumber(t1.day);
+	    int dayNbr2 = getDayNumber(t2.day);
 
 		if (dayNbr1 < dayNbr2) return -1;
 		if (dayNbr1 > dayNbr2) return 1;
@@ -142,6 +127,19 @@ namespace planning
 
 		// Si durées égales
 		return 0;
+	}
+
+	int Timing::getDayNumber(const string d)
+	{
+		if (d == MONDAY) return 1;
+	    if (d == TUESDAY) return 2;
+	    if (d == WEDNESDAY) return 3;
+	    if (d == THURSDAY) return 4;
+	    if (d == FRIDAY) return 5;
+	    if (d == SATURDAY) return 6;
+	    if (d == SUNDAY) return 7;
+
+	    return 0;
 	}
 
 	int Timing::operator<(const Timing& t)

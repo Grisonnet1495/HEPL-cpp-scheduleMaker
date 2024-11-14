@@ -19,6 +19,7 @@ namespace planning
 			Time start;
 			Time duration;
 			int comparisonT(const Timing& t2);
+			int getDayNumber(const string d);
 
 		public:
 			static const string MONDAY;

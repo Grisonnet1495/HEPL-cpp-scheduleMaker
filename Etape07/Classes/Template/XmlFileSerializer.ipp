@@ -1,4 +1,4 @@
-template <typename T>  
+template <typename T>
 XmlFileSerializer<T>::XmlFileSerializer(const string& f, char m, const string& c)
 {
   #ifdef DEBUG
@@ -41,7 +41,7 @@ XmlFileSerializer<T>::XmlFileSerializer(const string& f, char m, const string& c
   }
 }
  
-template <typename T>  
+template <typename T>
 XmlFileSerializer<T>::~XmlFileSerializer()
 {
   #ifdef DEBUG
@@ -56,31 +56,31 @@ XmlFileSerializer<T>::~XmlFileSerializer()
   file.close();
 }
  
-template <typename T>  
+template <typename T>
 string XmlFileSerializer<T>::getFilename() const
 {
   return filename; 
 }
 
-template <typename T>  
+template <typename T>
 string XmlFileSerializer<T>::getCollectionName() const
 {
   return collectionName; 
 }
 
-template <typename T>  
+template <typename T>
 bool XmlFileSerializer<T>::isReadable() const
 {
   return (mode == READ);
 }
 
-template <typename T>  
+template <typename T>
 bool XmlFileSerializer<T>::isWritable() const
 {
   return (mode == WRITE); 
 }
 
-template <typename T>  
+template <typename T>
 void XmlFileSerializer<T>::write(const T& t)
 {
   if (mode == READ) throw XmlFileSerializerException("Le fichier n'est pas en mode ecriture.", XmlFileSerializerException::NOT_ALLOWED);
