@@ -10,7 +10,8 @@ namespace planning
 	      cout << ">>> Appelle du constructeur par defaut de Schedulable" << endl;
 	    #endif
 
-	    setId(0);
+	    setId(currentId);
+	    currentId++;
 	}
 
 	Schedulable::Schedulable(int i)
@@ -61,5 +62,10 @@ namespace planning
 		id = s.id;
 
 		return (*this);
+	}
+
+	bool Schedulable::operator<(const Classroom& c) const
+	{
+		return id < c.id;
 	}
 }

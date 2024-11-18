@@ -15,6 +15,7 @@ namespace planning
 
     public:
       static int currentCode;
+      static int currentId = 1;
 
       Schedulable();
       Schedulable(int i);
@@ -26,6 +27,7 @@ namespace planning
       int getId() const;
 
       Schedulable& operator=(const Schedulable& s);
+      bool operator<(const Classroom& c) const;
 
       virtual string toString() const = 0;
       virtual string tuple() const = 0;

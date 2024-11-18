@@ -11,7 +11,7 @@ Group::Group():Schedulable()
     setName("---");
 }
 
-Group::Group(int i, const string n):Schedulable(i)
+Group::Group(const string n):Schedulable(i)
 {
     #ifdef DEBUG
       cout << ">>> Appelle du constructeur d'initialisation de Group" << endl;

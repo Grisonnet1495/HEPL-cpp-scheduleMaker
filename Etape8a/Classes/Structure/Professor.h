@@ -17,7 +17,7 @@ class Professor : public Schedulable
 
   public:
     Professor();
-    Professor(int i, const string& l, const string& f);
+    Professor(const string& l, const string& f);
     Professor(const Professor& p);
     ~Professor();
 

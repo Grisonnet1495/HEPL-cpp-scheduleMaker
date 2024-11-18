@@ -10,7 +10,7 @@ FLAGS = -Wall -g
 EXECUTABLE = myprogram
 
 # Nom des fichiers objets
-OBJECTS = Test7.o Event.o Time.o Timing.o Schedulable.o Professor.o Group.o Classroom.o Exception.o TimeException.o TimingException.o XmlFileSerializerException.o
+OBJECTS = Test8a.o Event.o Time.o Timing.o Schedulable.o Professor.o Group.o Classroom.o Exception.o TimeException.o TimingException.o XmlFileSerializerException.o
 
 # Génère le programme en entier
 all: $(EXECUTABLE)
@@ -20,8 +20,8 @@ $(EXECUTABLE): $(OBJECTS)
 	g++ -g -o $(EXECUTABLE) $(OBJECTS)
 
 # Génère chaques fichiers objets avec le main, les classese les librairies (-Wall active les warnings)
-Test6.o: Test7.cpp
-	g++ $(FLAGS) $(DEBUG) -c Test7.cpp -o Test7.o
+Test8a.o: Test8a.cpp
+	g++ $(FLAGS) $(DEBUG) -c Test8a.cpp -o Test8a.o
 
 Event.o: Classes/Planning/Event.cpp
 	g++ $(FLAGS) $(DEBUG) -c Classes/Planning/Event.cpp -o Event.o

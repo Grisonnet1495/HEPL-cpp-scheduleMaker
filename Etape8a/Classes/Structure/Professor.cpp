@@ -12,7 +12,7 @@ Professor::Professor():Schedulable()
     setFirstName("---");
 }
 
-Professor::Professor(int i, const string& l, const string& f):Schedulable(i)
+Professor::Professor(const string& l, const string& f):Schedulable(i)
 {
 	#ifdef DEBUG
       cout << ">>> Appelle du constructeur d'initialisation de Professor" << endl;

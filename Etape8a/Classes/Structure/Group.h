@@ -16,7 +16,7 @@ class Group : public Schedulable
 
   public:
     Group();
-    Group(int i, const string n);
+    Group(const string n);
     Group(const Group& g);
     ~Group();
 

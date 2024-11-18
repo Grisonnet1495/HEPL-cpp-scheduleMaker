@@ -14,7 +14,7 @@ Classroom::Classroom():Schedulable()
     setSeatingCapacity(0);
 }
 
-Classroom::Classroom(int i, const string& n, int s):Schedulable(i)
+Classroom::Classroom(const string& n, int s):Schedulable(i)
 {
 	#ifdef DEBUG
       cout << ">>> Appelle du constructeur d'initialisation de Classroom" << endl;

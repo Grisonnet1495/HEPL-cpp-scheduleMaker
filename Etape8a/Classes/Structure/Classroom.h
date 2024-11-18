@@ -18,7 +18,7 @@ class Classroom : public Schedulable
 
   public:
     Classroom();
-    Classroom(int i, const string& n, int s);
+    Classroom(const string& n, int s);
     Classroom(const Classroom& c);
     ~Classroom();
 
