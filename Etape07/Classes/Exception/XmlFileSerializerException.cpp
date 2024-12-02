@@ -1,56 +1,53 @@
 #include "XmlFileSerializerException.h"
 
-namespace planning
+// Constructeurs
+
+XmlFileSerializerException::XmlFileSerializerException():Exception()
 {
-    // Constructeurs
+    #ifdef DEBUG
+      cout << ">>> Appelle du constructeur par defaut de TimeException" << endl;
+    #endif
 
-    XmlFileSerializerException::XmlFileSerializerException():Exception()
-    {
-        #ifdef DEBUG
-          cout << ">>> Appelle du constructeur par defaut de TimeException" << endl;
-        #endif
+    setCode(0);
+}
 
-        setCode(0);
-    }
+XmlFileSerializerException::XmlFileSerializerException(const string& m, int c):Exception(m)
+{
+    #ifdef DEBUG
+      cout << ">>> Appelle du constructeur d'initialisation de TimeException" << endl;
+    #endif
 
-    XmlFileSerializerException::XmlFileSerializerException(const string& m, int c):Exception(m)
-    {
-        #ifdef DEBUG
-          cout << ">>> Appelle du constructeur d'initialisation de TimeException" << endl;
-        #endif
+    setCode(c);
+}
 
-        setCode(c);
-    }
+XmlFileSerializerException::XmlFileSerializerException(const XmlFileSerializerException& x):Exception(x.getMessage())
+{
+    #ifdef DEBUG
+      cout << ">>> Appelle du constructeur de copie de TimeException" << endl;
+    #endif
 
-    XmlFileSerializerException::XmlFileSerializerException(const XmlFileSerializerException& x):Exception(x.getMessage())
-    {
-        #ifdef DEBUG
-          cout << ">>> Appelle du constructeur de copie de TimeException" << endl;
-        #endif
+    setCode(x.getCode());
+}
 
-        setCode(x.getCode());
-    }
+// Destructeur
 
-    // Destructeur
+XmlFileSerializerException::~XmlFileSerializerException()
+{
+    #ifdef DEBUG
+      cout << ">>> Appelle du destructeur de TimeException" << endl;
+    #endif
+}
 
-    XmlFileSerializerException::~XmlFileSerializerException()
-    {
-        #ifdef DEBUG
-          cout << ">>> Appelle du destructeur de TimeException" << endl;
-        #endif
-    }
+// Setters
 
-    // Setters
+void XmlFileSerializerException::setCode(int c)
+{
+    code = c;
+}
 
-    void XmlFileSerializerException::setCode(int c)
-    {
-        code = c;
-    }
+// Getters
 
-    // Getters
-
-    int XmlFileSerializerException::getCode() const
-    {
-        return code;
-    }
+int XmlFileSerializerException::getCode() const
+{
+    return code;
 }
