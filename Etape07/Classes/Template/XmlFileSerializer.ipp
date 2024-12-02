@@ -27,17 +27,12 @@ XmlFileSerializer<T>::XmlFileSerializer(const string& f, char m, const string& c
   {
     file.open(filename, ios::in);
 
-    if (!file)
-    {
-      throw XmlFileSerializerException("Le fichier n'existe pas.", XmlFileSerializerException::FILE_NOT_FOUND);
-    }
-    else
-    {
-      string line;
-      getline(file, line);
-      getline(file, line);
-      collectionName = line.substr(1, line.length() - 2);
-    }
+    if (!file) throw XmlFileSerializerException("Le fichier n'existe pas.", XmlFileSerializerException::FILE_NOT_FOUND);
+
+    string line;
+    getline(file, line);
+    getline(file, line);
+    collectionName = line.substr(1, line.length() - 2);
   }
 }
  
@@ -48,10 +43,7 @@ XmlFileSerializer<T>::~XmlFileSerializer()
     cout << ">>> Appelle du destructeur par defaut de XmlFileSerializer" << endl;
   #endif
 
-  if (mode == WRITE)
-  {
-    file << "</" << collectionName << ">" << endl;
-  }
+  if (mode == WRITE) file << "</" << collectionName << ">" << endl;
 
   file.close();
 }
