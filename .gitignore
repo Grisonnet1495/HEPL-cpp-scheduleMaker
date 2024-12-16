@@ -1,6 +1,3 @@
-# Created by https://www.toptal.com/developers/gitignore/api/c++,sublimetext,visualstudiocode
-# Edit at https://www.toptal.com/developers/gitignore?templates=c++,sublimetext,visualstudiocode
-
 ### C++ ###
 # Prerequisites
 *.d
@@ -86,5 +83,3 @@ GitHub.sublime-settings
 # Ignore all local history of files
 .history
 .ionide
-
-# End of https://www.toptal.com/developers/gitignore/api/c++,sublimetext,visualstudiocode

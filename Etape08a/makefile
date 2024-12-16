@@ -13,10 +13,10 @@ FLAGS = -Wall -g
 EXECUTABLE = myprogram
 
 # Nom des fichiers objets
-OBJECTS = Test7.o \
+OBJECTS = Test8a.o \
           Event.o Time.o Timing.o \
-          Schedulable.o Professor.o Group.o Classroom.o \
-          Exception.o TimeException.o TimingException.o XmlFileSerializerException.o
+          Schedulable.o Professor.o Group.o Classroom.o Timetable.o\
+          Exception.o TimeException.o TimingException.o TimetableException.o XmlFileSerializerException.o
 
 # Génère le programme en entier
 all: $(EXECUTABLE)
@@ -29,9 +29,9 @@ $(EXECUTABLE): $(OBJECTS)
 	@echo "Compilation réussie. L'exécutable $(EXECUTABLE) est prêt."
 
 # Génère chaque fichier objet individuellement
-Test7.o: Test7.cpp
-	@echo "Compilation de Test7.cpp..."
-	@g++ $(FLAGS) $(DEBUG) -c Test7.cpp -o Test7.o
+Test8a.o: Test8a.cpp
+	@echo "Compilation de Test8a.cpp..."
+	@g++ $(FLAGS) $(DEBUG) -c Test8a.cpp -o Test8a.o
 
 Event.o: $(PLANNING)/Event.cpp
 	@echo "Compilation de Event.cpp..."
@@ -61,6 +61,10 @@ Classroom.o: $(STRUCTURE)/Classroom.cpp
 	@echo "Compilation de Classroom.cpp..."
 	@g++ $(FLAGS) $(DEBUG) -c $(STRUCTURE)/Classroom.cpp -o Classroom.o
 
+Timetable.o: $(STRUCTURE)/Timetable.cpp
+	@echo "Compilation de Timetable.cpp..."
+	@g++ $(FLAGS) $(DEBUG) -c $(STRUCTURE)/Timetable.cpp -o Timetable.o
+
 Exception.o: $(EXCEPTION)/Exception.cpp
 	@echo "Compilation de Exception.cpp..."
 	@g++ $(FLAGS) $(DEBUG) -c $(EXCEPTION)/Exception.cpp -o Exception.o
@@ -72,6 +76,10 @@ TimeException.o: $(EXCEPTION)/TimeException.cpp
 TimingException.o: $(EXCEPTION)/TimingException.cpp
 	@echo "Compilation de TimingException.cpp..."
 	@g++ $(FLAGS) $(DEBUG) -c $(EXCEPTION)/TimingException.cpp -o TimingException.o
+
+TimetableException.o: $(EXCEPTION)/TimetableException.cpp
+	@echo "Compilation de TimetableException.cpp..."
+	@g++ $(FLAGS) $(DEBUG) -c $(EXCEPTION)/TimetableException.cpp -o TimetableException.o
 
 XmlFileSerializerException.o: $(EXCEPTION)/XmlFileSerializerException.cpp
 	@echo "Compilation de XmlFileSerializerException.cpp..."
