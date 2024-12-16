@@ -10,6 +10,7 @@ using namespace planning;
 class Professor : public Schedulable
 {
   friend ostream& operator<<(ostream& s, const Professor& p);
+  friend istream& operator>>(istream& s, Professor& p);
 
   private:
     string lastName;

@@ -270,3 +270,50 @@ void Timetable::deleteGroupById(int id)
 	
 	throw TimetableException("Id non trouve.", TimetableException::INVALID_ID);
 }
+
+void save(const string& timetableName)
+{
+	string fileName = timetableName + "_config.dat";
+	int fd;
+
+	if ((fd = open(fileName, O_WRONLY | O_CREAT, 0666)) == -1) throw TimetableException("Erreur d'ouverture du fichier", TimetableException::FILE_ERROR);
+
+	write(fd, Schedulable::currentId);
+	close(fd);
+
+	string fileName = timetableName + "_classrooms.xml";
+	XmlFileSerializer<Professor> XfsClassroom(fileName, XmlFileSerializer<Professor>::WRITE, "classrooms");
+	cout << "Filename = " << XfsClassroom.getFilename() << endl;
+	cout << "Collection name  = " << XfsClassroom.getCollectionName() << endl;
+	cout << "Readable = " << XfsClassroom.isReadable() << endl;
+	cout << "Writable = " << XfsClassroom.isWritable() << endl << endl;
+
+	for (auto it = classrooms.cbegin(); it != classrooms.cend(); it++) {
+		XfsClassroom.write(it);
+	}
+	delete XfsClassroom;
+
+	string fileName = timetableName + "_professors.xml";
+	XmlFileSerializer<Professor> XfsProfessor(fileName, XmlFileSerializer<Professor>::WRITE, "professors");
+	cout << "Filename = " << XfsProfessor.getFilename() << endl;
+	cout << "Collection name  = " << XfsProfessor.getCollectionName() << endl;
+	cout << "Readable = " << XfsProfessor.isReadable() << endl;
+	cout << "Writable = " << XfsProfessor.isWritable() << endl << endl;
+
+	for (auto it = professors.cbegin(); it != professors.cend(); it++) {
+		XfsProfessor.write(it);
+	}
+	delete XfsProfessor;
+
+	string fileName = timetableName + "_groups.xml";
+	XmlFileSerializer<Professor> XfsGroup(fileName, XmlFileSerializer<Group>::WRITE, "groups");
+	cout << "Filename = " << XfsGroup.getFilename() << endl;
+	cout << "Collection name  = " << XfsGroup.getCollectionName() << endl;
+	cout << "Readable = " << XfsGroup.isReadable() << endl;
+	cout << "Writable = " << XfsGroup.isWritable() << endl << endl;
+
+	for (auto it = groups.cbegin(); it != groups.cend(); it++) {
+		XfsGroup.write(it);
+	}
+	delete XfsGroup;
+}

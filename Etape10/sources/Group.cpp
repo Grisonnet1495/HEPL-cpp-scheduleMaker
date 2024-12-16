@@ -83,7 +83,32 @@ bool Group::operator<(const Group& g) const
 
 ostream& operator<<(ostream& s, const Group& g)
 {
-    s << g.toString();
+    s << "<Group>" << endl;
+    s << "<id>" << endl;
+    s << g.id << endl;
+    s << "</id>" << endl;
+    s << "<name>" << endl;
+    s << g.name << endl;
+    s << "</name>" << endl;
+    s << "</Group>";
+
+    return s;
+}
+
+istream& operator>>(istream& s, Group& c)
+{
+    string sId, sName, tag;
+    getline(s, tag);
+    getline(s, tag);
+    getline(s, sId);
+    getline(s, tag);
+    getline(s, tag);
+    getline(s, sName);
+    getline(s, tag);
+    getline(s, tag);
+
+    c.setId(stoi(sId));
+    c.setName(sName);
 
     return s;
 }

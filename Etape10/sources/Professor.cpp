@@ -97,7 +97,39 @@ bool Professor::operator<(const Professor& p) const
 
 ostream& operator<<(ostream& s, const Professor& p)
 {
-    s << p.toString();
+    s << "<Professor>" << endl;
+    s << "<id>" << endl;
+    s << p.id << endl;
+    s << "</id>" << endl;
+    s << "<lastName>" << endl;
+    s << p.lastName << endl;
+    s << "</lastName>" << endl;
+    s << "<firstName>" << endl;
+    s << p.firstName << endl;
+    s << "</firstName>" << endl;
+    s << "</Professor>";
+
+    return s;
+}
+
+istream& operator>>(istream& s, Professor& p)
+{
+    string sId, sLastName, sFirstName, tag;
+    getline(s, tag);
+    getline(s, tag);
+    getline(s, sId);
+    getline(s, tag);
+    getline(s, tag);
+    getline(s, sLastName);
+    getline(s, tag);
+    getline(s, tag);
+    getline(s, sFirstName);
+    getline(s, tag);
+    getline(s, tag);
+
+    c.setId(stoi(sId));
+    c.setLastName(sLastName);
+    c.setFirstName(sFirstName);
 
     return s;
 }

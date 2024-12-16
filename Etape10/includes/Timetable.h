@@ -47,4 +47,7 @@ class Timetable
     Group findGroupById(int id) const;
     void deleteGroupByIndex(int index);
     void deleteGroupById(int id);
+
+    void save(const string& timetableName);
+    void load(const string& timetableName);
 };

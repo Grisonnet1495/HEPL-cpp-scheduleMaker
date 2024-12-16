@@ -15,6 +15,7 @@ class TimetableException : public Exception
   public:
     static const int INVALID_INDEX = 1;
     static const int INVALID_ID = 2;
+    static const int FILE_ERROR = 3;
 
     TimetableException();
     TimetableException(const string& m, int c);
