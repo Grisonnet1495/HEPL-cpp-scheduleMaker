@@ -50,4 +50,5 @@ class Timetable
 
     void save(const string& timetableName);
     void load(const string& timetableName);
+    void clearTimetable();
 };

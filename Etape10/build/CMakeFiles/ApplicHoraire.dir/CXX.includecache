@@ -16,16 +16,6 @@ string.h
 Schedulable.h
 ../includes/Schedulable.h
 
-../includes/Event.h
-stdlib.h
--
-iostream
--
-string.h
--
-Timing.h
-../includes/Timing.h
-
 ../includes/Exception.h
 stdlib.h
 -
@@ -61,24 +51,6 @@ iostream
 -
 string.h
 -
-
-../includes/Time.h
-stdlib.h
--
-iostream
--
-string.h
--
-
-../includes/TimeException.h
-stdlib.h
--
-iostream
--
-string.h
--
-Exception.h
-../includes/Exception.h
 
 ../includes/Timetable.h
 string.h
@@ -95,36 +67,6 @@ Group.h
 ../includes/Group.h
 
 ../includes/TimetableException.h
-stdlib.h
--
-iostream
--
-string.h
--
-Exception.h
-../includes/Exception.h
-
-../includes/Timing.h
-stdlib.h
--
-iostream
--
-string.h
--
-Time.h
-../includes/Time.h
-
-../includes/TimingException.h
-stdlib.h
--
-iostream
--
-string.h
--
-Exception.h
-../includes/Exception.h
-
-../includes/XmlFileSerializerException.h
 stdlib.h
 -
 iostream
@@ -176,86 +118,6 @@ QtWidgets/QTableWidget
 QtWidgets/QWidget
 -
 
-/home/student/Bureau/Programmation orientée objet en C++/Projet GitHub/HEPL-cpp-scheduleMaker/Etape10/includes/Exception.h
-stdlib.h
--
-iostream
--
-string.h
--
-
-/home/student/Bureau/Programmation orientée objet en C++/Projet GitHub/HEPL-cpp-scheduleMaker/Etape10/includes/TimetableException.h
-stdlib.h
--
-iostream
--
-string.h
--
-Exception.h
-/home/student/Bureau/Programmation orientée objet en C++/Projet GitHub/HEPL-cpp-scheduleMaker/Etape10/includes/Exception.h
-
-/home/student/Bureau/Programmation orientée objet en C++/Projet GitHub/HEPL-cpp-scheduleMaker/Etape10/sources/Classroom.cpp
-Classroom.h
-/home/student/Bureau/Programmation orientée objet en C++/Projet GitHub/HEPL-cpp-scheduleMaker/Etape10/sources/Classroom.h
-
-/home/student/Bureau/Programmation orientée objet en C++/Projet GitHub/HEPL-cpp-scheduleMaker/Etape10/sources/Event.cpp
-Event.h
-/home/student/Bureau/Programmation orientée objet en C++/Projet GitHub/HEPL-cpp-scheduleMaker/Etape10/sources/Event.h
-TimingException.h
-/home/student/Bureau/Programmation orientée objet en C++/Projet GitHub/HEPL-cpp-scheduleMaker/Etape10/sources/TimingException.h
-
-/home/student/Bureau/Programmation orientée objet en C++/Projet GitHub/HEPL-cpp-scheduleMaker/Etape10/sources/Exception.cpp
-Exception.h
-/home/student/Bureau/Programmation orientée objet en C++/Projet GitHub/HEPL-cpp-scheduleMaker/Etape10/sources/Exception.h
-
-/home/student/Bureau/Programmation orientée objet en C++/Projet GitHub/HEPL-cpp-scheduleMaker/Etape10/sources/Group.cpp
-Group.h
-/home/student/Bureau/Programmation orientée objet en C++/Projet GitHub/HEPL-cpp-scheduleMaker/Etape10/sources/Group.h
-
-/home/student/Bureau/Programmation orientée objet en C++/Projet GitHub/HEPL-cpp-scheduleMaker/Etape10/sources/Professor.cpp
-Professor.h
-/home/student/Bureau/Programmation orientée objet en C++/Projet GitHub/HEPL-cpp-scheduleMaker/Etape10/sources/Professor.h
-
-/home/student/Bureau/Programmation orientée objet en C++/Projet GitHub/HEPL-cpp-scheduleMaker/Etape10/sources/Schedulable.cpp
-Schedulable.h
-/home/student/Bureau/Programmation orientée objet en C++/Projet GitHub/HEPL-cpp-scheduleMaker/Etape10/sources/Schedulable.h
-
-/home/student/Bureau/Programmation orientée objet en C++/Projet GitHub/HEPL-cpp-scheduleMaker/Etape10/sources/Time.cpp
-Time.h
-/home/student/Bureau/Programmation orientée objet en C++/Projet GitHub/HEPL-cpp-scheduleMaker/Etape10/sources/Time.h
-TimeException.h
-/home/student/Bureau/Programmation orientée objet en C++/Projet GitHub/HEPL-cpp-scheduleMaker/Etape10/sources/TimeException.h
-
-/home/student/Bureau/Programmation orientée objet en C++/Projet GitHub/HEPL-cpp-scheduleMaker/Etape10/sources/TimeException.cpp
-TimeException.h
-/home/student/Bureau/Programmation orientée objet en C++/Projet GitHub/HEPL-cpp-scheduleMaker/Etape10/sources/TimeException.h
-
-/home/student/Bureau/Programmation orientée objet en C++/Projet GitHub/HEPL-cpp-scheduleMaker/Etape10/sources/Timetable.cpp
-Timetable.h
-/home/student/Bureau/Programmation orientée objet en C++/Projet GitHub/HEPL-cpp-scheduleMaker/Etape10/sources/Timetable.h
-TimetableException.h
-/home/student/Bureau/Programmation orientée objet en C++/Projet GitHub/HEPL-cpp-scheduleMaker/Etape10/sources/TimetableException.h
-
-/home/student/Bureau/Programmation orientée objet en C++/Projet GitHub/HEPL-cpp-scheduleMaker/Etape10/sources/TimetableException.cpp
-TimetableException.h
-/home/student/Bureau/Programmation orientée objet en C++/Projet GitHub/HEPL-cpp-scheduleMaker/Etape10/sources/TimetableException.h
-
-/home/student/Bureau/Programmation orientée objet en C++/Projet GitHub/HEPL-cpp-scheduleMaker/Etape10/sources/Timing.cpp
-Timing.h
-/home/student/Bureau/Programmation orientée objet en C++/Projet GitHub/HEPL-cpp-scheduleMaker/Etape10/sources/Timing.h
-Time.h
-/home/student/Bureau/Programmation orientée objet en C++/Projet GitHub/HEPL-cpp-scheduleMaker/Etape10/sources/Time.h
-TimingException.h
-/home/student/Bureau/Programmation orientée objet en C++/Projet GitHub/HEPL-cpp-scheduleMaker/Etape10/sources/TimingException.h
-
-/home/student/Bureau/Programmation orientée objet en C++/Projet GitHub/HEPL-cpp-scheduleMaker/Etape10/sources/TimingException.cpp
-TimingException.h
-/home/student/Bureau/Programmation orientée objet en C++/Projet GitHub/HEPL-cpp-scheduleMaker/Etape10/sources/TimingException.h
-
-/home/student/Bureau/Programmation orientée objet en C++/Projet GitHub/HEPL-cpp-scheduleMaker/Etape10/sources/XmlFileSerializerException.cpp
-XmlFileSerializerException.h
-/home/student/Bureau/Programmation orientée objet en C++/Projet GitHub/HEPL-cpp-scheduleMaker/Etape10/sources/XmlFileSerializerException.h
-
 /home/student/Bureau/Programmation orientée objet en C++/Projet GitHub/HEPL-cpp-scheduleMaker/Etape10/sources/applichorairewindow.cpp
 applichorairewindow.h
 /home/student/Bureau/Programmation orientée objet en C++/Projet GitHub/HEPL-cpp-scheduleMaker/Etape10/sources/applichorairewindow.h
@@ -277,22 +139,8 @@ iostream
 -
 sstream
 -
-../includes/TimetableException.h
-/home/student/Bureau/Programmation orientée objet en C++/Projet GitHub/HEPL-cpp-scheduleMaker/Etape10/includes/TimetableException.h
-
-/home/student/Bureau/Programmation orientée objet en C++/Projet GitHub/HEPL-cpp-scheduleMaker/Etape10/sources/main.cpp
-applichorairewindow.h
-/home/student/Bureau/Programmation orientée objet en C++/Projet GitHub/HEPL-cpp-scheduleMaker/Etape10/sources/applichorairewindow.h
-QApplication
--
-
-/home/student/Bureau/Programmation orientée objet en C++/Projet GitHub/HEPL-cpp-scheduleMaker/Etape10/sources/moc_applichorairewindow.cpp
-applichorairewindow.h
-/home/student/Bureau/Programmation orientée objet en C++/Projet GitHub/HEPL-cpp-scheduleMaker/Etape10/sources/applichorairewindow.h
-QtCore/qbytearray.h
--
-QtCore/qmetatype.h
--
+TimetableException.h
+/home/student/Bureau/Programmation orientée objet en C++/Projet GitHub/HEPL-cpp-scheduleMaker/Etape10/sources/TimetableException.h
 
 /usr/include/qt5/QtCore/QVariant
 qvariant.h

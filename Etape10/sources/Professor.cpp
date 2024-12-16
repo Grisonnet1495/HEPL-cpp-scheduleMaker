@@ -127,9 +127,9 @@ istream& operator>>(istream& s, Professor& p)
     getline(s, tag);
     getline(s, tag);
 
-    c.setId(stoi(sId));
-    c.setLastName(sLastName);
-    c.setFirstName(sFirstName);
+    p.setId(stoi(sId));
+    p.setLastName(sLastName);
+    p.setFirstName(sFirstName);
 
     return s;
 }

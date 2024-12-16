@@ -43,6 +43,9 @@ CMakeFiles/ApplicHoraire.dir/sources/Timetable.cpp.o
  ../includes/Schedulable.h
  ../includes/Timetable.h
  ../includes/TimetableException.h
+ ../includes/XmlFileSerializer.hpp
+ ../includes/XmlFileSerializer.ipp
+ ../includes/XmlFileSerializerException.h
  /home/student/Bureau/Programmation orientée objet en C++/Projet GitHub/HEPL-cpp-scheduleMaker/Etape10/sources/Timetable.cpp
 CMakeFiles/ApplicHoraire.dir/sources/TimetableException.cpp.o
  ../includes/Exception.h
@@ -64,14 +67,14 @@ CMakeFiles/ApplicHoraire.dir/sources/XmlFileSerializerException.cpp.o
  /home/student/Bureau/Programmation orientée objet en C++/Projet GitHub/HEPL-cpp-scheduleMaker/Etape10/sources/XmlFileSerializerException.cpp
 CMakeFiles/ApplicHoraire.dir/sources/applichorairewindow.cpp.o
  ../includes/Classroom.h
+ ../includes/Exception.h
  ../includes/Group.h
  ../includes/Professor.h
  ../includes/Schedulable.h
  ../includes/Timetable.h
+ ../includes/TimetableException.h
  ../includes/applichorairewindow.h
  ../includes/ui_applichorairewindow.h
- /home/student/Bureau/Programmation orientée objet en C++/Projet GitHub/HEPL-cpp-scheduleMaker/Etape10/includes/Exception.h
- /home/student/Bureau/Programmation orientée objet en C++/Projet GitHub/HEPL-cpp-scheduleMaker/Etape10/includes/TimetableException.h
  /home/student/Bureau/Programmation orientée objet en C++/Projet GitHub/HEPL-cpp-scheduleMaker/Etape10/sources/applichorairewindow.cpp
  /usr/include/qt5/QtCore/QVariant
  /usr/include/qt5/QtCore/qabstractitemmodel.h

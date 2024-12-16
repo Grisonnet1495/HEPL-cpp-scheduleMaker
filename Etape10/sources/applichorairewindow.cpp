@@ -8,7 +8,7 @@
 #include <QFileDialog>
 #include <iostream>
 #include <sstream>
-#include "../includes/TimetableException.h"
+#include "TimetableException.h"
 using namespace std;
 
 ApplicHoraireWindow::ApplicHoraireWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::ApplicHoraireWindow)
@@ -763,6 +763,38 @@ void ApplicHoraireWindow::on_actionOuvrir_triggered()
     cout << "Clic sur Menu Fichier --> Item Ouvrir" << endl;
     // TO DO (Etape 10)
 
+    string loadName = dialogInputText("Ouvrir", "Entrez le nom de la sauvegarde à ouvrir :");
+    try
+    {
+        Timetable::getInstance().clearTimetable();
+        clearTableProfessors();
+        clearTableGroups();
+        clearTableClassrooms();
+        Timetable::getInstance().load(loadName);
+    }
+    catch (TimetableException& t)
+    {
+        dialogError("Erreur", t.getMessage());
+        return;
+    }
+
+
+    const auto& professorsAfter = Timetable::getInstance().getProfessors();
+    for (const auto& professor : professorsAfter) {
+        addTupleTableProfessors(professor.tuple());
+    }
+
+    const auto& groupsAfter = Timetable::getInstance().getGroups();
+    for (const auto& group : groupsAfter) {
+        addTupleTableGroups(group.tuple());
+    }
+
+    const auto& classroomsAfter = Timetable::getInstance().getClassrooms();
+    for (const auto& classroom : classroomsAfter) {
+        addTupleTableClassrooms(classroom.tuple());
+    }
+
+    dialogMessage("Ouvrir", "Sauvegarde ouverte avec succès !");
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -771,6 +803,10 @@ void ApplicHoraireWindow::on_actionNouveau_triggered()
     cout << "Clic sur Menu Fichier --> Item Nouveau" << endl;
     // TO DO (Etape 10)
 
+    Timetable::getInstance().clearTimetable();
+    clearTableClassrooms();
+    clearTableProfessors();
+    clearTableGroups();
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -779,6 +815,16 @@ void ApplicHoraireWindow::on_actionEnregistrer_triggered()
     cout << "Clic sur Menu Fichier --> Item Enregistrer" << endl;
     // TO DO (Etape 10)
 
+    string saveName = dialogInputText("Enregistrer", "Entrez le nom de votre sauvegarde :");
+    try
+    {
+        Timetable::getInstance().save(saveName);
+        dialogMessage("Enregistrer", "Sauvegarde enregistrée !");
+    }
+    catch (TimetableException& t)
+    {
+        dialogError("Erreur", t.getMessage());
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -802,7 +848,6 @@ void ApplicHoraireWindow::on_actionSupprimerProfesseur_triggered() {
     clearTableProfessors();
 
     const auto& professorsAfter = Timetable::getInstance().getProfessors();
-    
     // Ajouter chaque professeur restant dans la table pour actualiser l'affichage
     for (const auto& professor : professorsAfter) {
         addTupleTableProfessors(professor.tuple());

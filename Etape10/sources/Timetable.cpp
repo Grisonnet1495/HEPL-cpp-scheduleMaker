@@ -1,5 +1,9 @@
+#include <iostream>
+#include <fcntl.h>
+#include <unistd.h>
 #include "Timetable.h"
 #include "TimetableException.h"
+#include "XmlFileSerializer.hpp"
 
 using namespace planning;
 
@@ -271,49 +275,214 @@ void Timetable::deleteGroupById(int id)
 	throw TimetableException("Id non trouve.", TimetableException::INVALID_ID);
 }
 
-void save(const string& timetableName)
+void Timetable::save(const string& timetableName)
 {
+	// Sauvegarde currenId
 	string fileName = timetableName + "_config.dat";
 	int fd;
 
-	if ((fd = open(fileName, O_WRONLY | O_CREAT, 0666)) == -1) throw TimetableException("Erreur d'ouverture du fichier", TimetableException::FILE_ERROR);
+	// Verifie si le fichier existe deja
+	if (access(fileName.c_str(), F_OK) == 0) throw TimetableException("Un fichier du meme nom est deja present", TimetableException::FILE_EXISTS); // c_str() sert a transformer le string en const char*
 
-	write(fd, Schedulable::currentId);
+	if ((fd = open(fileName.c_str(), O_WRONLY | O_CREAT, 0644)) == -1) throw TimetableException("Erreur d'ouverture du fichier", TimetableException::FILE_ERROR);
+
+	write(fd, &Schedulable::currentId, sizeof(int));
 	close(fd);
 
-	string fileName = timetableName + "_classrooms.xml";
-	XmlFileSerializer<Professor> XfsClassroom(fileName, XmlFileSerializer<Professor>::WRITE, "classrooms");
-	cout << "Filename = " << XfsClassroom.getFilename() << endl;
-	cout << "Collection name  = " << XfsClassroom.getCollectionName() << endl;
-	cout << "Readable = " << XfsClassroom.isReadable() << endl;
-	cout << "Writable = " << XfsClassroom.isWritable() << endl << endl;
+	{
+		// Sauvegarde classrooms
+		fileName = timetableName + "_classrooms.xml";
+		XmlFileSerializer<Classroom> fsw(fileName, XmlFileSerializer<Classroom>::WRITE, "classrooms");
+		cout << "Filename = " << fsw.getFilename() << endl;
+		cout << "Collection name  = " << fsw.getCollectionName() << endl;
+		cout << "Readable = " << fsw.isReadable() << endl;
+		cout << "Writable = " << fsw.isWritable() << endl << endl;
 
-	for (auto it = classrooms.cbegin(); it != classrooms.cend(); it++) {
-		XfsClassroom.write(it);
+		for (auto it = classrooms.cbegin(); it != classrooms.cend(); it++) {
+			fsw.write(*it);
+		}
 	}
-	delete XfsClassroom;
 
-	string fileName = timetableName + "_professors.xml";
-	XmlFileSerializer<Professor> XfsProfessor(fileName, XmlFileSerializer<Professor>::WRITE, "professors");
-	cout << "Filename = " << XfsProfessor.getFilename() << endl;
-	cout << "Collection name  = " << XfsProfessor.getCollectionName() << endl;
-	cout << "Readable = " << XfsProfessor.isReadable() << endl;
-	cout << "Writable = " << XfsProfessor.isWritable() << endl << endl;
+	{
+		// Sauvegarde professors
+		fileName = timetableName + "_professors.xml";
+		XmlFileSerializer<Professor> fsw(fileName, XmlFileSerializer<Professor>::WRITE, "professors");
+		cout << "Filename = " << fsw.getFilename() << endl;
+		cout << "Collection name  = " << fsw.getCollectionName() << endl;
+		cout << "Readable = " << fsw.isReadable() << endl;
+		cout << "Writable = " << fsw.isWritable() << endl << endl;
 
-	for (auto it = professors.cbegin(); it != professors.cend(); it++) {
-		XfsProfessor.write(it);
+		for (auto it = professors.cbegin(); it != professors.cend(); it++) {
+			fsw.write(*it);
+		}
 	}
-	delete XfsProfessor;
 
-	string fileName = timetableName + "_groups.xml";
-	XmlFileSerializer<Professor> XfsGroup(fileName, XmlFileSerializer<Group>::WRITE, "groups");
-	cout << "Filename = " << XfsGroup.getFilename() << endl;
-	cout << "Collection name  = " << XfsGroup.getCollectionName() << endl;
-	cout << "Readable = " << XfsGroup.isReadable() << endl;
-	cout << "Writable = " << XfsGroup.isWritable() << endl << endl;
+	{
+		// Sauvegarde groups
+		fileName = timetableName + "_groups.xml";
+		XmlFileSerializer<Group> fsw(fileName, XmlFileSerializer<Group>::WRITE, "groups");
+		cout << "Filename = " << fsw.getFilename() << endl;
+		cout << "Collection name  = " << fsw.getCollectionName() << endl;
+		cout << "Readable = " << fsw.isReadable() << endl;
+		cout << "Writable = " << fsw.isWritable() << endl << endl;
 
-	for (auto it = groups.cbegin(); it != groups.cend(); it++) {
-		XfsGroup.write(it);
+		for (auto it = groups.cbegin(); it != groups.cend(); it++) {
+			fsw.write(*it);
+		}
 	}
-	delete XfsGroup;
+}
+
+void Timetable::load(const string& timetableName)
+{
+	// Sauvegarde currentId
+	string fileName = timetableName + "_config.dat";
+	int fd;
+
+	if ((fd = open(fileName.c_str(), O_RDONLY)) == -1) throw TimetableException("Erreur d'ouverture du fichier", TimetableException::FILE_ERROR); // c_str() sert a transformer le string en const char*
+
+	read(fd, &Schedulable::currentId, sizeof(int));
+	close(fd);
+
+	// Sauvegarde de classrooms
+	fileName = timetableName + "_classrooms.xml";
+	XmlFileSerializer<Classroom> *fsrc = nullptr;
+
+  	try
+  	{
+    	fsrc = new XmlFileSerializer<Classroom>(fileName, XmlFileSerializer<Classroom>::READ);
+	    cout << "Filename = " << fsrc->getFilename() << endl;
+	    cout << "Collection name = " << fsrc->getCollectionName() << endl;
+	    cout << "Readable = " << fsrc->isReadable() << endl;
+	    cout << "Writable = " << fsrc->isWritable() << endl << endl;
+	} catch(const XmlFileSerializerException& e)
+	{
+		cout << "Erreur : " << e.getMessage() << " (code = " << e.getCode() << ")" << endl;
+	}
+
+	if (fsrc != nullptr)
+	{
+		cout << "Debut de lecture..." << endl;
+		bool end = false;
+
+		while (!end)
+		{
+			try
+			{
+				Classroom c = fsrc->read();
+				cout << "Lu : " << c.toString() << endl;
+				classrooms.insert(c);
+			} catch(const XmlFileSerializerException& e) {
+				if (e.getCode() == XmlFileSerializerException::END_OF_FILE)
+				{ 
+				  end = true;
+				  cout << "Fin de fichier atteinte." << endl;
+				}
+				else
+				{
+				  cout << "Erreur : " << e.getMessage() << " (code = " << e.getCode() << ")" << endl;
+				}
+			}
+		}
+    	delete fsrc;
+
+		cout << "Fin de lecture." << endl;
+	}
+
+	// Sauvegarde de professors
+	fileName = timetableName + "_professors.xml";
+	XmlFileSerializer<Professor> *fsrp = nullptr;
+	
+  	try
+  	{
+    	fsrp = new XmlFileSerializer<Professor>(fileName, XmlFileSerializer<Professor>::READ);
+	    cout << "Filename = " << fsrp->getFilename() << endl;
+	    cout << "Collection name = " << fsrp->getCollectionName() << endl;
+	    cout << "Readable = " << fsrp->isReadable() << endl;
+	    cout << "Writable = " << fsrp->isWritable() << endl << endl;
+	} catch(const XmlFileSerializerException& e)
+	{
+		cout << "Erreur : " << e.getMessage() << " (code = " << e.getCode() << ")" << endl;
+	}
+
+	if (fsrp != nullptr)
+	{
+		cout << "Debut de lecture..." << endl;
+		bool end = false;
+
+		while (!end)
+		{
+			try
+			{
+				Professor p = fsrp->read();
+				cout << "Lu : " << p.toString() << endl;
+				professors.insert(p);
+			} catch(const XmlFileSerializerException& e) {
+				if (e.getCode() == XmlFileSerializerException::END_OF_FILE)
+				{ 
+				  end = true;
+				  cout << "Fin de fichier atteinte." << endl;
+				}
+				else
+				{
+				  cout << "Erreur : " << e.getMessage() << " (code = " << e.getCode() << ")" << endl;
+				}
+			}
+		}
+    	delete fsrp;
+
+		cout << "Fin de lecture." << endl;
+	}
+
+	// Sauvegarde de groups
+	fileName = timetableName + "_groups.xml";
+	XmlFileSerializer<Group> *fsrg = nullptr;
+	
+  	try
+  	{
+    	fsrg = new XmlFileSerializer<Group>(fileName, XmlFileSerializer<Group>::READ);
+	    cout << "Filename = " << fsrg->getFilename() << endl;
+	    cout << "Collection name = " << fsrg->getCollectionName() << endl;
+	    cout << "Readable = " << fsrg->isReadable() << endl;
+	    cout << "Writable = " << fsrg->isWritable() << endl << endl;
+	} catch(const XmlFileSerializerException& e)
+	{
+		cout << "Erreur : " << e.getMessage() << " (code = " << e.getCode() << ")" << endl;
+	}
+
+	if (fsrg != nullptr)
+	{
+		cout << "Debut de lecture..." << endl;
+		bool end = false;
+
+		while (!end)
+		{
+			try
+			{
+				Group g = fsrg->read();
+				cout << "Lu : " << g.toString() << endl;
+				groups.insert(g);
+			} catch(const XmlFileSerializerException& e) {
+				if (e.getCode() == XmlFileSerializerException::END_OF_FILE)
+				{ 
+				  end = true;
+				  cout << "Fin de fichier atteinte." << endl;
+				}
+				else
+				{
+				  cout << "Erreur : " << e.getMessage() << " (code = " << e.getCode() << ")" << endl;
+				}
+			}
+		}
+    	delete fsrg;
+
+		cout << "Fin de lecture." << endl;
+	}
+}
+
+void Timetable::clearTimetable()
+{
+	Schedulable::currentId = 1;
+	classrooms.clear();
+	professors.clear();
+	groups.clear();
 }
