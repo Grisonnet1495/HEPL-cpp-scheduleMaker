@@ -1,0 +1,2 @@
+A faire :
+	- Rajouter des messages d'erreurs si le Schedulable a supprimer n'est pas trouve.
