@@ -1,8 +1,10 @@
 #include <iostream>
 #include <fcntl.h>
 #include <unistd.h>
+#include "Event.h"
 #include "Timetable.h"
 #include "TimetableException.h"
+#include "TimingException.h"
 #include "XmlFileSerializer.hpp"
 
 using namespace planning;
@@ -48,6 +50,11 @@ set<Professor> Timetable::getProfessors() const
 set<Group> Timetable::getGroups() const
 {
 	return groups;
+}
+
+list<Course> Timetable::getCourses() const
+{
+	return courses;
 }
 
 // Méthodes pour les objets Classroom
@@ -125,6 +132,19 @@ void Timetable::deleteClassroomById(int id)
 	throw TimetableException("Id non trouve.", TimetableException::INVALID_ID);
 }
 
+bool Timetable::isClassroomAvailable(int id, const Timing& timing)
+{
+	for (auto it = courses.cbegin(); it != courses.cend(); it++)
+	{
+		if (it->getClassroomId() == id)
+		{
+			if (it->getTiming().intersect(timing) == true) return false;
+		}
+	}
+
+	return true;
+}
+
 // Méthodes pour les objets Professor
 
 int Timetable::addProfessor(const string& lastName,const string& firstName)
@@ -198,6 +218,19 @@ void Timetable::deleteProfessorById(int id)
     }
 	
 	throw TimetableException("Id non trouve.", TimetableException::INVALID_ID);
+}
+
+bool Timetable::isProfessorAvailable(int id, const Timing& timing)
+{
+	for (auto it = courses.cbegin(); it != courses.cend(); it++)
+	{
+		if (it->getProfessorId() == id)
+		{
+			if (it->getTiming().intersect(timing) == true) return false;
+		}
+	}
+
+	return true;
 }
 
 // Méthodes pour les objets Group
@@ -275,6 +308,73 @@ void Timetable::deleteGroupById(int id)
 	throw TimetableException("Id non trouve.", TimetableException::INVALID_ID);
 }
 
+bool Timetable::isGroupAvailable(int id, const Timing& timing)
+{
+	for (auto it = courses.cbegin(); it != courses.cend(); it++)
+	{
+		if (it->isGroupIdPresent(id))
+		{
+			if (it->getTiming().intersect(timing)) return false;
+		}
+	}
+
+	return true;
+}
+
+// Methode pour planifier un cours
+
+void Timetable::schedule(Course& c, const Timing& t) 
+{
+	if (!isClassroomAvailable(c.getClassroomId(), t)) throw TimingException("Local non disponible", TimingException::INVALID_TIMING);
+
+	if (!isProfessorAvailable(c.getProfessorId(), t)) throw TimingException("Professeur non disponible", TimingException::INVALID_TIMING);
+
+	for (const auto& groupId : c.getGroupsIds())
+	{
+		if (!isGroupAvailable(groupId, t)) throw TimingException("Groupe non disponible", TimingException::INVALID_TIMING);
+	}
+
+	c.setTiming(t);
+
+	courses.push_back(c);
+}
+
+void Timetable::deleteCourseByCode(int code)
+{
+	for (auto it = courses.begin(); it != courses.end(); it++)
+	{
+		if (it->getCode() == code)
+		{
+			courses.erase(it);
+			return;
+		}
+	}
+
+	throw TimetableException("Code non trouve.", TimetableException::INVALID_CODE);
+}
+
+// Méthode pour renvoyer un tuple representant un objet Course
+
+string Timetable::tuple(const Course& c)
+{
+    string s = to_string(c.getCode()) + ";";
+    s += c.getTiming().tuple() + ";";
+    s += findClassroomById(c.getClassroomId()).getName() + ";";
+    s += c.getTitle() + ";";
+    s += findProfessorById(c.getProfessorId()).getLastName() + " " + findProfessorById(c.getProfessorId()).getFirstName() + ";";
+
+    const auto groupIds = c.getGroupsIds();
+    for (auto it = groupIds.begin(); it != groupIds.end(); it++) {
+        s += findGroupById(*it).getName();
+        if (next(it) != groupIds.end())    // Vérifie si le prochain itérateur n'est pas le dernier
+            s += ", ";
+    }
+
+    return s;
+}
+
+// Methodes pour sauvegarder et ouvrir des objets Timetable
+
 void Timetable::save(const string& timetableName)
 {
 	// Sauvegarde currenId
@@ -287,7 +387,17 @@ void Timetable::save(const string& timetableName)
 	if ((fd = open(fileName.c_str(), O_WRONLY | O_CREAT, 0644)) == -1) throw TimetableException("Erreur d'ouverture du fichier", TimetableException::FILE_ERROR);
 
 	write(fd, &Schedulable::currentId, sizeof(int));
+	write(fd, &Event::currentCode, sizeof(int));
 	close(fd);
+
+	{
+		// Sauvegarde des cours
+		fileName = timetableName + "_courses.xml";
+		XmlFileSerializer<Course> fsw(fileName, XmlFileSerializer<Course>::WRITE, "courses");
+		for (auto it = courses.cbegin(); it != courses.cend(); it++) {
+			fsw.write(*it);
+		}
+	}
 
 	{
 		// Sauvegarde classrooms
@@ -319,16 +429,55 @@ void Timetable::save(const string& timetableName)
 
 void Timetable::load(const string& timetableName)
 {
-	// Sauvegarde currentId
+	// Chargement currentId
 	string fileName = timetableName + "_config.dat";
 	int fd;
 
 	if ((fd = open(fileName.c_str(), O_RDONLY)) == -1) throw TimetableException("Erreur d'ouverture du fichier", TimetableException::FILE_ERROR); // c_str() sert a transformer le string en const char*
 
 	read(fd, &Schedulable::currentId, sizeof(int));
+	read(fd, &Event::currentCode, sizeof(int));
 	close(fd);
 
-	// Sauvegarde de classrooms
+	// Chargement des courses
+	fileName = timetableName + "_courses.xml";
+	XmlFileSerializer<Course> *fsre = nullptr;
+
+	try
+	{
+		fsre = new XmlFileSerializer<Course>(fileName, XmlFileSerializer<Course>::READ);
+	}
+	catch (const XmlFileSerializerException& e)
+	{
+		cout << "Erreur : " << e.getMessage() << " (code = " << e.getCode() << ")" << endl;
+	}
+
+	if (fsre != nullptr)
+	{
+		bool end;
+		while (!end)
+		{
+			try
+			{
+				Course c = fsre->read();
+				courses.push_back(c);
+			}
+			catch (XmlFileSerializerException& e)
+			{
+				if (e.getCode() == XmlFileSerializerException::END_OF_FILE)
+				{
+					end = true;
+				}
+				else
+				{
+                    cout << "Erreur : " << e.getMessage() << " (code = " << e.getCode() << ")" << endl;
+				}
+			}
+		}
+		delete fsre;
+	}
+
+	// Chargement de classrooms
 	fileName = timetableName + "_classrooms.xml";
 	XmlFileSerializer<Classroom> *fsrc = nullptr;
 
@@ -351,7 +500,9 @@ void Timetable::load(const string& timetableName)
 			{
 				Classroom c = fsrc->read();
 				classrooms.insert(c);
-			} catch(const XmlFileSerializerException& e) {
+			} 
+			catch(const XmlFileSerializerException& e) 
+			{
 				if (e.getCode() == XmlFileSerializerException::END_OF_FILE)
 				{ 
 				  end = true;
@@ -365,7 +516,7 @@ void Timetable::load(const string& timetableName)
     	delete fsrc;
 	}
 
-	// Sauvegarde de professors
+	// Chargement de professors
 	fileName = timetableName + "_professors.xml";
 	XmlFileSerializer<Professor> *fsrp = nullptr;
 	
@@ -404,7 +555,7 @@ void Timetable::load(const string& timetableName)
     	delete fsrp;
 	}
 
-	// Sauvegarde de groups
+	// Chargement de groups
 	fileName = timetableName + "_groups.xml";
 	XmlFileSerializer<Group> *fsrg = nullptr;
 	
@@ -427,7 +578,9 @@ void Timetable::load(const string& timetableName)
 			{
 				Group g = fsrg->read();
 				groups.insert(g);
-			} catch(const XmlFileSerializerException& e) {
+			} 
+			catch(const XmlFileSerializerException& e)
+			{
 				if (e.getCode() == XmlFileSerializerException::END_OF_FILE)
 				{ 
 				  end = true;
@@ -445,7 +598,9 @@ void Timetable::load(const string& timetableName)
 void Timetable::clearTimetable()
 {
 	Schedulable::currentId = 1;
+	Event::currentCode = 1;
 	classrooms.clear();
 	professors.clear();
 	groups.clear();
+	courses.clear();
 }

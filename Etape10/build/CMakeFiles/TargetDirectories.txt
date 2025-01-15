@@ -1,3 +1,0 @@
-/home/student/Bureau/Programmation orientée objet en C++/Projet GitHub/HEPL-cpp-scheduleMaker/Etape10/build/CMakeFiles/rebuild_cache.dir
-/home/student/Bureau/Programmation orientée objet en C++/Projet GitHub/HEPL-cpp-scheduleMaker/Etape10/build/CMakeFiles/ApplicHoraire.dir
-/home/student/Bureau/Programmation orientée objet en C++/Projet GitHub/HEPL-cpp-scheduleMaker/Etape10/build/CMakeFiles/edit_cache.dir

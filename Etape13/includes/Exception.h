@@ -1,0 +1,26 @@
+#ifndef EXCEPTION_H
+#define EXCEPTION_H
+
+#include <stdlib.h>
+#include <iostream>
+#include <string.h>
+using namespace std;
+
+class Exception
+{
+  private:
+    string message;
+
+  public:
+    // Constructeurs et destructeur    
+    Exception();
+    Exception(const string& m);
+    Exception(const Exception& e);
+    ~Exception();
+
+    void setMessage(const string& m);
+
+    const string& getMessage() const;
+};
+
+#endif
