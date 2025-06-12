@@ -16,6 +16,8 @@ This project is not intended for official release and may contain bugs.
 
 Please take in account that this is our first project using C++ and Qt for an graphical application.
 
+If you want to test this application, you can recompile it using CMake.
+
 **This app is experimental. We are not responsible for any damage to your system.**
 
 ## Copyright:
